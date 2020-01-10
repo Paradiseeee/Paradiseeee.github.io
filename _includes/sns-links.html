@@ -1,0 +1,121 @@
+{% comment %}
+    @param {Boolean} center 
+{% endcomment %}
+
+{% if include.center %}
+<ul class="list-inline text-center">
+{% else %}
+<ul class="list-inline">
+{% endif %}
+
+  <!-- Link to Wechat -->
+  <li>
+    <a target="_balnk" href="/img/wechat.jpg">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="weixins fa fa-weixin fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+
+  <!-- Link to Email -->
+  <li>
+    <a target="_balnk" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=paradise26472@qq.com">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="email fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+
+  <!-- Link to GitHub -->
+  {% if site.github_username %}
+  <li>
+    <a target="_blank" href="https://github.com/{{ site.github_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+
+  <!-- Link to CSDN -->
+  {% if site.csdn_username %}
+  <li>
+    <a target="_blank" href="https://me.csdn.net/{{ site.csdn_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <!-- <i class="fa fa-stack-1x fa-inverse"><i><font size=4.5>C&nbsp</font></i></i> -->
+        <i class="fa fa-stack-1x fa-inverse"><i>C&nbsp;</i></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+
+  <!-- Link to Zhihu -->
+  {% if site.zhihu_username %}
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+
+  <!-- Link to Douban -->
+  {% if site.douban_username %}
+  <li>
+    <a target="_blank" href="http://douban.com/people/{{ site.douban_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-douban fa-stack-1x fa-inverse">豆</i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+
+  <!-- Unused Link -->
+  {% if site.RSS %}
+  <li>
+    <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  {% if site.twitter_username %}
+  <li>
+    <a href="https://twitter.com/{{ site.twitter_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  {% if site.facebook_username %}
+  <li>
+    <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  {% if site.linkedin_username %}
+  <li>
+    <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+</ul>
