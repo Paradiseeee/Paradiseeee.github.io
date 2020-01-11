@@ -1,3 +1,4 @@
 package-lock.json
 _site
-_posts/_draft
+.jekyll-cache
+img/img.backup
