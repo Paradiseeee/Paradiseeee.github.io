@@ -31,26 +31,29 @@
 
 {% if page.title == "Archive" %}
 <!-- Main Content -->
-            <h4>标签归档</h4>
-            <hr>
-			<!-- Tags (as filter) -->
-			<div id='tag_cloud' class="tags tags-sup js-tags">
-				<a class="tag-button--all" data-encode="">
-					Show All
-					<sup>{{site.posts.size}}</sup>
-				</a>
-
-				{% capture tags %}
-				{% for tag in site.tags %}
-				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-					data-encode="{{ tag[0] | strip | url_encode }}"
-					class="tag-button--all"
-					title="{{ tag[0] }}" rel="{{ tag[1].size }}">
-					{{ tag[0] }}
-					<sup>{{tag[1].size}}</sup>
-				</a>
-				{% endfor %}
-				{% endcapture %}
-        {{ tags | split:'</a>' | sort | join:'</a>' }}
-			</div>
+<section>
+    <h4>标签归档</h4>
+    <hr>
+    <!-- Tags (as filter) -->
+    <div id='tag_cloud' class="tags tags-sup js-tags">
+        <a class="tag-button--all" data-encode="">
+            全部文章
+            <sup><font color=#ff1199 size=2 style="font-family:Courier New">{{site.posts.size}}</font></sup>
+        </a>
+        <br>
+        {% capture tags %}
+        {% for tag in site.tags %}
+        <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+            data-encode="{{ tag[0] | strip | url_encode }}"
+            class="tag-button"
+            title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+            <font color=#ffffff>{{ tag[0] }}</font>
+            <sup><i><font color=#ff1199 size=2 style="font-family:Courier New">{{tag[1].size}}</font></i></sup>
+        </a>
+        {% endfor %}
+        {% endcapture %}
+    <!-- 上面计算各个标签数量，下面是排序 -->
+    {{ tags | split:'</a>' | sort | join:'</a>' }}      
+    </div>
+</section>
 {% endif %}

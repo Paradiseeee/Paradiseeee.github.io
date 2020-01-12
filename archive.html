@@ -8,6 +8,11 @@ header-img: "img/tag-bg.jpg"
 <!-- set background color -->
 {% include bg-color.html %}
 
+<!-- <style type="text/css"> div{ color:#00F } </style> -->
+<!-- <style type="text/css">
+body{font-color:#990000;}
+</style> -->
+
 <!-- 
 Credits: this page shamelessly borrowed a lot from:
 https://github.com/kitian616/jekyll-TeXt-theme
@@ -17,57 +22,55 @@ https://github.com/kitian616/jekyll-TeXt-theme
 <!-- 并且重新定义了sidebar，当title为archive的时候，sidebar的sort-about和tags不显示，显示便签云筛选-->
 
 <!-- Main Content -->
+
 <h4><font color=#bfbfbf>日期归档</font></h4>
 <hr />
-<div class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-			<!-- Tags (as filter) -->
-			<!-- 移动到sidebar显示了，参考short-about.html和featured-tags.html -->
+<div class="col-lg-10 col-lg-offset-0 col-md-10 col-md-offset-1">
+	<!-- Tags (as filter) -->
+	<!-- 移动到sidebar显示了，参考short-about.html和featured-tags.html -->
 
-            <!-- Article List -->
-			<div class="mini-post-list js-result d-none">
-			{%- assign _sorted_list = site.posts -%}
-			{%- assign _sorted_list = _sorted_list | sort: 'date' -%}
-			{%- assign _sorted_list = _sorted_list | reverse -%}
+	<!-- Article List -->
+	<div class="mini-post-list js-result d-none">
+	{%- assign _sorted_list = site.posts -%}
+	{%- assign _sorted_list = _sorted_list | sort: 'date' -%}
+	{%- assign _sorted_list = _sorted_list | reverse -%}
 
 
-			{%- for _article in _sorted_list -%}
-				{%- assign _tags = '' -%}
-				{%- for _tag in _article.tags -%}
-					{%- assign _tag_encode = _tag | strip | url_encode -%}
-					{%- if forloop.last -%}
-						{%- assign _tags = _tags | append: _tag_encode -%}
-					{%- else -%}
-						{%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
-					{%- endif -%}
-				{%- endfor -%}
-
-			{% comment %} group by year {% endcomment %}
-			{%- assign _currentdate = _article.date | date: '%Y' -%}
-			{%- if _currentdate != _date -%}
-				{%- unless forloop.first -%}</section>{%- endunless -%}
-				<section>
-				<span class="fa listing-seperator">
-					<span class="tag-text">{{ _currentdate }}</span>
-				</span>
-				{%- assign _date = _currentdate -%}
+	{%- for _article in _sorted_list -%}
+		{%- assign _tags = '' -%}
+		{%- for _tag in _article.tags -%}
+			{%- assign _tag_encode = _tag | strip | url_encode -%}
+			{%- if forloop.last -%}
+				{%- assign _tags = _tags | append: _tag_encode -%}
+			{%- else -%}
+				{%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
 			{%- endif -%}
+		{%- endfor -%}
 
-				<div class="post-preview item" data-tags="{{ _tags }}">
-				    <a href="{{ _article.url | prepend: site.baseurl }}">
-				        <h2 class="post-title">
-                            {{ _article.title }}
-				        </h2>
-				        {% if _article.subtitle %}
-				        <h3 class="post-subtitle">
-				            {{ _article.subtitle }}
-				        </h3>
-				        {% endif %}
-				    </a>
-					<hr>
-				</div>
-			{% endfor %}
+	{% comment %} group by year {% endcomment %}
+	{%- assign _currentdate = _article.date | date: '%Y' -%}
+	{%- if _currentdate != _date -%}
+		{%- unless forloop.first -%}</section>{%- endunless -%}
+		<section>
+		<span class="fa listing-seperator">
+			<span class="tag-text">{{ _currentdate }}</span>
+		</span>
+		{%- assign _date = _currentdate -%}
+	{%- endif -%}
+
+		<div class="post-preview item" data-tags="{{ _tags }}">
+			<a href="{{ _article.url | prepend: site.baseurl }}">
+				<h2 class="post-title">
+					{{ _article.title }}
+				</h2>
+				{% if _article.subtitle %}
+				<h3 class="post-subtitle">
+					{{ _article.subtitle }}
+				</h3>
+				{% endif %}
+			</a>
+			<hr>
 		</div>
-	</div>
+	{% endfor %}
 </div>
+
