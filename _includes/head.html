@@ -30,7 +30,12 @@
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.SEOTitle }}">
     
+    {% if page.title == "Archive" %}
+    <title>文章归档 - {{ site.SEOTitle }}</title>
+    {% endif %}
+    {% if page.title != "Archive" %}
     <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{ site.SEOTitle }}{% endif %}</title>
+    {% endif %}
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">

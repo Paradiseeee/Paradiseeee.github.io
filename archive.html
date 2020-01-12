@@ -1,6 +1,6 @@
 ---
 title: Archive
-layout: default
+layout: page
 description: Archive-Description
 header-img: "img/tag-bg.jpg"
 ---
@@ -12,33 +12,18 @@ header-img: "img/tag-bg.jpg"
 Credits: this page shamelessly borrowed a lot from:
 https://github.com/kitian616/jekyll-TeXt-theme
 -->
-<!-- Page Header -->
-{% include intro-header.html type='page' short=true %}
+
+<!-- 为了不像作者那么“shamelessly”，并且由于自己的强迫症（HOME、ARCHIVE和ABOUT三个页面格式不太一致），这里将layout改为了page -->
+<!-- 并且重新定义了sidebar，当title为archive的时候，sidebar的sort-about和tags不显示，显示便签云筛选-->
 
 <!-- Main Content -->
+<h4><font color=#bfbfbf>日期归档</font></h4>
+<hr />
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+		<div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
 			<!-- Tags (as filter) -->
-			<div id='tag_cloud' class="tags tags-sup js-tags">
-				<a class="tag-button--all" data-encode="">
-					Show All
-					<sup>{{site.posts.size}}</sup>
-				</a>
-
-				{% capture tags %}
-				{% for tag in site.tags %}
-				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
-					data-encode="{{ tag[0] | strip | url_encode }}"
-					class="tag-button"
-					title="{{ tag[0] }}" rel="{{ tag[1].size }}">
-					{{ tag[0] }}
-					<sup>{{tag[1].size}}</sup>
-				</a>
-				{% endfor %}
-				{% endcapture %}
-        {{ tags | split:'</a>' | sort | join:'</a>' }}
-			</div>
+			<!-- 移动到sidebar显示了，参考short-about.html和featured-tags.html -->
 
             <!-- Article List -->
 			<div class="mini-post-list js-result d-none">

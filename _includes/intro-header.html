@@ -100,7 +100,11 @@
         {% else %}
         <div class="site-heading">
         {% endif %}
+        {% if page.title == "Archive" %}
+          <h1>文章归档</h1>
+        {% else %}
           <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+        {% endif %}
           <span class="subheading">{{ page.description }}</span>
         </div>
       </div>
