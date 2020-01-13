@@ -68,7 +68,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true  # whether or not using Sidebar.
-sidebar-about-description: Hi~ 我是Paradise。博客刚刚重建，百废俱兴，会逐步添加文章和新内容。志同道合的朋友欢迎持续关注。欢迎加好友，欢迎在我的常去站点联系我。<br><img class="emoji" alt="pray" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f64f.png">
+sidebar-about-description: "这里写一则留言"
 sidebar-avatar: /img/avatar-daodao.jpg
 
 # Featured Tags
