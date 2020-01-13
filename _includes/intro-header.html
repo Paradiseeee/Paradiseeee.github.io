@@ -1,3 +1,8 @@
+<!-- 
+更改：
+    1. 更改了三个页面的标题
+ -->
+
 {% comment %}
     @param {string} type - 'page' | 'post' | 'keynote'
     @param {boolean} short
@@ -100,6 +105,7 @@
         {% else %}
         <div class="site-heading">
         {% endif %}
+        <!-- 以下分别定义三个页面的标题 -->
         {% if page.title == "Archive" %}
             <h1><font style="font-family: NSimSun">文章归档</font></h1>
         {% else %}
@@ -110,7 +116,7 @@
                 <h1>{{ page.title }}</h1>
                 {% else %}
                 <!-- <h1><font style="font-family:'Courier New', Courier, monospace">{{ site.title }}</font></h1> -->
-                <h1><font style="font-family: Georgia">Paradise's Blog</font></h1>
+                <h1><font style="font-family: Georgia">Paradise<font color=#00fffff>'</font>s Blog</font></h1>
                 <!-- <font size=10 style="font-family: Georgia" color=lightblue><big><i>Paradise</i></big></font><sub><font size=6  color=#adff2f>的</font></sub><font style="font-family: SimSun" color=lightblue>博客</font> -->
                 {% endif %}
             {% endif %}

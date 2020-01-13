@@ -1,3 +1,9 @@
+<!-- 
+更改：
+    1. 本section的标题改为Paradise
+    2. 增加了分割线
+ -->
+
 {% if page.title != "Archive" %}
 <section class="visible-md visible-lg">
   <hr>
@@ -7,7 +13,8 @@
     <img src="{{site.sidebar-avatar}}" />
     {% endif %}
     {% if site.sidebar-about-description %}
-    <p>{{site.sidebar-about-description}}</p>
+    <p>{{site.sidebar-about-description}}
+      <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f64f.png" height="2px" width="2px"></p>
     {% endif %}
     <!-- SNS Link -->
     {% include sns-links.html %}

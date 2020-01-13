@@ -1,3 +1,10 @@
+# 更改
+# 1. Site setting中的个人更改，email、description、keyword、url、baseurl不知道有什么用。
+# 2. Site setting中的title已经弃用，在intro-header.html中编写
+# 3. SNS setting中的个人更改，添加借个账号，删除几个账号
+# 4. Build setting中的paginate改为5
+# 5. Sidebar setting中的留言更改
+
 # Site settings
 title: Paradise 的博客
 SEOTitle: Paradise's Blog
@@ -68,7 +75,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true  # whether or not using Sidebar.
-sidebar-about-description: "这里写一则留言"
+sidebar-about-description: Hi~ 我是 Paradise。博客刚刚重建，百废待兴，将逐步添加文章和其他内容。欢迎志同道合的朋友持续关注。欢迎通过社交账号或在我的常去站点联系我。
 sidebar-avatar: /img/avatar-daodao.jpg
 
 # Featured Tags
