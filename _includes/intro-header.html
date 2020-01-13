@@ -101,11 +101,21 @@
         <div class="site-heading">
         {% endif %}
         {% if page.title == "Archive" %}
-          <h1>文章归档</h1>
+            <h1><font style="font-family: NSimSun">文章归档</font></h1>
         {% else %}
-          <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+            {% if page.title == "关于 Paradise"%}
+            <h1><font style="font-family: NSimSun">关于</font><font style="font-family: Georgia"> Paradise</font></h1>
+            {% else %}
+                {% if page.title %}
+                <h1>{{ page.title }}</h1>
+                {% else %}
+                <!-- <h1><font style="font-family:'Courier New', Courier, monospace">{{ site.title }}</font></h1> -->
+                <h1><font style="font-family: Georgia">Paradise's Blog</font></h1>
+                <!-- <font size=10 style="font-family: Georgia" color=lightblue><big><i>Paradise</i></big></font><sub><font size=6  color=#adff2f>的</font></sub><font style="font-family: SimSun" color=lightblue>博客</font> -->
+                {% endif %}
+            {% endif %}
         {% endif %}
-          <span class="subheading">{{ page.description }}</span>
+            <span class="subheading">{{ page.description }}</span>
         </div>
       </div>
     </div>
