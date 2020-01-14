@@ -2,48 +2,52 @@
 更改：
     1. 增加标签云标题
     2. 将archive中的标签筛选器移动到此处
+    3. 只在首页显示标签云，在archive页显示筛选器，about和post页不显示标签
+    4. 解决了标签云的annotation的“辐射”问题
  -->
 
 {% comment %}
     @param {boolean} bottom - bottom will render <hr> 
 {% endcomment %}
 
-{% if page.title != "Archive" %}
-{% if site.featured-tags %}
-<section>
-    {% if include.bottom %}
-    <hr class="hidden-sm hidden-xs">
+{% if page.title %}
+<!-- 如果page有标题不显示标签云，即只在首页显示 -->
+{% else %}
+    {% if site.featured-tags %}
+    <section>
+        {% if include.bottom %}
+        <hr class="hidden-sm hidden-xs">
+        {% endif %}
+        <h4><a href="{{'/archive/' | prepend: site.baseurl }}"><font color="lightblue">文章标签</font></a></h4>
+        <div class="tags">
+            {% capture tags %}
+            {% comment %}
+                there must be no space between for and if otherwise this tricky sort won't work.
+                url_encode/decode is for escaping otherwise extra <a> will get generated 
+                but it will break sort...
+            {% endcomment %}
+            {% for tag in site.tags %}{% if tag[1].size > site.featured-condition-size %}
+                    <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}" 
+                        href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}"
+                        title="{{ tag[0] }}"
+                        rel="{{ tag[1].size }}">{{ tag[0] }}</a>
+            {% endif %}{% endfor %}
+            {% endcapture %}
+            {{ tags | split:'</a>' | sort | join:'</a>' }}
+        </div>
+        <hr>
+    </section>
     {% endif %}
-    <h4><a href="{{'/archive/' | prepend: site.baseurl }}"><font color="lightblue">文章标签</font></a></h4>
-    <div class="tags">
-        {% capture tags %}
-        {% comment %}
-            there must be no space between for and if otherwise this tricky sort won't work.
-            url_encode/decode is for escaping otherwise extra <a> will get generated 
-            but it will break sort...
-        {% endcomment %}
-        {% for tag in site.tags %}{% if tag[1].size > site.featured-condition-size %}
-                <a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}" 
-                    href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}"
-                    title="{{ tag[0] }}"
-                    rel="{{ tag[1].size }}">{{ tag[0] }}</a>
-        {% endif %}{% endfor %}
-        {% endcapture %}
-        {{ tags | split:'</a>' | sort | join:'</a>' }}
-    </div>
-    <hr>
-</section>
-{% endif %}
 {% endif %}
 
 <!-- 将archive中的标签筛选器移动到此处 -->
 {% if page.title == "Archive" %}
 <!-- Main Content -->
 <section>
-    <h4>标签归档</h4>
+    <h4 align=right>标签归档</h4>
     <hr>
     <!-- Tags (as filter) -->
-    <div id='tag_cloud' class="tags tags-sup js-tags">
+    <div id='tag_cloud' class="tags tags-sup js-tags" align=right>
         <a class="tag-button--all" data-encode="">
             全部文章
             <sup><font color=#ff1199 size=2 style="font-family:Courier New">{{site.posts.size}}</font></sup>
@@ -62,7 +66,14 @@
         {% endfor %}
         {% endcapture %}
     <!-- 上面计算各个标签数量，下面是排序 -->
-    {{ tags | split:'</a>' | sort | join:'</a>' }}      
+    <!-- 下面这句sort-join疑似有问题，研究了很久发现：
+        当鼠标悬停在最后一个tag往后，下一个a标签之前的元素上时，就会出现关于最后一个tag的annotation；
+        感觉像是某种script的错误，但是小白不懂T-T，只好强行加上个a标签封杀这个bug。
+     -->
+    {{ tags | split:'</a>' | sort | join:'</a>' }}
     </div>
+    <!-- 如果仔细看，鼠标移到下面的hr上面时还是会出现annotation。但是这条线这么窄，问题不大 -->
+    <hr align=right width=100px />
+    <h5 align=right><a>共{{site.tags.size}}个标签</a></h5>
 </section>
 {% endif %}

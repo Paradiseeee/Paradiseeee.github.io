@@ -1,7 +1,7 @@
 # 更改
 # 1. Site setting中的个人更改，email、description、keyword、url、baseurl不知道有什么用。
 # 2. Site setting中的title已经弃用，在intro-header.html中编写
-# 3. SNS setting中的个人更改，添加借个账号，删除几个账号
+# 3. SNS setting中的个人更改，添加几个账号，删除几个账号
 # 4. Build setting中的paginate改为5
 # 5. Sidebar setting中的留言更改
 
@@ -22,8 +22,8 @@ future: true
 RSS: false
 github_username:  Paradiseeee
 csdn_username:    weixin_41311624
-zhihu_username:   Paradiseeee
-douban_username:  150494945
+#zhihu_username:   Paradiseeee
+#douban_username:  150494945
 #facebook_username:  false
 #linkedin_username:  firstname-lastname-idxxxx
 
