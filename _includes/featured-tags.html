@@ -44,7 +44,7 @@
 {% if page.title == "Archive" %}
 <!-- Main Content -->
 <section>
-    <h4 align=right>标签归档</h4>
+    <h4 align=right><font color=#123456>标签归档</font></h4>
     <hr>
     <!-- Tags (as filter) -->
     <div id='tag_cloud' class="tags tags-sup js-tags" align=right>
@@ -73,7 +73,7 @@
     {{ tags | split:'</a>' | sort | join:'</a>' }}
     </div>
     <!-- 如果仔细看，鼠标移到下面的hr上面时还是会出现annotation。但是这条线这么窄，问题不大 -->
-    <hr align=right width=100px />
-    <h5 align=right><a>共{{site.tags.size}}个标签</a></h5>
+    <hr align=right width=120px />
+    <h5 align=right><a><font color=#123456>共 {{site.tags.size}} 个标签&nbsp;</font></a></h5>
 </section>
 {% endif %}
