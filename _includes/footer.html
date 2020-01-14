@@ -3,16 +3,17 @@
     1. 改了标签云的颜色序列（不知道这个为什么写在footer这个文件里）
     2. 更改footer的star计数，避免每次都要等待github响应
     3. 标注了config中baseurl的引用点
+    4. 将footer的class改为side-barcontainer中的风格
  -->
 
 <!-- Footer -->
 <footer>
     <div class="container">
-        <div class="row">
+        <div class="row sidebar-container">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <hr>
                 <!-- SNS Link -->
                 {% include sns-links.html center=true %}
-
                 <p class="copyright text-muted">
                     Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
                     <br>
