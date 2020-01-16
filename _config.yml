@@ -87,4 +87,4 @@ chrome-tab-theme-color: "#000000"
 service-worker: true
 
 # MathJax rendering for layout:page (e.g. post preview)
-page-mathjax: true
+page-mathjax: false
