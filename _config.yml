@@ -4,6 +4,7 @@
 # 3. SNS setting中的个人更改，添加几个账号，删除几个账号
 # 4. Build setting中的paginate改为5
 # 5. Sidebar setting中的留言更改
+# 6. 启用page-mathjax
 
 # Site settings
 title: Paradise 的博客
@@ -87,4 +88,4 @@ chrome-tab-theme-color: "#000000"
 service-worker: true
 
 # MathJax rendering for layout:page (e.g. post preview)
-page-mathjax: false
+page-mathjax: true
