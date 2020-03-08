@@ -44,6 +44,7 @@ tags:
 
 ## Omitted
 
+<br>
 
 # Neural Network Basics
 
@@ -123,6 +124,7 @@ tags:
 
 ## Omitted
 
+<br>
 
 # Shallow Neural Networks
 
@@ -196,7 +198,9 @@ tags:
 - interesting：波兹曼机
 
 
-# Deep Neural Network s
+<br>
+
+# Deep Neural Networks
 
 ## Lesson 1: Deep L-layer neural network
 
