@@ -56,7 +56,7 @@ tags:
 
 ## Lesson 2: Logistic Regression
 
-- 模型公式：y_hat = sigmoid(w^T * x + b)，其中：sigmoid(z) = 1 / [1 + e^(-z)]
+- 模型公式：`y_hat = sigmoid(w^T * x + b)`，其中：`sigmoid(z) = 1 / [1 + e^(-z)]`
 
 ## Lesson 3: Logistic Regression Cost Function
 
