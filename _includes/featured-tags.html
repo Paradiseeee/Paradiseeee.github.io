@@ -50,7 +50,8 @@
     <div id='tag_cloud' class="tags tags-sup js-tags" align=right>
         <a class="tag-button--all" data-encode="">
             全部文章
-            <sup><font color=#ff1199 size=2 style="font-family:Courier New">{{site.posts.size}}</font></sup>
+            <!-- <sup><font color=#ff1199 size=2 style="font-family:Courier New">{{site.posts.size}}</font></sup> -->
+            <sup><font color=#ffffff size=2 style="font-family:Courier New">{{site.posts.size}}</font></sup>
         </a>
         <br>
         {% capture tags %}
@@ -61,7 +62,8 @@
             title="{{ tag[0] }}" rel="{{ tag[1].size }}">
             <!-- 标签筛选器中的字体和上标的格式 -->
             <font color=#ffffff>{{ tag[0] }}</font>
-            <sup><i><font color=#ff1199 size=2 style="font-family:Courier New">{{tag[1].size}}</font></i></sup>
+            <!-- <sup><i><font color=#ff1199 size=2 style="font-family:Courier New">{{tag[1].size}}</font></i></sup> -->
+            <sup><i><font color=#ffffff size=2 style="font-family:Courier New">{{tag[1].size}}</font></i></sup>
         </a>
         {% endfor %}
         {% endcapture %}

@@ -85,8 +85,8 @@
     async('{{ "/js/jquery.tagcloud.js" | prepend: site.baseurl }}',function(){
         $.fn.tagcloud.defaults = {
             //size: {start: 1, end: 1, unit: 'em'},
-            // color: {start: '#bbbbee', end: '#2f93b4'},   //理性
-            color: {start: '#eebbbb', end: '#b4932f'},      //粉嫩
+            color: {start: '#bbbbee', end: '#2f93b4'},   //理性
+            //color: {start: '#eebbbb', end: '#b4932f'},      //粉嫩
             //color: {start: '#bbeebb', end: '#93b42f'},    //春天
         };
         $('#tag_cloud a').tagcloud();
