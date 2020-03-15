@@ -1,6 +1,7 @@
 <!-- 
 更改：
     1. 更改了三个页面的标题
+    2. 更改了三个页面的背景图链接
  -->
 
 {% comment %}
@@ -96,7 +97,9 @@
 {% endif %}
 
 {% if include.type == 'page' %}
-<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+<!-- 这里修改了page页面背景图的显示方式，将项目内的相对路径图片改为存在CSDN上的在线图片链接 -->
+<!-- <header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')"></header> -->
+<header class="intro-header" style="background-image: url('{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">

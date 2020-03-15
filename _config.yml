@@ -8,7 +8,8 @@
 # Site settings
 title: Paradise 的博客
 SEOTitle: Paradise's Blog
-header-img: img/home-bg.jpg
+# header-img: img/home-bg.jpg
+header-img: "https://img-blog.csdnimg.cn/20200316013433858.jpg"
 email: paradise-yang@outlook.com 
 description: "TEMPLATE DESCRIPTION"
 keyword: "Paradise's_keywords Paradise's_keywords Paradise's_keywords"
@@ -76,7 +77,8 @@ netease_comment: false
 # Sidebar settings
 sidebar: true  # whether or not using Sidebar.
 sidebar-about-description: '<i>Hi~</i> 我是 Paradise。主页刚刚重建<br>，百废待兴，将逐步添加文章和其他内容。<a href="/about" color="lightblue"><font color="lightblue"><u>这里是个人简介</u></font></a>，欢迎志同道合的朋友关注我的博客。欢迎通过社交账号以及在我常去的站点联系我。⇩'
-sidebar-avatar: /img/avatar-daodao.jpg
+# sidebar-avatar: /img/avatar-daodao.jpg
+sidebar-avatar: "https://img-blog.csdnimg.cn/20200316013322527.jpg"
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
