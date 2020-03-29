@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Matplotlib 绘图例子"
-subtitle:   "基于 Matplotlib 的常见绘图操作"
+subtitle:   "关联 | 偏差 | 排序 | 分布 | 组成 | 变化 | 分组"
 date:       2019-01-15 12:00:00
 author:     "Paradise"
 header-img: "img/post-bg.jpg"
