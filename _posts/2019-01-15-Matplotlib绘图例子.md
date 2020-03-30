@@ -4,8 +4,7 @@ title:      "Matplotlib 绘图例子"
 subtitle:   "关联 | 偏差 | 排序 | 分布 | 组成 | 变化 | 分组"
 date:       2019-01-15 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
-header-style: text
+header-img: "https://img-blog.csdnimg.cn/20200331052941853.jpg"
 tags:
     - Python
     - 可视化
