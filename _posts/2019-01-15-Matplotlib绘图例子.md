@@ -12,11 +12,14 @@ tags:
     - 笔记
 ---
 
+> 本文为笔记，原文链接：<http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/>
+
+> 本文在代码 jupyter notebook 运行，在当前文件夹打开cmd执行：jupyter nbconvert --to script *.ipynb 可以把.ipynb文件保存为.py脚本文件。
+
 # 环境准备
 
 
 ```python
-#在当前文件夹打开cmd执行：jupyter nbconvert --to script *.ipynb 可以把.ipynb文件保存为.py脚本文件。
 import numpy as np
 import pandas as pd
 import matplotlib as mpl
@@ -36,23 +39,10 @@ params={'axes.titlesize':large,
         'ytick.labelsize':med,
         'figure.figsize':large}
 plt.rcParams.update(params) """
-```
-
-
-
-
-    "\n#绘图参数设置\nlarge=22;med=16;small=12\nparams={'axes.titlesize':large,\n        'legend.fontsize':med,\n        'figure.figsize':(16,10),\n        'axes.labelsize':med,\n        'axes.titlesize':med,\n        'xtick.labelsize':med,\n        'ytick.labelsize':med,\n        'figure.figsize':large}\nplt.rcParams.update(params) "
-
-
-
-
-```python
-#上面的参数设置出错了，先不管了
 plt.style.use('seaborn-whitegrid')
 sns.set_style('white')
 %matplotlib inline
 ```
-
 
 ```python
 #版本信息
@@ -241,19 +231,12 @@ midwest.head()
     </tr>
   </tbody>
 </table>
-<p>5 rows × 29 columns</p>
 </div>
-
-
-
 
 ```python
 categories=np.unique(midwest['category'])
 colors=[plt.cm.tab10(i/float(len(categories)-1)) for i in range(len(categories))]
-```
 
-
-```python
 plt.figure(figsize=(16,10),dpi=80,facecolor='w',edgecolor='K')
 for i,category in enumerate(categories):
     plt.scatter('area','poptotal',
@@ -354,25 +337,7 @@ df.info()
 #数据预处理
 df_select = df.loc[df.cyl.isin([4,8]),:]
 print(df_select.head())
-```
 
-      manufacturer       model  displ  year  cyl       trans drv  cty  hwy fl  \
-    0         audi          a4    1.8  1999    4    auto(l5)   f   18   29  p   
-    1         audi          a4    1.8  1999    4  manual(m5)   f   21   29  p   
-    2         audi          a4    2.0  2008    4  manual(m6)   f   20   31  p   
-    3         audi          a4    2.0  2008    4    auto(av)   f   21   30  p   
-    7         audi  a4 quattro    1.8  1999    4  manual(m5)   4   18   26  p   
-    
-         class  
-    0  compact  
-    1  compact  
-    2  compact  
-    3  compact  
-    7  compact  
-    
-
-
-```python
 #绘图
 sns.set_style("white")
 #主要参数，x，y，分类变量hue，数据data
@@ -397,9 +362,11 @@ plt.show()
 
 ```python
 #针对每类绘制带回归拟合的散点图(上图的拆分显示)
-grid_obj = sns.lmplot(x='displ', y='hwy',col='cyl', data=df_select,
-                     height=7, aspect=1.6, robust=True, palette='Set1',
-                     scatter_kws=dict(s=60, linewidths=0.7, edgecolors='black'))
+grid_obj = sns.lmplot(
+    x='displ', y='hwy',col='cyl', data=df_select,
+    height=7, aspect=1.6, robust=True, palette='Set1',
+    scatter_kws=dict(s=60, linewidths=0.7, edgecolors='black')
+    )
 #主要修改了palette参数，以及把hue改为col参数
 grid_obj.set(xlim=(0.5, 7.5), ylim=(0, 50))
 #省略了修饰图片
@@ -661,11 +628,6 @@ sns.pairplot(df, kind='scatter', hue='species',#可以加入分类变量
 plt.show()
 ```
 
-
-    <Figure size 800x640 with 0 Axes>
-
-
-
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_32_1.png)
 
 
@@ -677,11 +639,6 @@ sns.pairplot(df, kind='reg', hue='species')
 plt.show()
 ```
 
-
-    <Figure size 800x640 with 0 Axes>
-
-
-
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_33_1.png)
 
 
@@ -690,14 +647,6 @@ plt.show()
 #默认参数设置
 sns.pairplot(df)
 ```
-
-
-
-
-    <seaborn.axisgrid.PairGrid at 0x5b2ad71f28>
-
-
-
 
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_34_1.png)
 
@@ -1224,8 +1173,8 @@ ax.scatter(y=df.index, x=df.cty, s=75, color='firebrick', alpha=0.7)
 ax.set_title('Dot Plot for Highway Mileage', fontsize=22)
 ax.set_xlabel('Miles Per Gallon')
 ax.set_yticks(df.index)
-ax.set_yticklabels(df.manufacturer.str.title(), fontdict={'horizontalalignment': 
-                                                          'right'})
+ax.set_yticklabels(df.manufacturer.str.title(),
+        fontdict={'horizontalalignment': 'right'})
 ax.set_xlim(10, 27)
 plt.show()
 ```
@@ -1498,11 +1447,6 @@ plt.title("Joy Plot of City and Highway Mileage by Class", fontsize=22)
 plt.show()
 ```
 
-
-    <Figure size 1280x800 with 0 Axes>
-
-
-
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_77_1.png)
 
 
@@ -1690,13 +1634,6 @@ sns.catplot(x='age', y='embark_town', hue='sex', col='class', orient='h', height
             aspect=1, palette='tab10', kind='violin', dodge=True, cut=0, bw=0.2,
             data=titanic[titanic.embark_town.notnull()])
 ```
-
-
-
-
-    <seaborn.axisgrid.FacetGrid at 0x943a37ee48>
-
-
 
 
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_91_1.png)
@@ -2020,13 +1957,6 @@ from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 df = pd.read_csv("AirPassengers.csv")
 ```
 
-    D:\Program Files\Python37\Lib\site-packages\statsmodels\base\wrapper.py:100: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly
-      defaults=argspec[3])
-    c:\program files\python37\lib\importlib\_bootstrap.py:219: ImportWarning: can't resolve package from __spec__ or __package__, falling back on __name__ and __path__
-      return f(*args, **kwds)
-    
-
-
 ```python
 #绘图
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6), dpi=80)
@@ -2082,10 +2012,6 @@ plt.title('$Cross\; Correlation\; Plot:\; mdeaths\; vs\; fdeaths$', fontsize=22)
 plt.xlim(0, len(ccs))
 plt.show()
 ```
-
-    <>:11: DeprecationWarning: invalid escape sequence \;
-    
-
 
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_120_1.png)
 
