@@ -77,13 +77,13 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true  # whether or not using Sidebar.
-sidebar-about-description: '<i>Hi~</i> 我是 Paradise。主页刚刚重建<br>，百废待兴，将逐步添加文章和其他内容。<a href="/about" color="lightblue"><font color="lightblue"><u>这里是个人简介</u></font></a>，欢迎志同道合的朋友关注我的博客。欢迎通过社交账号以及在我常去的站点联系我。⇩'
+sidebar-about-description: '<i>Hi ~</i><br>我是Paradise。我在这里记录自己的学习和思考，不定期更新一些新的知识以及补充以往的学习经历，温故知新。<a href="/about" color="lightblue"><font color="lightblue"><u>这里是个人简介</u></font></a>，欢迎志同道合的朋友关注我的博客。欢迎通过社交账号以及在我常去的站点联系我。⇩'
 # sidebar-avatar: /img/avatar-daodao.jpg
 sidebar-avatar: "https://img-blog.csdnimg.cn/20200316013322527.jpg"
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
-featured-condition-size: 0 # A tag will be featured if the size of it is more than this condition value
+featured-condition-size: 1 # A tag will be featured if the size of it is more than this condition value
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
