@@ -90,3 +90,5 @@ PdfProcessing.merge_pdfs('output.pdf', 'C:/test.pdf', 'splited.pdf')
 跟据自己对PDF文件的高频操作，可以自己定义函数功能。这里还有很多功能没有提及，如果如要增加更多的功能可以参考 [PyPDF2 的文档](https://pythonhosted.org/PyPDF2/)。
 
 如果有完善的功能和规范的代码，可以共享到 Pypi 上共所有开发者使用。具体如何在 Pypi 上发布自己创建的第三方库，可以百度一下，有很多教程。
+
+<br>
