@@ -2332,21 +2332,6 @@ calmap.calendarplot(df['2014']['VIX.Close'], fig_kws={'figsize': (16,10)},
 plt.show()
 ```
 
-    D:\Program Files\Python37\Lib\site-packages\calmap\__init__.py:221: DeprecationWarning: 
-    .ix is deprecated. Please use
-    .loc for label based indexing or
-    .iloc for positional indexing
-    
-    See the documentation here:
-    http://pandas.pydata.org/pandas-docs/stable/indexing.html#ix-indexer-is-deprecated
-      for i in monthticks])
-    
-
-
-    <Figure size 1280x800 with 0 Axes>
-
-
-
 ![png](/img/in-post/Matplotlib/matplotlib绘图例子/output_143_2.png)
 
 
@@ -2427,16 +2412,6 @@ df = pd.read_csv("USArrests.csv")
 cluster = AgglomerativeClustering(n_clusters=5, affinity='euclidean', linkage='ward')
 cluster.fit_predict(df[['Murder', 'Assault', 'UrbanPop', 'Rape']])
 ```
-
-
-
-
-    array([1, 1, 2, 0, 2, 0, 3, 1, 2, 0, 4, 3, 1, 3, 4, 3, 3, 1, 4, 2, 0, 1,
-           4, 1, 0, 3, 3, 1, 4, 0, 2, 1, 2, 4, 3, 0, 0, 3, 0, 1, 4, 0, 0, 3,
-           4, 0, 0, 4, 4, 0], dtype=int64)
-
-
-
 
 ```python
 #Encircle
