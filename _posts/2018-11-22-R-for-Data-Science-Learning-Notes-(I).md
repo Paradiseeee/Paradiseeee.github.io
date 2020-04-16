@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "R for Data Science - Learning Notes (I)"
-subtitle:   "R Data-processing Basics & Useful Packages"
+subtitle:   "Data-processing Basics & Useful Packages"
 date:       2018-11-22 12:00:00
 author:     "Paradise"
 header-img: "img/post-bg.jpg"
