@@ -110,7 +110,7 @@ ggplot(sim1, aes(x)) +
 ## （4）其他模拟拟合函数
 
 - 广义线性模型：`stats::glm()`
-- 广义附加模型：`stats::gam()`
+- 广义可加模型：`stats::gam()`
 - 惩罚线性模型：`glmnet::glmnet()`
 - 鲁棒线性模型：`MASS::rlm()`
 - 决策树模型：`rpart::rpart()`
