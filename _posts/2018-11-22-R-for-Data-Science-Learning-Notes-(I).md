@@ -41,19 +41,19 @@ tags:
 
 ```R
 # Q1.变量怎么变化？
-diamonds %>% count(cut)						# 离散变量频数
-diamonds %>% count(cut_width(carat, 0.5))	# 连续变量频数
+diamonds %>% count(cut)                             # 离散变量频数
+diamonds %>% count(cut_width(carat, 0.5))           # 连续变量频数
 
-e <- ggplot(diamonds, aes(x=carat))					# 定义绘图变量
-e + geom_histogram(aes(color=cut), binwidth=0.1)	# 堆叠直方图
-e + geom_freqpoly(aes(color=cut), binwidth=0.1)		# 分组密度图
-e + geom_histogram(binwidth=0.01) + 				# 更精确的直方图
-    coord_cartesian(ylim = c(0,100))				# 放大y轴
+e <- ggplot(diamonds, aes(x=carat))                 # 定义绘图变量
+e + geom_histogram(aes(color=cut), binwidth=0.1)    # 堆叠直方图
+e + geom_freqpoly(aes(color=cut), binwidth=0.1)     # 分组密度图
+e + geom_histogram(binwidth=0.01) +                 # 更精确的直方图
+    coord_cartesian(ylim = c(0,100))                # 放大y轴
 
 # 从分布图可以看到存在较多离群值
-diamonds %>% filter(between(y, 3, 20))			# 过滤离群值，删除整行
-diamonds %>% mutate(y=ifelse(y<3|y>20, NA, y))	# 用缺失值代替离群值
-diamonds %>% mutate(bool=is.na(y))				# 用新列标记缺失值
+diamonds %>% filter(between(y, 3, 20))              # 过滤离群值，删除整行
+diamonds %>% mutate(y=ifelse(y<3|y>20, NA, y))      # 用缺失值代替离群值
+diamonds %>% mutate(bool=is.na(y))                  # 用新列标记缺失值
 ```
 
 <img src="https://img-blog.csdnimg.cn/2020041501005035.jpg">
@@ -64,7 +64,7 @@ diamonds %>% mutate(bool=is.na(y))				# 用新列标记缺失值
 # Q2-1.连续变量与离散变量的相关性
 
 # 使用分组密度图
-e <- ggplot(diamonds,aes(x=price))
+e <- ggplot(diamonds, aes(x=price))
 # cut 与 price 的相关性
 e + geom_freqpoly(aes(color=cut), binwidth=500)
 # 使用y=..density..显示标准化的分布，易于比较
@@ -185,10 +185,10 @@ parse_date("1 October 2018","%d %B %Y")
 
 ```R
 exmp1 <- read_csv(
-    "country,	2017,	2018
-    Asgard,		745,	2666
-    Wakanda,	7737,	8048
-    Titan,		2125,	2376"
+    "country,   2017,   2018
+    Asgard,     745,    2666
+    Wakanda,    7737,   8048
+    Titan,      2125,   2376"
 )
 # 使用 gather 函数整理：
 tidy1 <- exmp1 %>% gather('2017', '2018', key='year', value='values')
@@ -210,15 +210,15 @@ tidy1 <- exmp1 %>% gather('2017', '2018', key='year', value='values')
 
 ```R
 exmp2 <- read_csv(
-    "coutry,	year,	type,	values
-    Asgard,		1999,	A,		745
-    Asgard,		1999,	B,		18707
-    Asgard,		2000,	A,		2666
-    Asgard,		2000,	B,		59536
-    Wakanda,	1999,	A,		7737
-    Wakanda,	1999,	B,		30636
-    Wakanda,	2000,	A,		8048
-    Wakanda,	2000,	B,		50489"
+    "coutry,    year,   type,   values
+    Asgard,     1999,   A,      745
+    Asgard,     1999,   B,      18707
+    Asgard,     2000,   A,      2666
+    Asgard,     2000,   B,      59536
+    Wakanda,    1999,   A,      7737
+    Wakanda,    1999,   B,      30636
+    Wakanda,    2000,   A,      8048
+    Wakanda,    2000,   B,      50489"
 )
 # 使用 spread 函数整理（gather 的逆操作）
 tidy2 <- exmp2 %>% spread(key='type', value='values')
@@ -238,10 +238,10 @@ tidy2 <- exmp2 %>% spread(key='type', value='values')
 
 ```R
 exmp3 <- read_csv(
-    "country,	year,	heros
-    Asgard,		1999,	Thor/Loki
-    Asgard,		2000,	Odin/Heimdall
-    Midgard,	1999,	Hulk/BlackWidow"
+    "country,   year,   heros
+    Asgard,     1999,   Thor/Loki
+    Asgard,     2000,   Odin/Heimdall
+    Midgard,    1999,   Hulk/BlackWidow"
 )
 # 使用 separate 分离两个变量（逆操作：unite）
 tidy3 <- exmp3 %>% separate(heros, into=c('A', 'B'))
@@ -270,21 +270,21 @@ mutate(flights, name=airlines$name[match(carrier, airlines$carrier)])
 
 # Inner/Outer Joins：
 x<-tribble(
-  ~key,~x,
-  1,"x1",
-  2,"x2",
-  3,"x3"
+    ~key,   ~x,
+    1,      "x1",
+    2,      "x2",
+    3,      "x3"
 )
 y<-tribble(
-  ~key,~y,
-  1,"y1",
-  2,"y2",
-  4,"y4"
+    ~key,   ~y,
+    1,      "y1",
+    2,      "y2",
+    4,      "y4"
 )
-inner_join(x,y,by="key") 	#结果值保留key相同的部分（交集）
-left_join(x,y,by="key")  	#第一个参数的key保全，第二个参数进行匹配
-right_join(x,y,by="key") 	#与上一例相反
-full_join(x,y,by="key")  	#全部key的值都保留
+inner_join(x,y,by="key")    # 结果值保留key相同的部分（交集）
+left_join(x,y,by="key")     # 第一个参数的key保全，第二个参数进行匹配
+right_join(x,y,by="key")    # 与上一例相反
+full_join(x,y,by="key")     # 全部key的值都保留
 
 # 使用 merge 实现以上对应的操作
 merge(x, y)
@@ -294,16 +294,16 @@ merge(x, y, all.x=T, all.y=T)
 
 # Filtering Joins
 top_dest <- filghts %>% count(dest, sort=T) %>% head(10)
-flights %>% filter(dest %in% top_dest$dest)		#top 10 目的地
+flights %>% filter(dest %in% top_dest$dest)     # top 10 目的地
 # 使用 semi_join 代替手动进行 filter
 semi_join(flights, top_dest)
 # 使用 anti_join 找出不匹配的部分
 anti_join(flights, planes, by='tailnum')
 
 # 集合操作
-intersect(x, y)		# 交集
-union(x, y)			# 与非
-setdiff(x, y)		# x - y
+intersect(x, y)     # 交集
+union(x, y)         # 与非
+setdiff(x, y)       # x - y
 ```
 
 # CHPT11 - Strings with stringr
@@ -315,16 +315,16 @@ library(stringr)
 # str_ 函数族
 str_length('ABC')
 str_c('(', c('b', 'c', 'd'), ')', sep='-')
-# [1] "(-b-)" "(-c-)" "(-d-)"	# 支持向量化
-str_c(if (TRUE) 'FUCK!')		# 支持条件语句
-str_sub('abcde', 1, 3)			# 取子集：1-3
-str_to_lower('ABC')				# 转为小写
-str_view('abcd', 'a.*?')		# 使用正则表达式匹配
-str_detect(c('ab', 'bc', 'cd'), '.b')	# 同上，返回布尔型
-str_subset(c('ab', 'bc', 'cd'), 'b.')	# 同上，返回子集
-str_subset(c('ab', 'bc', 'cd'), 'a')	# 同上，返回计数值
-str_view_all(c('ab', 'bc', 'cd'), 'ab')	# 同上，全字匹配
-str_split('a,b,c,d,e', ',')		# 按特定字符切割
+# [1] "(-b-)" "(-c-)" "(-d-)"           # 支持向量化
+str_c(if (TRUE) 'FUCK!')                # 支持条件语句
+str_sub('abcde', 1, 3)                  # 取子集：1-3
+str_to_lower('ABC')                     # 转为小写
+str_view('abcd', 'a.*?')                # 使用正则表达式匹配
+str_detect(c('ab', 'bc', 'cd'), '.b')   # 同上，返回布尔型
+str_subset(c('ab', 'bc', 'cd'), 'b.')   # 同上，返回子集
+str_subset(c('ab', 'bc', 'cd'), 'a')    # 同上，返回计数值
+str_view_all(c('ab', 'bc', 'cd'), 'ab') # 同上，全字匹配
+str_split('a,b,c,d,e', ',')             # 按特定字符切割
 
 # str_replace
 # 替换第一个找到的匹配
@@ -366,9 +366,9 @@ today()
 ymd('2018-10-19')
 mdy('January 31st, 2018')
 dmy('31-Jan-2018')
-mdy_h('10191812')			# 2018-10-19 12:00:00 UTC
+mdy_h('10191812')           # 2018-10-19 12:00:00 UTC
 ymd_hms('181019 120000')
-ymd(20181019, tz='UTC')		# 支持数值型，支持指定时区
+ymd(20181019, tz='UTC')     # 支持数值型，支持指定时区
 
 # 操作示例
 flights %>% select(year, month, day, hour, minute) %>%
@@ -397,11 +397,11 @@ years(1)+months(2)+days(3)+hours(4)+minutes(5)+seconds(6)
 today() + years(1)
 
 # 时区与本地化
-Sys.timezone()		# 查看系统的时区
-OlsonNames()		# 查看 R 支持的所有时区
+Sys.timezone()      # 查看系统的时区
+OlsonNames()        # 查看 R 支持的所有时区
 t1 <- ymd_hms("20181020 000000", tz="America/New_York")
 t2 <- ymd_hms("20181020 060000", tz="Europe/Copenhagen")
-t1 - t2 == 0  		#TRUE
+t1 - t2 == 0        #TRUE
 ```
 
 # CHPT14~15 Pipes & Functions (Omitted)
@@ -425,53 +425,53 @@ t1 - t2 == 0  		#TRUE
 
 ```R
 # （1）数值型 ----------------------------------------
-typeof(1)		# double
-class(1)		# numeric
-typeof(1L)		# integer
-class(1L)		# integer
+typeof(1)       # double
+class(1)        # numeric
+typeof(1L)      # integer
+class(1L)       # integer
 
 # 整型（integer）和双整型（double）的区别：
 # 所有双整型数据都是有限精度的浮点数
-sqrt(2)^2 == 2				# FALSE
-dplyr::near(sqrt(2)^2, 2)	# TRUE
+sqrt(2)^2 == 2              # FALSE
+dplyr::near(sqrt(2)^2, 2)   # TRUE
 # 双整型除了 NA 还有三类特殊值
-c(-1, 0, 1) / 0				# -Inf NaN Inf
+c(-1, 0, 1) / 0             # -Inf NaN Inf
 # 对应的判别函数：is.infinite() is.finite() is.nan()
 
 # （2）字符型 ----------------------------------------
 #重要特点：在R中字符型储存在全局环境，只储存一次，以减少空间占用
 x <- "This is a really long string."
-object.size(x) 				#136 bytes
-y <- rep(x, 1000)			#产生一个字符型向量
-object.size(y) 				#8128 bytes--一个指针8bytes，因此约为8000bytes
+object.size(x)              #136 bytes
+y <- rep(x, 1000)           #产生一个字符型向量
+object.size(y)              #8128 bytes--一个指针8bytes，因此约为8000bytes
 
 # （3）向量的强制转换 -----------------------------------
 # 显式的强制转换：as.integer()、as.character()、as.double()、as.logical()
 # 隐式的强制转换：
 exmp <- 1:10
-sum(exmp > 5)			# logical --> integer
+sum(exmp > 5)                   # logical --> integer
 if (lenth(exmp)) {print('integer --> logical')}
 
 # 强制转换的优先级
-typeof(c(TRUE, 1L))				# integer
-typeof(c(1L, 1.1))				# double
-typeof(c(TRUE, 1L, 1.1, 'A'))	# character
+typeof(c(TRUE, 1L))             # integer
+typeof(c(1L, 1.1))              # double
+typeof(c(TRUE, 1L, 1.1, 'A'))   # character
 
 # （4）向量化循环规则 ------------------------------------
-1:10 + 1:3			#2  4  6  5  7  9  8 10 12 11
+1:10 + 1:3      # 2  4  6  5  7  9  8 10 12 11
 
 # （5）向量取子集 ---------------------------------------
 x <- c("one", "two", "three", "four", "five")
 x[c(1, 3, 5)]
 x[c(1, 1, 3, 3)]
-x[c(-1, -3, -5)] 		# 负值表示取其余集
-x <- set_names(1:5,x)	# 命名
-x["one"]   				# 类型为 Named int，可以用名称进行索引
+x[c(-1, -3, -5)]        # 负值表示取其余集
+x <- set_names(1:5,x)   # 命名
+x["one"]                # 类型为 Named int，可以用名称进行索引
 
 # （6）循环向量：列表 -------------------------------------
 #列表可以包括列表，因此可以创建分层结构或树形结构
 x_named <- list(a=c(1,2,3), b=c(4,5,6), c=c(7,8,9))
-str(x_named)  			#使用str函数打印列表
+str(x_named)            #使用str函数打印列表
 y <- list("a", 1.5, 1L, TRUE)
 ==============
 > str(y)
@@ -485,11 +485,11 @@ List of 4
 # （7）列表取子集 -----------------------------------------
 exmp <- list(a=1:3, b="a string", c=pi, d=list(1,2))
 exmp[1:2]
-str(exmp[3])		# 返回向量
-str(exmp[[3]])    	# 返回数值
-x_named[[3]]		# 返回数值向量7，8，9
-x_named[[3]][1]		# 返回数值7
-exmp$d				# 名称索引，等同于exmp[["d"]]
+str(exmp[3])        # 返回向量
+str(exmp[[3]])      # 返回数值
+x_named[[3]]        # 返回数值向量7，8，9
+x_named[[3]][1]     # 返回数值7
+exmp$d              # 名称索引，等同于exmp[["d"]]
 
 # （8）Attributes属性 ------------------------------------
 x <- 1:10
@@ -509,7 +509,7 @@ $farewell
 
 # （9）增广向量 Augmented Vectors：带有附加属性的原子型向量 ----------
 x <- factor(c("a","b","c"), levels=c("a","b","c","d"))
-typeof(x)  		# "interge"
+typeof(x)           # "interge"
 ===================
 > attributes(x)
 $`levels`
@@ -532,8 +532,8 @@ for (i in seq_along(exmp)) {
 }
 
 # 使用 map 代替 for 循环 ------------------------------------------------
-output <- exmp %>% map(median)		# map 每一行
-exmp %>% t(.) %>% map(median)		# map 每一列
+output <- exmp %>% map(median)      # map 每一行
+exmp %>% t(.) %>% map(median)       # map 每一列
 
 # 在 map 中定义函数
 # 按气缸数目cyl分成几部分，对每部分进行 mpg~wt 的线性回归
@@ -553,10 +553,10 @@ seq_along(mul) %>% map(~rnorm(5, mul[[.]], sigma[[.]])) %>% str()
 # 使用map2可以直接将map应用到两个向量，互不干扰
 map2(mul, sigma, rnorm, n=5) %>% str()
 # map2 算法：
-map2inside<-function(x,y,f,...){ 	#用省略号定义未知参数
-  out<-vector("list",length(x))  	#x与y的长度应相等
+map2inside<-function(x,y,f,...){        # 用省略号定义未知参数
+  out<-vector("list",length(x))         # x与y的长度应相等
   for (i in seq_along(x)) {
-    out[[i]]<-f(x[[i]],y[[i]],...)  #向量化的操作
+    out[[i]]<-f(x[[i]],y[[i]],...)      # 向量化的操作
   }
   return(out)
 }
@@ -578,15 +578,15 @@ pmap(arg2, rnorm) %>% str()
 # 其他形式的for循环 ------------------------------------------------
 
 # 谓语函数
-keep(iris, is.factor) %>% str()		# 保留谓语返回TRUE时的部分，谓语指is.factor语句
-discard(iris, is.factor) %>% str()	# 保留谓语返回FALSE时的部分
+keep(iris, is.factor) %>% str()     # 保留谓语返回TRUE时的部分，谓语指is.factor语句
+discard(iris, is.factor) %>% str()  # 保留谓语返回FALSE时的部分
 x <- list(1:5, letters, list(10))
-some(x, is.character)				# 返回TRUE，翻译为:is some of x is character?
-every(x, is.vector) 				# TRUE，翻译为:is every one of x is vector?
+some(x, is.character)               # 返回TRUE，翻译为:is some of x is character?
+every(x, is.vector)                 # TRUE，翻译为:is every one of x is vector?
 x <- sample(10)
-detect(x, ~.>8)  		# 返回第一个使得谓语为TRUE的内容
-head_while(x,~.>5) 		# 从头开始返回使得谓语为TRUE的内容
-tail_while(x,~.>4)		# 从尾开始返回使得谓语为TRUE的内容
+detect(x, ~.>8)         # 返回第一个使得谓语为TRUE的内容
+head_while(x,~.>5)      # 从头开始返回使得谓语为TRUE的内容
+tail_while(x,~.>4)      # 从尾开始返回使得谓语为TRUE的内容
 ```
 
 # CHPT18 - Model Basics with modelr
@@ -912,7 +912,7 @@ resid %>% ggplot(aes(year, resid)) +
 
 # 计算所有模型的统计参数
 glances <- group %>% mutate(glances=map(models, broom::glance)) %>% 
-    unnest(glances, .drop=T)	# 舍弃除 glances 的其他列表
+    unnest(glances, .drop=T)    # 舍弃除 glances 的其他列表
 
 # 通过对R—squared 进行排序找到拟合不够好的国家模型
 glances %>% arrange(r.squared)
@@ -939,7 +939,7 @@ data.frame(x=list(1:3,2:4))
 
 # 使用 tidyr::nest()
 gapminder %>% group_by(country, continent) %>% nest()
-gapminder %>% nest(year:gdpPercap)		# nesting year ~ gdpPercp
+gapminder %>% nest(year:gdpPercap)  # nesting year ~ gdpPercp
 
 # 通过向量化函数--mutate()
 df <- tribble(~x1, "a,b,c", "d,e,f,g")
@@ -948,10 +948,10 @@ df %>% unnest()
 
 # 通过 tribble 函数和 map
 sim <- tribble(
-  ~fun,		~params,
-  "runif",	list(min=-1,max=1),
-  "rnorm",	list(sd=5),
-  "rpois",	list(lambda=10)
+    ~fun,       ~params,
+    "runif",    list(min=-1,max=1),
+    "rnorm",    list(sd=5),
+    "rpois",    list(lambda=10)
 )
 sim %>% mutate(sims=invoke_map(fun, params, n=10))
 ```
@@ -1043,8 +1043,16 @@ Content Cell  | Content Cell
 ```R
 rmarkdown::render('./Rmd/Text_format.Rmd', output_flie='Text_format.html')
 ```
+**渲染结果** \| [新标签页查看](/img/in-post/R/Text_format.html)
 
-<a href="Text_format.html">输出结果</a>
+<div align="center">
+<iframe
+    style="margin-left:2px; margin-bottom:20px;"
+    frameborder="1" scrolling="0"
+    width="600" height="360"
+    src="/img/in-post/R/Text_format.html">
+</iframe>
+</div>
 
 ## 示例二：Code Chuck
 
@@ -1096,9 +1104,7 @@ knitr::kable(mtcars[1:5,1:10],
 
 Caching
 ---------------------------------
-    为了实现可再现性，所有的输出内容都是从空白页面开始构建，以确保代码里包含所有重要信息。
-但是当代码块里面有计算量较大的指令，那就需要用到缓存：定义cache=TRUE。
-设置缓存时，计算结果会保存到特定文件，下一次执行时，如果代码块没有改变，则引用该缓存文件。
+为了实现可再现性，所有的输出内容都是从空白页面开始构建，以确保代码里包含所有重要信息。但是当代码块里面有计算量较大的指令，那就需要用到缓存：定义cache=TRUE。设置缓存时，计算结果会保存到特定文件，下一次执行时，如果代码块没有改变，则引用该缓存文件。
 
 ​```{r raw-data,eval=FALSE}
 rawdata<-readr::read_csv("a_very_large_file.csv")
@@ -1113,9 +1119,7 @@ processing the terribly large data
 此处注意，如果没有定义dependson="raw_data"，那么即使读取的csv文件改变了，
 只要‘processing’没有改变，仍然不会重新执行该代码块，而是直接使用缓存。
 
-如果担心"a_very_large_file.csv"文件内容本身发生改变，导致后续的代码使用缓存而出错，可以在
-raw_data代码块增加cache.extra=file.info("file_name")这样可以检查文件的相关信息，包括最后一次
-修改的时间。
+如果担心"a_very_large_file.csv"文件内容本身发生改变，导致后续的代码使用缓存而出错，可以在raw_data代码块增加cache.extra=file.info("file_name")这样可以检查文件的相关信息，包括最后一次修改的时间。
 
 ​```{r clean_up,eval=FALSE}
 knitr::clean_cache()
@@ -1141,7 +1145,16 @@ format(b,digits = 2)
 ​```
 ```
 
-<a href="./html/Code_chunk.html">渲染结果</a>
+**渲染结果** \| [新标签页查看](/img/in-post/R/Code_chunk.html)
+
+<div align="center">
+<iframe
+    style="margin-left:2px; margin-bottom:20px;"
+    frameborder="1" scrolling="0"
+    width="600" height="360"
+    src="/img/in-post/R/Code_chunk.html">
+</iframe>
+</div>
 
 # CHPT22 - Graphics for Communication with ggplot2
 
@@ -1226,9 +1239,9 @@ base + geom_text(
 )
 
 # 其他常用添加注释（非文本）的函数
-geom_hline; geom_vline		# 辅助线
-geom_rect					# 矩形框
-geom_segement				# 利用 arrow 参数可以添加 箭头
+geom_hline; geom_vline      # 辅助线
+geom_rect                   # 矩形框
+geom_segement               # 利用 arrow 参数可以添加 箭头
 ```
 
 <img src="https://img-blog.csdnimg.cn/20200416051546278.jpg">
@@ -1259,10 +1272,12 @@ base +
 ## 坐标转换、坐标缩放
 
 ```R
-#坐标的对数化
-ggplot(diamonds, aes(log(carat), log(price))) + geom_hex()	# 变量直接对数化
+# 坐标的对数化
+# 变量直接对数化，坐标刻度也跟随改变
+ggplot(diamonds, aes(log(carat), log(price))) + geom_hex()
+# 转换坐标轴，坐标刻度不变
 ggplot(diamonds, aes(carat, price)) + geom_hex() + 
-    scale_x_log10() + scale_y_log10()	# 转换坐标轴，坐标刻度不变
+    scale_x_log10() + scale_y_log10()
 
 # 设置坐标轴取值范围
 base + coord_cartesian(xlim = c(5,7), ylim = c(10,30))
@@ -1292,7 +1307,7 @@ all_scales <- list(
     style1=c("YlOrRd","YlOrBr","YlGnBu","YlGn","Reds","RdPu",
              "Purples","PuRd","PuBuGn","PuBu","OrRd","Oranges",
              "Greys","Greens","GnBu","BuPu","BuGn","Blues"),
-      style2=c("Set1","Set2","Set3",
+    style2=c("Set1","Set2","Set3",
              "Pastel2","Pastel1","Paired","Dark2","Accent"),
     style3=c("Spectral","RdYlGn","RdYlBu",
              "RdGy","RdBu","PuOr","PrGn","PiYG","BrBG")
@@ -1331,15 +1346,15 @@ rmarkdown::render("example.Rmd",output_format = "word_document")
 ?rmarkdown::html_document()
 # 使用expanded output field改写default的参数(Rmd 文档)
 output: 
-      html_document: 
+    html_document: 
         toc: true
         toc_float: true
 # 输出多个不同格式的文件
 output: 
-      html_document: 
+    html_document: 
         toc: true
         toc_float: true
-      pdf_document: default
+    pdf_document: default
 
 # (3)Documents
 # 支持的文件格式：
@@ -1348,8 +1363,8 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 # 在html文件中，可以通过option设置(点击可以使代码出现)
 output: 
-  html_document: 
-    code_folding: hide
+    html_document: 
+        code_folding: hide
 
 # (4)Notebooks
 # html_document主要用于与决策者交流，而html_notebook用于与其他analysist交流
@@ -1374,7 +1389,16 @@ render("R4DS5_dashboard.Rmd",output_file = "dashboard.html")
 # see <http://rmarkdown.rstudio.com/flexdashboard/>
 ```
 
-<a href="./html/dashboard.html">dashboard 示例</a>
+**渲染结果** \| [新标签页查看](/img/in-post/R/dashboard.html)
+
+<div align="center">
+<iframe
+    style="margin-left:2px; margin-bottom:20px;"
+    frameborder="1" scrolling="0"
+    width="600" height="360"
+    src="/img/in-post/R/dashboard.html">
+</iframe>
+</div>
 
 ```R
 # (7)Interactivity(交互)
@@ -1383,9 +1407,9 @@ render("R4DS5_dashboard.Rmd",output_file = "dashboard.html")
 # htmlwidgets(使用leaflet包产生交互性网页)
 library(leaflet)
 leaflet()%>%
-  setView(110.922,21.603,zoom = 2)%>%
-  addTiles()%>%
-  addMarkers(110.922,21.603,popup = "HOME")
+    setView(110.922,21.603,zoom = 2)%>%
+    addTiles()%>%
+    addMarkers(110.922,21.603,popup = "HOME")
 # 其他提供htmlwidgets的包：dygraphs/DT/rthreejs/DiagrammeR
 # learn more about htmlwidgets: <http://www.htmlwidgets.org/>
 
@@ -1419,15 +1443,21 @@ render("R4DS5_shiny.Rmd",output_file = "shiny.html")
 # create your own formats: <http://bit.ly/CreateNewFormats>
 ```
 
-<a href="./html/shiny.html">shiny 示例</a>
+**渲染结果** \| [新标签页查看](/img/in-post/R/shiny.html)
+
+<div align="center">
+<iframe
+    style="margin-left:2px; margin-bottom:20px;"
+    frameborder="1" scrolling="0"
+    width="600" height="360"
+    src="/img/in-post/R/shiny.html">
+</iframe>
+</div>
 
 # CHPT24 - R Markdown Workflow
 
 **SKIP**
 
-
-
 ------------------------------
 
 **END**
-
