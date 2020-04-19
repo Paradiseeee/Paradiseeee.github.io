@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "R 统计学习（ISLR）-- Learning Notes (III)"
-subtitle:   "subtitle"
+subtitle:   "决策树 | 支持向量机 | 无监督学习"
 date:       2019-01-15 11:00:00
 author:     "Paradise"
 header-img: "img/post-bg.jpg"

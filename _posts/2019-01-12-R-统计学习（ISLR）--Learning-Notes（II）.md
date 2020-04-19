@@ -1,9 +1,9 @@
 ---
 layout:     post
 title:      "R 统计学习（ISLR）-- Learning Notes (II)"
-subtitle:   "subtitle"
+subtitle:   "重抽样方法 | 子集选择 | 压缩估计 | 降维 | 非线性模型"
 date:       2019-01-12 12:00:00
-author:     "重抽样方法 | 子集选择 | 压缩估计 | 降维 | 非线性模型"
+author:     "Paradise"
 header-img: "img/post-bg.jpg"
 header-style: text
 tags:
