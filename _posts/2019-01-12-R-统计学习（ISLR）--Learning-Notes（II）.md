@@ -31,7 +31,7 @@ tags:
 
 ## 5.1 交叉验证法
 
-    上一章讲到训练错误率和测试错误率之间存在较大的区别，这是验证训练模型时存在的主要问题。但是实际中经常缺少作为测试集的数据，对此有很多方法根据可获得的训练数据估计测试错误率，一些方法也使用数学方法对训练错误率进行修正。在本节中主要考虑保留训练数据的一个子集进行测试
+> 上一章讲到训练错误率和测试错误率之间存在较大的区别，这是验证训练模型时存在的主要问题。但是实际中经常缺少作为测试集的数据，对此有很多方法根据可获得的训练数据估计测试错误率，一些方法也使用数学方法对训练错误率进行修正。在本节中主要考虑保留训练数据的一个子集进行测试
 
 - 5.1.1 验证集方法（validation set approach）
     - 原理：将观测集随机地分为两部分，一个训练集（training set）和一个验证集（validation set），或称为保留集（hold-out set）。
@@ -89,7 +89,7 @@ cv.err$delta
 set.seed(17)
 cv.error.10 <- rep(0, 10)
 for (i in 1:10){
-	glm.fit <- glm(mpg~poly(horsepower, i), data=Auto)
+    glm.fit <- glm(mpg~poly(horsepower, i), data=Auto)
     cv.error.10[i] <- cv.glm(Auto, glm.fit, K=10)$delta[1]
 }
 plot(cv.error.10)
@@ -101,7 +101,7 @@ plot(cv.error.10)
 
 # 创建一个计算感兴趣的统计量的函数
 alpha.fn <- function(data, index){
-	X <- data$X[index]
+    X <- data$X[index]
     Y <- data$Y[index]
     output <- (var(Y)-cov(X,Y)) / (var(X)+var(Y)-2*cov(X,Y))
     return (output)
@@ -151,7 +151,7 @@ t1* 0.5758321 0.00278335  0.08577495
 
 ## 6.2 压缩估计方法
 
-    上节的子集选择方法使用最小二乘法对包含预测变量子集的线性模型进行拟合。除此之外，还可以使用对系数进行约束或加惩罚的技巧。也就是将系数向 0 的方向压缩，以此提升拟合效果。常用的两种约束方法是 岭回归 和 lasso。
+> 上节的子集选择方法使用最小二乘法对包含预测变量子集的线性模型进行拟合。除此之外，还可以使用对系数进行约束或加惩罚的技巧。也就是将系数向 0 的方向压缩，以此提升拟合效果。常用的两种约束方法是 岭回归 和 lasso。
 
 - 6.2.1 岭回归（ridge regression）
     - 原理：第三章介绍了最小二乘法，通过最小化 RSS 进行拟合。而岭回归通过最小化 `RSS + lambda*sum(beta^2)` 拟合。`lambda >= 0` 是调节参数，需单独确定。增加的项称为惩罚项，lambda 越大，压缩效果越明显，系数估计结果越趋于 0。
@@ -166,13 +166,13 @@ t1* 0.5758321 0.00278335  0.08577495
     - lasso 原理：在 OLS 的 RSS 函数基础上改为：`RSS + lambda*sum(abs(beta))`
     - l1范数：beta 绝对值求和
     - 与岭回归类似，但是当 lambda 足够大，lasso 使用的 l1 惩罚项可以将某些系数强制设定为0。最后 lasso 回归只保留变量的一个子集，得到“稀疏模型”。原因是 l1 和 l2 范数的约束条件不同，在拟合中添加约束时，l1 范数对应的约束空间为菱形，l2为圆形。（详见教材）
-    - 进一步对比：RR 和 lasso 并没有哪个是绝对好的。一般情况下，当一部分预测变量是真实有效的，而其他系数非常小的时候，lasso 比较出色。当这些系数都大致相等时，RR 比较出色。（然而这都是不能预先知道的）
+    - 进一步对比：RR 和 lasso 并没有哪个是绝对好的。一般情况下，当一部分预测变量是真实有效的，而其他系数非常小的时候，lasso 比较出色。当这些系数都大致相等时，RR 比较出色（然而这都是不能预先知道的）。
 - 6.2.3 选择调节参数
     - 需要调节的参数为：优化方程中的 lambda 和约束条件中的 s。一般使用交叉验证法选择最优参数。
 
 ## 6.3 降维方法
 
-    上述方法的预测变量都来自原始的预测变量集，而降维法将预测变量进行转换，用转换后的变量拟合最小二乘模型。降维方法可以理解为寻找预测变量之间的相关性，主要方法有主成分分析和偏最小二乘。
+> 上述方法的预测变量都来自原始的预测变量集，而降维法将预测变量进行转换，用转换后的变量拟合最小二乘模型。降维方法可以理解为寻找预测变量之间的相关性，主要方法有主成分分析和偏最小二乘。
 
 - 6.3.1 主成分分析（principal components analysis, PCA）
     - 第十章将 PCA 作为无监督学习的一种工具进行更详细的讨论，这里将它作为回归降维方法进行介绍。
@@ -205,8 +205,8 @@ library(ISLR)
 fix(Hitters)
 names(Hitters)
 dim(Hitters)
-sum(is.na(Hitters$Salary))		# 存在缺失值
-hitters <- na.omit(Hitters)		# 移除缺失值
+sum(is.na(Hitters$Salary))      # 存在缺失值
+hitters <- na.omit(Hitters)     # 移除缺失值
 
 "使用若干个与棒球运动员上一年比赛成绩相关的变量预测运动员的薪水"
 
@@ -251,7 +251,7 @@ test.mat <- model.matrix(Salary~., data=hitters[!train, ])
 # 计算预测值和测试值的 MSE
 val.errors <- rep(NA, 19)
 for (i in 1:19){
-	coefi <- coef(regfit.best, id=1)
+    coefi <- coef(regfit.best, id=1)
     pred <- test.mat[, names(coefi)] %*% coefi
     val.errors[i] <- mean((hitters$Salary[!train])^2)
 }
@@ -294,18 +294,18 @@ y_test <- y[(-train)]
 ridge.mod <- glmnet(x[train, ], y[train], 
                     alpha=0, lambda=grid, thresh=1e-12)
 ridge.pred <- predict(ridge.mod, s=4, newx=x[(-train), ])
-MSE <- mean((ridge.pred-y_test)^2)		# 101036.8
+MSE <- mean((ridge.pred-y_test)^2)          # 101036.8
 
 # 使用交叉验证选择参数 lambda
 set.seed(1)
 cv.out <- cv.glmnet(x[train, ], y[train], alpha=0)
 plot(cv.out)
 best.lambda <- cv.out$lambda.min
-best.lambda		# 211.7416
+best.lambda     # 211.7416
 
 # 使用最佳 lambda 时岭回归的 MSE
 ridge.pred <- predict(ridge.mod, s=best.lambda, newx=x[(-train), ])
-MSE <- mean((ridge.pred-y_test)^2)		# 96015.51
+MSE <- mean((ridge.pred-y_test)^2)          # 96015.51
 ```
 
 <img src="https://img-blog.csdnimg.cn/20200419013752553.jpg">
@@ -483,7 +483,7 @@ Salary    43.05    46.40
 
 ## 7.7 广义可加模型
 
-    GAM 提供了一种对标准线性模型进行推广的框架。在这个框架中，每一个变量用一个非线性函数进行替换，同时保持模型整体的可加性。
+> GAM 提供了一种对标准线性模型进行推广的框架。在这个框架中，每一个变量用一个非线性函数进行替换，同时保持模型整体的可加性。
 
 - 7.7.1 用于回归问题的 GAM
     - 前面的样条函数、局部回归、多项式回归或者之前章节的一些函数组合都可以用来产生 GAM。

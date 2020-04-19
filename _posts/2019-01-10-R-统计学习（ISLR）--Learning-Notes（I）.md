@@ -264,7 +264,7 @@ plot(mod)
 
 ```R
 # 在线性回归中引入交互项
-lm(medv~lstat*age, data = Boston)		# 相当于medv~lstat+age+lstat:age
+lm(medv~lstat*age, data = Boston)    # 相当于medv~lstat+age+lstat:age
 
 # 对预测变量进行非线性变化
 mod1 <- lm(medv~lstat, data = Boston)
@@ -346,7 +346,7 @@ points(Boston$rm[bools], residuals(log_mod)[bools], col='green', type = 'h')
 
 ## 4.4 线性判别分析（linear discriminant analysis, LDA）
 
-- logistic 回归建立了直接估计 p(Y=k | X=x) 的模型，而线性判别分析则是分别对每种响应分类建立预测变量 X 的分布模型，再利用贝叶斯定理反过来去估计 p(Y|X)
+- logistic 回归建立了直接估计 `p(Y=k | X=x)` 的模型，而线性判别分析则是分别对每种响应分类建立预测变量 X 的分布模型，再利用贝叶斯定理反过来去估计 `p(Y|X)`
 - 当分布接近正态分布，线性判别分析模型在形式上与 logistic 模型相似
 - 为何需要使用线性判别分析方法：
     - 当类别区分度较高时，logistic 模型估计的参数不够稳定；
@@ -365,12 +365,12 @@ points(Boston$rm[bools], residuals(log_mod)[bools], col='green', type = 'h')
 ### **（1）股票市场数据**
 
 ```R
-"	首先对 ISLR 库中的 Smarket 数据集进行统计分析。数据集包含 2001~2005 共 1250 
+"   首先对 ISLR 库中的 Smarket 数据集进行统计分析。数据集包含 2001~2005 共 1250 
 天里标普500指数的投资回报率。具体变量：
-	Lag1 ~ Lag5：过去的 5 个交易日的投资回报率
-	Volume：当天成交量
-	Today：当天的投资回报率
-	Direction：走势，Up 或 Down
+    Lag1 ~ Lag5：过去的 5 个交易日的投资回报率
+    Volume：当天成交量
+    Today：当天的投资回报率
+    Direction：走势，Up 或 Down
 "
 library(ISLR)
 dim(Smarket)
@@ -458,12 +458,12 @@ mean(knn.pred == test$Direction)
 ```R
 attach(Caravan)
 
-"	由于KNN分类模型的原理是通过圈定距离最近的观测来实现
-	于是变量的尺度将对结果产生影响
-	取值范围较大的变量比较小的变量对距离有更大的影响
-	假设数据集包含 salary 和 age
-	那么以美元和年来衡量的时候，与以日元和分钟来衡量的时候，会产生完全不同的分类结果
-	解决办法：对数据进行标准化，使变量以0为均值，以1为标准差
+"   由于KNN分类模型的原理是通过圈定距离最近的观测来实现
+    于是变量的尺度将对结果产生影响
+    取值范围较大的变量比较小的变量对距离有更大的影响
+    假设数据集包含 salary 和 age
+    那么以美元和年来衡量的时候，与以日元和分钟来衡量的时候，会产生完全不同的分类结果
+    解决办法：对数据进行标准化，使变量以0为均值，以1为标准差
 "
 # 标准化数据
 standardized.X <- scale(Caravan[, -86])

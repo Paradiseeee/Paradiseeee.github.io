@@ -140,20 +140,20 @@ bag.boston <- randomForest(medv~., data=Boston, subset=train, mtry=13,
 yhat.bag <- predict(bag.boston, newdata=Boston[-train, ])
 plot(yhat.bag, boston.test)
 abline(0, 1)
-mean((yhat.bag-boston.test)^2)		# 13.86875
+mean((yhat.bag-boston.test)^2)          # 13.86875
 
 # 使用ntree参数改变生成树的数量
 bag.boston <- randomForest(medv~., data=Boston, subset=train, mtry=13,
                            ntree=25)
 yhat.bag <- predict(bag.boston, newdata=Boston[-train, ])
-mean((yhat.bag-boston.test)^2)		# 14.64803
+mean((yhat.bag-boston.test)^2)          # 14.64803
 
 # 生成随机森林与装袋法一样，只不过 mtry 小于变量数量，默认为 p/3
 set.seed(5)
 rf.boston <- randomForest(medv~., data=Boston, subset=train, mtry=6,
                           importance=TRUE)
 yhat.rf <- predict(rf.boston, newdata=Boston[-train, ])
-mean((yhat.rf-boston.test)^2)		# 13.72421
+mean((yhat.rf-boston.test)^2)           # 13.72421
 # 使用 importance 函数查看个变量的重要性,并绘图显示
 importance(rf.boston)
 varImpPlot(rf.boston)
@@ -164,11 +164,11 @@ varImpPlot(rf.boston)
 ### **（4）提升法**
 
 ```R
-"	用 gbm 包对 Boston 数据集建立回归树
-	由于是回归问题，gbm() 函数的 distribution 参数选用'gaussian'
-	如果是二分类问题则选用 'bernoulli'
-	对象 n.tree=5000 表示提升法模型共需要 5000 棵树
-	选项 interaction.depth=4 限制每棵树的深度。
+"   用 gbm 包对 Boston 数据集建立回归树
+    由于是回归问题，gbm() 函数的 distribution 参数选用'gaussian'
+    如果是二分类问题则选用 'bernoulli'
+    对象 n.tree=5000 表示提升法模型共需要 5000 棵树
+    选项 interaction.depth=4 限制每棵树的深度。
 "
 library(gbm)
 set.seed(1)
@@ -187,7 +187,7 @@ plot(boost.boston, i='lstat')
 # 使用测试集进行评估
 yhat.boost <- predict(boost.boston, newdata=Boston[-train, ], 
                       n.trees=5000)
-mean((yhat.boost-boston.test)^2)	# 16.50313
+mean((yhat.boost-boston.test)^2)        # 16.50313
 # 结果与随机森林接近
 
 # 使用不用的压缩参数 lambda 进行提升法，默认值是 0.001，现在取 0.2
@@ -312,9 +312,9 @@ Levels:  -1 1
 ### **（2）支持向量机**
 
 ```R
-"	使用带核函数的支持向量机：
-	kernel='polynomial -- 拟合多项式核函数的 SVM，调节 degree 参数；
-	kernel='radial' -- 拟合径向基核函数的 SVM，调节 gamma 参数。
+"   使用带核函数的支持向量机：
+    kernel='polynomial -- 拟合多项式核函数的 SVM，调节 degree 参数；
+    kernel='radial' -- 拟合径向基核函数的 SVM，调节 gamma 参数。
 "
 set.seed(3)
 
@@ -342,11 +342,11 @@ tune.out <- tune(svm, y~., data=data[train, ], kernel='radial',
                 gamma=c(0.5, 1, 2, 3, 4))
 library(tidyverse)
 tune.out$performances %>% ggplot(aes(x=cost)) + 
-	geom_line(aes(y=error), color='red') + 
-	geom_line(aes(y=dispersion), color='blue') + 
-	scale_x_log10() + 
-	labs(y = 'error & dispersion',
-		title = 'Error & dispersion with different cost')
+    geom_line(aes(y=error), color='red') + 
+    geom_line(aes(y=dispersion), color='blue') + 
+    scale_x_log10() + 
+    labs(y = 'error & dispersion',
+        title = 'Error & dispersion with different cost')
 
 ===========================================
 > summary(tune.out)
@@ -368,7 +368,6 @@ Parameter tuning of ‘svm’:
 # 使用最佳参数在测试集上进行评估
 table(tune = dat[-train, 'y'], 
       pred = predict(tune.out$best.model, newx=data[-train, ]))
-
 ```
 
 <img src="https://img-blog.csdnimg.cn/20200419014753425.jpg">
@@ -396,8 +395,8 @@ rocplot(fitted, dat[train, 'y'], main='Training Data')
 ### **（4）多分类 SVM**
 
 ```R
-"	使用khan数据集，数据集由 2308 个基因的表达测定组成；
-	训练集和测试集分别由 63 和 20 个观测组成；"
+"   使用khan数据集，数据集由 2308 个基因的表达测定组成；
+    训练集和测试集分别由 63 和 20 个观测组成；"
 names(Khan)
 dim(Khan$xtrain)
 dim(Khan$xtest)
@@ -423,11 +422,11 @@ table(pred.test, data.test$y)
 
 ## 10.1 无监督学习的挑战
 
-    相比于前面介绍的有监督学习，无监督学习更具有挑战性。训练更倾向于主观性，不设定明确的分析目标。评价一个无监督学习的结果非常困难
+相比于前面介绍的有监督学习，无监督学习更具有挑战性。训练更倾向于主观性，不设定明确的分析目标。评价一个无监督学习的结果非常困难。
 
 ## 10.2 主成分分析
 
-    第六章研究主成分回归（PCR）时，解释了主成分方向：特征空间中原始数据高度变异（highly variable）的方向。获取主成分使用了 PCA 方法。
+第六章研究主成分回归（PCR）时，解释了主成分方向：特征空间中原始数据高度变异（highly variable）的方向。获取主成分使用了 PCA 方法。
 
 - 10.2.1 什么是主成分
   
@@ -501,9 +500,9 @@ apply(USArrests, 2, var)
 
 # 因此使用带有标准化的主成分分析
 pr.out <- prcomp(USArrests, scale=TRUE)
-pr.out$rotation		# 主成分载荷向量
-pr.out$x			# 主成分得分向量
-pr.out$sdev			# 主成分标准差
+pr.out$rotation     # 主成分载荷向量
+pr.out$x            # 主成分得分向量
+pr.out$sdev         # 主成分标准差
 
 # 绘出前两个主成分的双标图
 biplot(pr.out, scale=0)
@@ -553,9 +552,9 @@ plot(x, col=(km.out$cluster+1),
 "------------------------------ 系统聚类法 ------------------------------"
 
 # 使用 hclust 函数进行分层聚类，使用不同的距离方式，以欧式距离作为相异度
-hc.complete <- hclust(dist(x), method='complete')	# 最长距离法
-hc.single <- hclust(dist(x), method='single')		# 最短距离法
-hc.average <- hclust(dist(x), method='average')		# 类平均法
+hc.complete <- hclust(dist(x), method='complete')   # 最长距离法
+hc.single <- hclust(dist(x), method='single')       # 最短距离法
+hc.average <- hclust(dist(x), method='average')     # 类平均法
 
 # 绘制谱系图，尽头的每个数字代表一个观测
 par(mfrow=c(1,3))
@@ -596,9 +595,9 @@ plot(hclust(dd, method='complete'),
 # PCA 和系统聚类法常用于基因数据的分析
 # NCI60 数据集由 64 个细胞的共 6830 个基因表达数据组成
 
-nci.labs <- NCI60$labs		# 癌细胞类型
+nci.labs <- NCI60$labs      # 癌细胞类型
 table(nci.labs)
-nci.data <- NCI60$data		# 基因数据
+nci.data <- NCI60$data      # 基因数据
 dim(nci.data)
 
 "--------------------- 使用主成分分析查找癌症相关细胞 ---------------------"
@@ -607,7 +606,7 @@ dim(nci.data)
 pr.out <- prcomp(nci.data, scale=TRUE)
 # 定义函数给每个观测对应的癌症类型分配不同颜色
 Cols <- function(vec){
-	cols <- rainbow(length(unique(vec)))
+    cols <- rainbow(length(unique(vec)))
     return (cols[as.numeric(as.factor(vec))])
 }
 # 对前几个主成分进行可视化，绘制得分向量图
