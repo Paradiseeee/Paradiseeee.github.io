@@ -8,7 +8,7 @@ header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - 机器学习
-    - python
+    - Python
     - 数据分析
     - 笔记
 ---
