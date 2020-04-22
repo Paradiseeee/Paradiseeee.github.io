@@ -1,6 +1,6 @@
 ﻿---
 layout:     post
-title:      "Python-DataScience-CookBook -- Learning-Notes-(II)"
+title:      "Python DataScience CookBook -- Learning Notes (II)"
 subtitle:   "数据预处理 | KNN | NBM | 决策树 | Ridge | lasso | CV"
 date:       2019-02-28 12:00:00
 author:     "Paradise"

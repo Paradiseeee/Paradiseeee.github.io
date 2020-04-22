@@ -1,6 +1,6 @@
 ﻿---
 layout:     post
-title:      "Python-DataScience-CookBook -- Learning-Notes-(I)"
+title:      "Python DataScience CookBook -- Learning Notes (I)"
 subtitle:   "PCA | SVD | 随机映射 | NMF | 距离度量 | 核函数 | LVQ | LOF"
 date:       2019-02-21 12:00:00
 author:     "Paradise"

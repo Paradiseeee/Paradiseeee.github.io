@@ -1,6 +1,6 @@
 ﻿---
 layout:     post
-title:      "Python-DataScience-CookBook -- Learning-Notes-(III)"
+title:      "Python DataScience CookBook -- Learning Notes (III)"
 subtitle:   "Bagging | Boosting | Random Forest | Perceptron | Gradient Descent"
 date:       2019-03-02 12:00:00
 author:     "Paradise"
