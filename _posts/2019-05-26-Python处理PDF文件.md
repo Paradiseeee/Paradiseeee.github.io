@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Python 处理 PDF 文件"
-subtitle:   "再也不需要 Office、WPS和Adobe啦"
+subtitle:   "再也不需要 Office、WPS 或 Adobe 啦！"
 date:       2019-05-26 12:00:00
 author:     "Paradise"
 header-img: "img/post-bg.jpg"
