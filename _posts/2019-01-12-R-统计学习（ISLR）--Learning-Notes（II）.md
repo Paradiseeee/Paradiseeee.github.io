@@ -7,10 +7,10 @@ author:     "Paradise"
 header-img: "img/post-bg.jpg"
 header-style: text
 tags:
+    - R
     - 数据分析
     - 统计分析
     - 机器学习
-    - R
     - 笔记
 ---
 

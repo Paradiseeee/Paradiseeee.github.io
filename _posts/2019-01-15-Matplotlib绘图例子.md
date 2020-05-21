@@ -8,7 +8,7 @@ header-img: "https://img-blog.csdnimg.cn/20200331052941853.jpg"
 tags:
     - Python
     - 可视化
-    - 笔记
+    - 总结
 ---
 
 > 本文为笔记，原文链接：<http://liyangbit.com/pythonvisualization/matplotlib-top-50-visualizations/>
