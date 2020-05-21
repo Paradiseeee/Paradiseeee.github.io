@@ -7,9 +7,9 @@ author:     "Paradise"
 header-img: "img/post-bg.jpg"
 header-style: text
 tags:
-    - 笔记
     - 深度学习
     - 神经网络
+    - 笔记
 ---
 
 

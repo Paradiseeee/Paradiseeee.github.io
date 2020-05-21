@@ -9,7 +9,7 @@ header-style: text
 tags:
     - Python
     - 编程语言
-    - 笔记
+    - 总结
 ---
 
 本文记录如何使用python集成自己常用的PDF文件处理功能。虽然下面只是一些很简单的功能，但是据我所知，WPS需要收费，Office根本不支持（Word对PDF文件的解析可以用一塌糊涂来形容）。

@@ -7,8 +7,8 @@ author:     "Paradise"
 header-img: "img/post-bg.jpg"
 header-style: text
 tags:
-    - 机器学习
     - Python
+    - 机器学习
     - 数据分析
     - 笔记
 ---
