@@ -84,8 +84,8 @@ e + geom_boxplot() + coord_flip()
 # 点阵图
 ggplot(diamonds) + geom_count(aes(x=cut, y=color))
 # 热力图
-diamonds %>% count(color, cut) %>% ggplot(aes(x=color, y=cut)) + 
-    geom_tile(aes(fill=n))
+diamonds %>% count(color, cut) %>% 
+    ggplot(aes(x=color, y=cut)) + geom_tile(aes(fill=n))
 ```
 
 <img src="https://img-blog.csdnimg.cn/20200415010209142.jpg">
