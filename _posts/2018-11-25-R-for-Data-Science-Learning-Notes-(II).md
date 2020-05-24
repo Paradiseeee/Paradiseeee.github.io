@@ -400,7 +400,7 @@ R Markdown provides a unified authoring framework for data science, combining yo
 ## _.Rmd 文件由以下三部分组成
 
 - An (optional) YAML header surrounded by `---`
-- Chunks of R code  surrounded by ` \``` `
+- Chunks of R code  surrounded by `` ` ` ` ``
 - Text mixed with simple text formatting like `#` heading and `_italics_`
 
 ## R Markdown 的渲染步骤
