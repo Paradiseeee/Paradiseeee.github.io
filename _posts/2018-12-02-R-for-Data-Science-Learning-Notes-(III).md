@@ -200,15 +200,15 @@ base+theme_dark(base_line_size=0)
 # CHPT23 - R Markdown Formats
 
 ```R
-# (1)Introduction
-# 在render函数中设置输出文件格式
-rmarkdown::render("example.Rmd",output_format = "word_document")
-# 或者在knit按钮的下拉菜单中选择knit的格式
+# (1) Introduction
+# 在 render 函数中设置输出文件格式
+rmarkdown::render("example.Rmd", output_format = "word_document")
+# 或者在 RStudio knit 按钮的下拉菜单中选择 knit 的格式
 
-# (2)Output Options
-# 查看输出html文件时可以设置那些参数(Then cmd:Ctrl+3)
+# (2) Output Options
+# 查看输出html文件时可以设置哪些参数(Then cmd:Ctrl+3)
 ?rmarkdown::html_document()
-# 使用expanded output field改写default的参数(Rmd 文档)
+# 使用 expanded output field 改写 default 的参数(Rmd 文档)
 output: 
     html_document: 
         toc: true
@@ -220,35 +220,36 @@ output:
         toc_float: true
     pdf_document: default
 
-# (3)Documents
+# (3) Documents
 # 支持的文件格式：
 # pdf、word、odt(OpenDocument Text)、rtf(Rich Text Format)、md、github
-# 使code chunk隐藏的方法：
+# 使 code chunk 隐藏的方法：
 knitr::opts_chunk$set(echo = FALSE)
 # 在html文件中，可以通过option设置(点击可以使代码出现)
 output: 
     html_document: 
         code_folding: hide
 
-# (4)Notebooks
-# html_document主要用于与决策者交流，而html_notebook用于与其他analysist交流
+# (4) Notebooks
+# html_document 主要用于与决策者交流
+# 而 html_notebook 用于与其他 analysist 交流
 
-# (5)Presentations(类似PPT的功能)
-# RMarkdown支持的三种展示格式：
+# (5) Presentations(类似 PPT 的功能)
+# RMarkdown 支持的三种展示格式：
 ioslides_presentation()
 slidy_presentation()
 beamer_presentation()
-# 另外两种由package提供的格式(revealjs与rmdshower包)
+# 另外两种由 package 提供的格式( revealjs 与 rmdshower 包)
 
-# (6)Dashboards(仪表盘)
+# (6) Dashboards(仪表盘)
 # 用于可视化地和快速地交流大量的信息
-# 通过headers控制输出的布局：
+# 通过 headers 控制输出的布局：
 #Each level 1 header(#) begins a new page in the dashboard
 #Each level 2 header(##) begins a new column
 #Each level 3 header(###) begins a new row
 
 # 具体案例：
-render("R4DS5_dashboard.Rmd",output_file = "dashboard.html")
+render("R4DS5_dashboard.Rmd", output_file = "dashboard.html")
 # learn more about flexdashboard:
 # see <http://rmarkdown.rstudio.com/flexdashboard/>
 ```
@@ -265,37 +266,37 @@ render("R4DS5_dashboard.Rmd",output_file = "dashboard.html")
 </div>
 
 ```R
-# (7)Interactivity(交互)
-# 任何html format(document/notebook/presentation/dashboard)都可以包含交互性内容
+# (7) Interactivity(交互)
+# 任何 html format(document/notebook/presentation/dashboard)都可以包含交互性内容
 
-# htmlwidgets(使用leaflet包产生交互性网页)
+# htmlwidgets (使用 leaflet 包产生交互性网页)
 library(leaflet)
 leaflet()%>%
     setView(110.922,21.603,zoom = 2)%>%
     addTiles()%>%
     addMarkers(110.922,21.603,popup = "HOME")
-# 其他提供htmlwidgets的包：dygraphs/DT/rthreejs/DiagrammeR
+# 其他提供 htmlwidgets 的包：dygraphs/DT/rthreejs/DiagrammeR
 # learn more about htmlwidgets: <http://www.htmlwidgets.org/>
 
 # shiny
-# htmlwidgets提供客户端的互动，与R完全脱离，内部使用HTML和JavaScript进行控制
-# 而Shiny允许使用R代码生成互动页面
-# 在Rmd的header中call shiny
+# htmlwidgets 提供客户端的互动，与 R 完全脱离，内部使用 HTML 和 JavaScript 进行控制
+# 而 Shiny 允许使用 R 代码生成互动页面
+# 在 Rmd 的 header 中 call shiny
 title: "shiny"
 output: html_document
 runtime: shiny
-# 用Input函数添加互动性内容
+# 用 Input 函数添加互动性内容
 library(shiny)
 textInput("name", "What is your name?")
 numericInput("age", "How old are you?",NA,min=0,max=150)
-# 具体效果见html文件：
+# 具体效果见 html 文件：
 render("R4DS5_shiny.Rmd",output_file = "shiny.html")
 # learn more about shiny<http://shiny.rstudio.com/>
 
-# (8)Websites
+# (8) Websites
 # learning more: <http://bit.ly/RMarkdownWebsites>
 
-# (9)Other Formats
+# (9) Other Formats
 # The bookdown package makes it easy to write books.
 # Read <Authoring Book with R Markdown>
 # see <http://www.bookdown.org>
