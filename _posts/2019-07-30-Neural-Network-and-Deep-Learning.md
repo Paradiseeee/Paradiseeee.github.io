@@ -140,7 +140,7 @@ tags:
 ## Lesson 3: Computing a Neural Network's Output
 
 - 首先由 `w^T * x` 计算z，再由 `sigma(z)` 计算输出a，将参数和输入合并成矩阵进行向量化。
-- `z^[l] = W[l]·x + b^[l]`; `a^[l] = sigma(z^[l])`; l = 1, 2, 3, ...
+- `z^[l] = W[l]·x + b^[l]`; `a^[l] = sigma(z^[l]); l = 1, 2, 3, ...`
 
 ## Lesson 4: Vectorizing across multiple examples
 

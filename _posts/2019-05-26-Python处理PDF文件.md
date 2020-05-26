@@ -85,7 +85,7 @@ PdfProcessing.split_pdfs('C:/test.pdf', [4,5,6])
 PdfProcessing.merge_pdfs('output.pdf', 'C:/test.pdf', 'splited.pdf')
 ```
 
-另一种方法是将以上脚本通过 `Pyinstaller` 编译成可执行文件（.exe），这样就可以不用 Python 环境直接运行。不过需要设计一下用户操作指引，自己用可以直接在命令行操作。如果想分享给别人可以用 `Pygame` 设计一个用户页面。
+另一种方法是将以上脚本通过 `Pyinstaller` 编译成可执行文件（.exe），这样就可以不用 Python 环境直接运行。不过需要设计一下用户操作指引，自己用可以直接在命令行操作。如果想分享给别人可以设计一个用户页面，并且用 `Nuitka` 打包可以生成一个更高效的可执行文件。
 
 跟据自己对PDF文件的高频操作，可以自己定义函数功能。这里还有很多功能没有提及，如果如要增加更多的功能可以参考 [PyPDF2 的文档](https://pythonhosted.org/PyPDF2/)。
 
