@@ -1,19 +1,31 @@
-﻿# matplotlib.animation 动画绘制
+﻿---
+layout:     post
+title:      "Matplotlib 绘制动画"
+subtitle:   "使用 <strong>matplotlib.animation</strong> 可视化数据变化趋势"
+date:       2020-06-16 12:00:00
+author:     "Paradise"
+header-img: "img/post-bg.jpg"
+header-style: text
+mathjax: false
+tags:
+    - Python
+    - 可视化
+    - 数据分析
+    - 总结
+---
 
--- 使用 `matplotlib.animation` 动态图可视化数据变化趋势
+> [参考文章](https://mp.weixin.qq.com/s?__biz=MjM5MjAxMDM4MA==&mid=2651890230&idx=1&sn=267652432d02f5a081b711a21debb05f&chksm=bd48dbd58a3f52c31f9a34b676ad3f0931c57d0e478be13cb14fa1a0d35647e4a01ef52f6495&mpshare=1&scene=1&srcid=&sharer_sharetime=1592226971955&sharer_shareid)
 
-[参考文章](https://mp.weixin.qq.com/s?__biz=MjM5MjAxMDM4MA==&mid=2651890230&idx=1&sn=267652432d02f5a081b711a21debb05f&chksm=bd48dbd58a3f52c31f9a34b676ad3f0931c57d0e478be13cb14fa1a0d35647e4a01ef52f6495&mpshare=1&scene=1&srcid=&sharer_sharetime=1592226971955&sharer_shareid)
-
-[官方文档](https://matplotlib.org/3.1.1/api/animation_api.html)
+> [官方文档](https://matplotlib.org/3.1.1/api/animation_api.html)
 
 
-# 两种类型的动画绘制
+# 一、两种类型的动画绘制
 
 ## 第一类：`blit=False`
 
 根据绘制动画的逻辑，大体分为两类，主要由 `matplolib.animation.FuncAnimation` 类的 blit 参数确定：
 
-<img src="./blitting.jpg">
+<img src="https://img-blog.csdnimg.cn/20200622223805298.jpg">
 
 简单来说就是，当使用默认参数时，没一帧都会保留在画布上，与后来绘制的帧混合显示。这时适用于展示长度在改变的数据的变化趋势，例如某一指标的时序数据。或者单纯是希望每张图重叠。主要在于展示纵向的变化趋势。
 
@@ -45,7 +57,7 @@ ani = FuncAnimation(fig, build_frame, interval=10)
 plt.show()
 ```
 
-<img src="./fig1.gif">
+<img src="https://img-blog.csdnimg.cn/20200622223700836.gif">
 
 ## 第二类：`blit=True`
 
@@ -65,10 +77,10 @@ ani = FuncAnimation(fig, build_frame2, interval=10, blit=True)
 plt.show()
 ```
 
-<img src="./fig2.gif">
+<img src="https://img-blog.csdnimg.cn/20200622223853659.gif">
 
 
-# 更复杂的例子
+# 二、更复杂的例子
 
 ## 更多图像设置
 
@@ -99,7 +111,7 @@ ani = FuncAnimation(fig, derivate, interval=100, blit=True)
 plt.show()
 ```
 
-<img src="./fig3.gif">
+<img src="https://img-blog.csdnimg.cn/20200622223938624.gif">
 
 ### 动态心形线
 
@@ -116,7 +128,7 @@ ani = FuncAnimation(fig, heart, interval=100, blit=True)
 plt.show()
 ```
 
-<img src="./fig4.gif">
+<img src="https://img-blog.csdnimg.cn/20200622223951608.gif">
 
 ## 更多图表类型
 
@@ -143,11 +155,11 @@ df = datas['2020-01-01': '2020-06-15']
 
 | date                |   交通银行 |   农业银行 |   建设银行 |   工商银行 |   中国银行 |
 |:--------------------|-----------:|-----------:|-----------:|-----------:|-----------:|
+| 2020-06-09 00:00:00 |       5.15 |       3.42 |       6.43 |       5.26 |       3.51 |
+| 2020-06-10 00:00:00 |       5.13 |       3.4  |       6.4  |       5.27 |       3.5  |
+| 2020-06-11 00:00:00 |       5.1  |       3.38 |       6.35 |       5.27 |       3.48 |
 | 2020-06-12 00:00:00 |       5.1  |       3.38 |       6.38 |       5.22 |       3.48 |
 | 2020-06-15 00:00:00 |       5.07 |       3.33 |       6.27 |       5.24 |       3.44 |
-| 2020-06-16 00:00:00 |       5.1  |       3.35 |       6.31 |       5.3  |       3.47 |
-| 2020-06-17 00:00:00 |       5.1  |       3.36 |       6.31 |       5.26 |       3.46 |
-| 2020-06-18 00:00:00 |       5.11 |       3.35 |       6.28 |       5.19 |       3.46 |
 
 ### 折线图
 
@@ -175,7 +187,7 @@ ani = FuncAnimation(fig, ani_line, interval=1)
 plt.show()
 ```
 
-<img src="./fig5.gif">
+<img src="https://img-blog.csdnimg.cn/20200622224014639.gif">
 
 ### 条形图
 
@@ -194,10 +206,10 @@ plt.show()
 # 可以看到条形图并不适于可视化这个数据，这里只作为绘图示例
 ```
 
-<img src="./fig6.gif">
+<img src="https://img-blog.csdnimg.cn/20200622224050554.gif">
 
 
-# 动态图保存：重写 save 方法
+# 三、动态图保存：重写 save 方法
 
 ## 代码
 
@@ -208,38 +220,26 @@ class MyFuncAnimation(FuncAnimation):
     def save(self, sample_rate=None, stop_index=None, index=None, quality=None, duration=0.3):
         
         print('\n> Generating, please wait ...\n')
-        os.mkdir('./__TEMP__')
-        
-        # 如果 index 为空，根据采样率和终止序号，计算采样序号数组
+
         if not index:
             length = int((stop_index+1) * sample_rate)
             index = np.linspace(0, stop_index, length).astype(int)
-        # 否则直接使用 index 传进来的数组
-        else:
-            pass
         
+        os.mkdir('./__TEMP__')
         frames = []
         for i in index:
             plt.close()
             self._func(i)
-            # 如果 quality 为空，以正常质量保存
             if not quality:
                 plt.savefig(f'./__TEMP__/{i}.jpg')
-            # 否则进行图片压缩
             else:
-                plt.savefig(f'./__TEMP__/{i}.jpg', quality=quality, 
-                            optimize=True, papertype='letter', 
-                            bbox_inches='tight', format='jpg')
-                # 测试的时候发现并没有让gif变小，白瞎了那么多参数
-                # 可以增加采样率来减小gif大小，进一步怎么压缩有待研究
+                plt.savefig(f'./__TEMP__/{i}.jpg', quality=quality, optimize=True, bbox_inches='tight')
             frames.append(imageio.imread(f'./__TEMP__/{i}.jpg'))
         
         imageio.mimsave('output.gif', frames, 'GIF', duration=duration)
-        time.sleep(1)   # 等一会儿再删，不然会出现奇妙的现象
-        try:
-            os.system('rd/s/q __TEMP__')
-        except:
-            print('删不掉临时目录！系统说我不是管理员...')
+        time.sleep(1)
+        os.system('rd/s/q __TEMP__')
+
         print('> Saved output.gif')
 ```
 
@@ -255,12 +255,12 @@ ani.save(0.08, 100, duration=0.08)   # 支持任意精确的浮点数
 # 第三
 ani.save(index=[1,2,3,4,6,8,12,16,32,64,100, 1000])
 # 第四
-ani.save(index=[0,15,30,45,50,60,75,90,100])
+ani.save(index=[0,15,30,45,50,60,75,90,100], duration=0.3)
 # 第五、第六
-ani.save(0.02, 600, duration=0.3)
+ani.save(0.02, 600)
 ```
 
-# 注意事项
+# 四、注意事项
 
 - 0. 关闭动画窗口后，还有残留的进程？此时新建 figure 对象会报错，需要使用 plt.close() 强制结束。
 
@@ -270,4 +270,4 @@ ani.save(0.02, 600, duration=0.3)
 
 - 3. 如何在保持对象引用，不关闭动画的前提下，释放内存？
 
-<img src="./error.jpg">
+<img src="https://img-blog.csdnimg.cn/20200622224059133.jpg">
