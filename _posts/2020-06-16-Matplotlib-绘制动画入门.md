@@ -1,6 +1,6 @@
 ﻿---
 layout:     post
-title:      "Matplotlib 绘制动画"
+title:      "Matplotlib 绘制动画入门"
 subtitle:   "使用 <strong>matplotlib.animation</strong> 可视化数据变化趋势"
 date:       2020-06-16 12:00:00
 author:     "Paradise"
@@ -21,13 +21,13 @@ tags:
 
 # 一、两种类型的动画绘制
 
-## 第一类：`blit=False`
+## **第一类：** `blit=False`
 
 根据绘制动画的逻辑，大体分为两类，主要由 `matplolib.animation.FuncAnimation` 类的 blit 参数确定：
 
 <img src="https://img-blog.csdnimg.cn/20200622223805298.jpg">
 
-简单来说就是，当使用默认参数时，没一帧都会保留在画布上，与后来绘制的帧混合显示。这时适用于展示长度在改变的数据的变化趋势，例如某一指标的时序数据。或者单纯是希望每张图重叠。主要在于展示纵向的变化趋势。
+简单来说就是，当使用默认参数时，每一帧都会保留在画布上，与后来绘制的帧混合显示。这时适用于展示长度在改变的数据的变化趋势，例如某一指标的时序数据。或者单纯是希望每张图重叠。主要在于展示纵向的变化趋势。
 
 ```python
 from matplotlib.animation import FuncAnimation
@@ -59,7 +59,7 @@ plt.show()
 
 <img src="https://img-blog.csdnimg.cn/20200622223700836.gif">
 
-## 第二类：`blit=True`
+## **第二类：** `blit=True`
 
 与前者相反，启用 blit 后，每一帧都绘制在单独的空白画布上，然后拼接起来形成动画。这时适用于长度固定但是数据集在改变的趋势，例如改变模型的某个超参数，得到预测值序列的变化趋势。主要在于展示横向的变化趋势。
 
@@ -82,9 +82,9 @@ plt.show()
 
 # 二、更复杂的例子
 
-## 更多图像设置
+## **（1）更多图像设置**
 
-### 微分求导极限过程
+### **微分求导极限过程**
 
 ```python
 def derivate(n):
@@ -113,7 +113,7 @@ plt.show()
 
 <img src="https://img-blog.csdnimg.cn/20200622223938624.gif">
 
-### 动态心形线
+### **动态心形线**
 
 ```python
 def heart(n):
@@ -130,9 +130,9 @@ plt.show()
 
 <img src="https://img-blog.csdnimg.cn/20200622223951608.gif">
 
-## 更多图表类型
+## **（2）更多图表类型**
 
-### 数据准备
+### **数据准备**
 
 ```python
 import pandas as pd
@@ -161,7 +161,7 @@ df = datas['2020-01-01': '2020-06-15']
 | 2020-06-12 00:00:00 |       5.1  |       3.38 |       6.38 |       5.22 |       3.48 |
 | 2020-06-15 00:00:00 |       5.07 |       3.33 |       6.27 |       5.24 |       3.44 |
 
-### 折线图
+### **折线图**
 
 ```python
 def ani_line(n, df=datas):
@@ -189,7 +189,7 @@ plt.show()
 
 <img src="https://img-blog.csdnimg.cn/20200622224014639.gif">
 
-### 条形图
+### **条形图**
 
 ```python
 def ani_bar(n, df=datas):
@@ -211,7 +211,7 @@ plt.show()
 
 # 三、动态图保存：重写 save 方法
 
-## 代码
+## **代码**
 
 ```python
 class MyFuncAnimation(FuncAnimation):
@@ -233,7 +233,8 @@ class MyFuncAnimation(FuncAnimation):
             if not quality:
                 plt.savefig(f'./__TEMP__/{i}.jpg')
             else:
-                plt.savefig(f'./__TEMP__/{i}.jpg', quality=quality, optimize=True, bbox_inches='tight')
+                plt.savefig(f'./__TEMP__/{i}.jpg',
+                            quality=quality, optimize=True, bbox_inches='tight')
             frames.append(imageio.imread(f'./__TEMP__/{i}.jpg'))
         
         imageio.mimsave('output.gif', frames, 'GIF', duration=duration)
@@ -243,7 +244,7 @@ class MyFuncAnimation(FuncAnimation):
         print('> Saved output.gif')
 ```
 
-## 用法示例
+## **用法示例**
 
 直接使用 MyFuncAnimation 类代替 FuncAnimation 类，除保存外的所有操作同上。具体保存操作参考 MyFuncAnimation.save 源码。以上动图的保存如下：
 
@@ -262,12 +263,15 @@ ani.save(0.02, 600)
 
 # 四、注意事项
 
-- 0. 关闭动画窗口后，还有残留的进程？此时新建 figure 对象会报错，需要使用 plt.close() 强制结束。
+- 本着“能用就行”的原则，并没有进行深入地研究，本文的部分理解和操作可能存在错误，欢迎指正。
 
-- 1. 关于内存的问题：build frame 函数能不能定义结束位置？否则会不断积累内存，直到手动关闭动画
+- matplotlib.animation 子模块中用于绘制动画的类或函数还有很多，暂时还没有全部研究。
 
-- 2. 这种内存累积对导出gif会不会有影响？会不会有多余的空白帧？
+<img src="https://img-blog.csdnimg.cn/20200624185949145.jpg">
 
-- 3. 如何在保持对象引用，不关闭动画的前提下，释放内存？
+- 发行版中的 save 函数存在 bug，这里 DIY 了一个可以保存 GIF 的函数。这个函数其实是完全脱离 FuncAnimation 类，与其并非完全兼容，也就是说，plt.show() show 出来的，跟 save 函数保存下来的，不是完全一致的图。根据实际情况进行调整。
 
+- 关闭动画窗口后，目测还有残留的进程。此时新建 figure 对象会报错（但是这里并没有返回一个 error，也不知这是什么来的，知道的朋友分享一下），需要使用 plt.close() 强制结束。
 <img src="https://img-blog.csdnimg.cn/20200622224059133.jpg">
+
+- build_frame 函数好像不能定义结束位置，也就是说 plt.show() 之后它就会不停地一帧一帧地绘图，并且内存会累积起来越来越大。但是官方文档给的例子并没有这种现象。我应该是做错了什么？按理说这种情况应该抛一个 warnings 给我才对，但是并没有。还是“能用就行”，这里暂时不管了，反正内存就是拿来占的。而且 matplotlib 本来就很多 bug...
