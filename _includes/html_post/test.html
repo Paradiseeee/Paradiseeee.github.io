@@ -1,0 +1,72 @@
+<p><img src="/img/in-post/LatexSymbols.png" /></p>
+<h1 id="chpt01-随机事件与概率">CHPT01 – 随机事件与概率</h1>
+<h2 id="一-随机现象与随机试验"><strong>一、 随机现象与随机试验</strong></h2>
+<p><strong>随机试验：</strong></p>
+<ul>
+<li>试验可以在相同的条件下重复进行</li>
+<li>试验可能出现的所有结果种类已知</li>
+<li>试验结果在试验前未知，但必是所有可能结果中的一个</li>
+</ul>
+<p><strong>随机事件：</strong> 随机试验的结果</p>
+<p><strong>随机现象：</strong> 随机试验中观察到的现象</p>
+<p><strong>统计规律性：</strong> 在随机试验的重复实施中呈现的不变性质</p>
+<h3 id="样本空间与随机事件">（1）样本空间与随机事件</h3>
+<p><strong>样本空间：</strong> 随机试验所有可能结果的集合；用 <img src="https://latex.codecogs.com/svg.latex?\Omega" /> 表示</p>
+<ul>
+<li>有限样本空间：有限个元素，如抛硬币的结果</li>
+<li>无限样本空间：无限个元素，如灯泡的寿命</li>
+</ul>
+<p><strong>样本点：</strong> 样本空间的元素；用 <img src="https://latex.codecogs.com/svg.latex?\omega" /> 表示</p>
+<p><strong>事件的发生：</strong> 当 <img src="https://latex.codecogs.com/svg.latex?\omega\in%7BA%7D" /> ，称这次试验中事件 A 发生；当 <img src="https://latex.codecogs.com/svg.latex?\omega\notin%7BA%7D" /> ，称事件 A 不发生；</p>
+<p><strong>两种特殊的随机事件：</strong></p>
+<ul>
+<li>必然事件：事件样本空间在每次实验中都发生</li>
+<li>不可能事件：空集 <img src="https://latex.codecogs.com/svg.latex?\Phi" /> 在每次实验中均不发生，称为不可能事件</li>
+</ul>
+<p><strong>基本事件：</strong> 只含单个样本点的集合，称为基本事件，或称简单事件</p>
+<ul>
+<li>不能再分解的事件称为基本事件</li>
+<li>由基本事件组合而成的事件称为复合事件</li>
+<li>基本事件是相对的，不是绝对的</li>
+</ul>
+<h3 id="事件的关系与运算">（2）事件的关系与运算</h3>
+<p><strong>事件的关系：</strong></p>
+<ul>
+<li>事件的<strong>包含</strong>：如果事件 A 发生，则事件 B 一定发生，则称事件 B 包含事件 A；记为：<img src="https://latex.codecogs.com/svg.latex?A\subset%7BB%7D" />；根据定义显然有：<img src="https://latex.codecogs.com/svg.latex?A\subset\Omega" />。</li>
+<li>事件的<strong>相等</strong>：如果事件 A 与事件 B 互相包含，即 <img src="https://latex.codecogs.com/svg.latex?%7BA%7D\subset%7BB%7D" /> 且 <img src="https://latex.codecogs.com/svg.latex?%7BB%7D\subset%7BA%7D" />，则称事件 A 等于事件 B；记为：<embed src="https://latex.codecogs.com/svg.latex?%7BA%7D=%7BB%7D" />。</li>
+<li>事件的<strong>互斥</strong>：如果事件 A 与事件 B 不能在同一次试验中都发生（但可以都不发生），则称事件 A 与事件 B 是互斥或互不相容的；记为：<img src="https://latex.codecogs.com/svg.latex?%7BA%7D\cap%7BB%7D=\Phi" />。</li>
+<li>事件的<strong>对立</strong>：如果事件 A 与事件 B 不同时发生，但必发生一个，则称事件 A 与事件 B 为对立事件；记为：<img src="https://latex.codecogs.com/svg.latex?%7BB%7D=\overline%7BA%7D" />，<img src="https://latex.codecogs.com/svg.latex?%7BA%7D=\overline%7BB%7D" />； 根据定义显然有：<img src="https://latex.codecogs.com/svg.latex?%7BAB%7D=\Phi,%20%7BA%7D+%7BB%7D=\Omega" />。</li>
+</ul>
+<p><strong>事件的运算</strong>：</p>
+<ul>
+<li><strong>和</strong>：<img src="https://latex.codecogs.com/svg.latex?A\cup%7BB%7D" /> （并集）
+<ul>
+<li>当 A、B 互斥时，可记为 <embed src="https://latex.codecogs.com/svg.latex?%7BA%7D+%7BB%7D" /></li>
+<li>当 <embed src="https://latex.codecogs.com/svg.latex?%7BA%7D_%7B1%7D,%20%7BA%7D_%7B2%7D,%20...,%20%7BA%7D_%7Bn%7D" /> 两两互斥时，可记为 <img src="https://latex.codecogs.com/svg.latex?\bigcup_%7Bi=1%7D%5E%7Bn%7DA_i=\sum_%7Bi=1%7D%5E%7Bn%7DA_i" /></li>
+<li>当 <embed src="https://latex.codecogs.com/svg.latex?%7BA%7D_%7B1%7D,%20%7BA%7D_%7B2%7D,%20...,%20%7BA%7D_%7Bn%7D" /> 两两互斥，且 <img src="https://latex.codecogs.com/svg.latex?%7BA%7D_%7B1%7D+%7BA%7D_%7B2%7D+...+%7BA%7D_%7Bn%7D=\Omega" />，则称这 n 个事件构成<strong>互斥完备群</strong></li>
+</ul></li>
+<li><strong>积</strong>：<img src="https://latex.codecogs.com/svg.latex?A\cap%7BB%7D%20or%20%7BAB%7D" /> （交集）
+<ul>
+<li>可列多个事件的积事件记为 <img src="https://latex.codecogs.com/svg.latex?\prod_%7Bi=1%7D%5E%7B\infty%7DA_i" />，表示一系列事件全部发生</li>
+</ul></li>
+<li><strong>差</strong>： <img src="https://latex.codecogs.com/svg.latex?%7BA-B%7D%20or%20%7BA%7D\backslash%7BB%7D" /> （指 A 发生，B 不发生）
+<ul>
+<li>由定义有：<img src="https://latex.codecogs.com/svg.latex?%7BA-B%7D=%7BA%7D\cap\overline%7BB%7D,%20%7BA%7D=\Omega-\overline%7BA%7D" /></li>
+</ul></li>
+</ul>
+<p><strong>事件的运算法则：</strong></p>
+<ul>
+<li><strong>交换律</strong>：<img src="https://latex.codecogs.com/svg.latex?A\cup%7BB%7D=%7BB%7D\cup%7BA%7D,%20AB=BA" /></li>
+<li><strong>结合律</strong>：<img src="https://latex.codecogs.com/svg.latex?\left(%7BA%7D\cup%7BB%7D\right)\cup%7BC%7D=%7BA%7D\cup\left(%7BB%7D\cup%7BC%7D\right),%20\left(AB\right)C=A\left(BC\right)" /></li>
+<li><strong>分配律</strong>：
+<ul>
+<li><img src="https://latex.codecogs.com/svg.latex?A\cap\left(%7BB%7D\cup%7BC%7D\right)=\left(A\cap%7BB%7D\right)\cup\left(A\cap%7BC%7D\right)" /></li>
+<li><img src="https://latex.codecogs.com/svg.latex?%7BA%7D\cup\left(%7BB%7D\cap%7BC%7D\right)=\left(A\cup%7BB%7D\right)\cap\left(A\cup%7BC%7D\right)" /></li>
+</ul></li>
+<li><strong>对偶律</strong>：
+<ul>
+<li><img src="https://latex.codecogs.com/svg.latex?\overline%7BA\cup%7BB%7D%7D=\overline%7BA%7D\cap\overline%7BB%7D%20and%20\overline%7BA\cap%7BB%7D%7D=\overline%7BA%7D\cup\overline%7BB%7D" /></li>
+<li><img src="https://latex.codecogs.com/svg.latex?\overline%7B\bigcup_%7Bi=1%7D%5En%7BA_i%7D%7D=\bigcap_%7Bi=1%7D%5En\overline%7BA_i%7D%20and%20\overline%7B\bigcap_%7Bi=1%7D%5En%7BA_i%7D%7D=\bigcup_%7Bi=1%7D%5En\overline%7BA_i%7D" /></li>
+</ul></li>
+</ul>
+<h2 id="二概率的定义"><strong>二、概率的定义</strong></h2>
