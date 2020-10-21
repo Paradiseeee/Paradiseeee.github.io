@@ -14,6 +14,8 @@ tags:
     - 笔记
 ---
 
+> Python 解决方案：<https://github.com/hardikkamboj/An-Introduction-to-Statistical-Learning>
+>
 > 教材介绍：<https://book.douban.com/subject/26430936/ >
 >
 > 相关资源：<http://faculty.marshall.usc.edu/gareth-james/ISL/ >
