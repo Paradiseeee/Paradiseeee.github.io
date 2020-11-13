@@ -8,9 +8,9 @@ header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
+    - ML
     - 数据分析
     - 统计分析
-    - 机器学习
     - 笔记
 ---
 
