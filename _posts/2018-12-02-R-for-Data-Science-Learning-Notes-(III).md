@@ -4,14 +4,13 @@ title:      "R for Data Science - Learning Notes (III)"
 subtitle:   "Communications & Cooperations"
 date:       2018-12-02 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
     - 编程语言
     - 数据分析
     - 笔记
-    - 可视化
+    - 数据可视化
 ---
 
 > 教材介绍：<https://book.douban.com/subject/26757974/>
@@ -52,7 +51,7 @@ df %>% ggplot(aes(x, y)) + geom_point() + labs(
 )
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051747732.jpg">
+<img src="/post-assets/20181202/labs-quote.jpg">
 
 ## 点注释
 
@@ -83,7 +82,7 @@ ggplot(mpg, aes(displ, hwy, color=class)) +
     theme(legend.position="none")
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051636132.jpg">
+<img src="/post-assets/20181202/annotations.jpg">
 
 ## 单个注释
 
@@ -107,7 +106,7 @@ geom_rect                   # 矩形框
 geom_segement               # 利用 arrow 参数可以添加 箭头
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051546278.jpg">
+<img src="/post-assets/20181202/geom_text-result.jpg">
 
 ## 坐标刻度、图例样式
 
@@ -130,7 +129,7 @@ base +
     )
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051416262.jpg">
+<img src="/post-assets/20181202/axis-legend.jpg">
 
 ## 坐标转换、坐标缩放
 
@@ -159,7 +158,7 @@ ggplot(compact, aes(displ, hwy, color=drv)) + geom_point() +
     x_scale + y_scale + color_scale
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051306787.jpg">
+<img src="/post-assets/20181202/axis-zooming.jpg">
 
 ## 颜色风格
 
@@ -194,7 +193,7 @@ ggplot(df,aes(x,y)) + geom_hex() + viridis::scale_fill_viridis() + coord_fixed()
 base+theme_dark(base_line_size=0)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051128530.jpg">
+<img src="/post-assets/20181202/color-theme.jpg">
 
 
 # CHPT23 - R Markdown Formats
@@ -254,14 +253,14 @@ render("R4DS5_dashboard.Rmd", output_file = "dashboard.html")
 # see <http://rmarkdown.rstudio.com/flexdashboard/>
 ```
 
-**渲染结果** \| [新标签页查看](/img/in-post/R/dashboard.html)
+**渲染结果**
 
 <div align="center">
 <iframe
     style="margin-left:2px; margin-bottom:20px;"
     frameborder="1" scrolling="0"
-    width="600" height="360"
-    src="/img/in-post/R/dashboard.html">
+    width="100%" height="360"
+    src="/post-assets/20181202/dashboard.html">
 </iframe>
 </div>
 
@@ -308,14 +307,14 @@ render("R4DS5_shiny.Rmd",output_file = "shiny.html")
 # create your own formats: <http://bit.ly/CreateNewFormats>
 ```
 
-**渲染结果** \| [新标签页查看](/img/in-post/R/shiny.html)
+**渲染结果**
 
 <div align="center">
 <iframe
     style="margin-left:2px; margin-bottom:20px;"
     frameborder="1" scrolling="0"
-    width="600" height="360"
-    src="/img/in-post/R/shiny.html">
+    width="100%" height="360"
+    src="/post-assets/20181202/shiny.html">
 </iframe>
 </div>
 

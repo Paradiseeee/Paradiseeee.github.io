@@ -4,7 +4,6 @@ title:      "R for Data Science - Learning Notes (I)"
 subtitle:   "Data-processing Basics & Useful Packages"
 date:       2018-11-22 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
@@ -57,7 +56,7 @@ diamonds %>% mutate(y=ifelse(y<3|y>20, NA, y))      # 用缺失值代替离群�
 diamonds %>% mutate(bool=is.na(y))                  # 用新列标记缺失值
 ```
 
-<img src="https://img-blog.csdnimg.cn/2020041501005035.jpg">
+<img src="/post-assets/20181122/carart_distribution.jpg">
 
 ```R
 # Q2.变量之间的相关性？
@@ -76,7 +75,7 @@ e <- ggplot(diamonds, aes(x=cut, y=price))
 e + geom_boxplot() + coord_flip()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415010138856.jpg">
+<img src="/post-assets/20181122/cut-price.jpg">
 
 ```R
 # Q2-2.离散变量与离散变量的相关性
@@ -88,7 +87,7 @@ diamonds %>% count(color, cut) %>%
     ggplot(aes(x=color, y=cut)) + geom_tile(aes(fill=n))
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415010209142.jpg">
+<img src="/post-assets/20181122/cut-color.jpg">
 
 ```R
 # Q2-3.连续变量与连续变量的相关性
@@ -104,7 +103,7 @@ e + geom_bin2d()
 e + geom_boxplot(aes(group=cut_width(carat, 0.1)))
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415010238413.jpg">
+<img src="/post-assets/20181122/carat-price.jpg">
 
 
 # CHPT06 - Workflow: Projects

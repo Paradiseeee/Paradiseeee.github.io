@@ -4,7 +4,6 @@ title:      "R for Data Science - Learning Notes (II)"
 subtitle:   "Modeling & R-Markdown"
 date:       2018-11-25 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
@@ -74,7 +73,7 @@ ggplot(sim1, aes(x,y)) +
                )
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415054542803.jpg">
+<img src="/post-assets/20181125/rand_coef_dist.jpg">
 
 ## （2）系统拟合方法
 
@@ -96,7 +95,7 @@ ggplot(sim1, aes(x)) +
     geom_line(aes(y=resid), color="red")
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415054712415.jpg">
+<img src="/post-assets/20181125/system_lm.jpg">
 
 ## （3）其他模型拟合
 
@@ -148,7 +147,7 @@ ggplot(diamonds, aes(clarity, price)) + geom_boxplot()
 ggplot(diamonds, aes(carat, price)) + geom_hex(bins=50, color="grey30")
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415054817810.jpg">
+<img src="/post-assets/20181125/quality-price.jpg">
 
 ```R
 # 观察 carat 与 price 的相关趋势，接近指数关系，因此转为对数坐标系
@@ -182,7 +181,7 @@ ggplot(diamonds, aes(carat, price)) + geom_hex(bins=50) +
 ggplot(diamonds, aes(lcarat, lprice_resid)) + geom_hex(bins=50)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415054916725.jpg">
+<img src="/post-assets/20181125/carat-price-model-result.jpg">
 
 ```R
 # 残差中去除了重量与价格的相关性，接下来查看品质变量与价格的关系
@@ -193,7 +192,7 @@ ggplot(diamonds, aes(clarity, lprice_resid)) + geom_boxplot()
 # 可以看到在残差中，品质因子与价格变量表现出合理的相关性
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415055014496.jpg">
+<img src="/post-assets/20181125/quality-lprice_residuals.jpg">
 
 ```R
 # 直接使用多变量模型进行拟合
@@ -211,7 +210,7 @@ daily <- flights %>% mutate(date=make_date(year, month, day)) %>%
 ggplot(daily, aes(date, count)) + geom_line()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415055107718.jpg">
+<img src="/post-assets/20181125/daily-flights.jpg">
 
 ```R
 # 可视化呈现了与星期有关的周期性
@@ -228,7 +227,7 @@ daily <-daily %>% add_residuals(mod)
 daily %>% ggplot(aes(date, resid)) + geom_ref_line(h=0) + geom_line()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415055422669.jpg">
+<img src="/post-assets/20181125/daily-flights-model-result.jpg">
 
 ```R
 # 可以看到残差里面还遗留了模型没有捕捉到的周期性：
@@ -242,7 +241,7 @@ daily %>% ggplot(aes(date, resid)) + geom_ref_line(h=0) +
     geom_line(color="grey50") + geom_smooth(se=FALSE, span=0.2)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200415055532394.jpg">
+<img src="/post-assets/20181125/daily-flights-residual-analysis.jpg">
 
 
 # CHPT20 - More Models with purrr and broom
@@ -274,7 +273,7 @@ new_zealand %>% ggplot(aes(year, pred)) + geom_line() + ggtitle("Linear trend + 
 new_zealand %>% ggplot(aes(year, resid)) + geom_line() + ggtitle("Remaining pattern")
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416052115349.jpg">
+<img src="/post-assets/20181125/new_zealand-lifeExp.jpg">
 
 ```R
 # 将上述过程打包成函数，利用 purrr::map() 对每个国家重复类似的操作
@@ -325,7 +324,7 @@ resid %>% ggplot(aes(year, resid)) +
 # 结果显示非洲和亚洲的拟合效果较差
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416052007493.jpg">
+<img src="/post-assets/20181125/lifeExp-model-result.jpg">
 
 ## 除了残差，其他判断模型质量的方法
 
@@ -357,7 +356,7 @@ gapminder %>% semi_join(bad_fit, by="country") %>%
 # 1992-卢旺达-艾滋病爆发
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200416051921751.jpg">
+<img src="/post-assets/20181125/lifeExp-badfit-models.jpg">
 
 ## 关于 nested data.frame 的细节补充
 
@@ -474,14 +473,14 @@ Content Cell  | Content Cell
 ```R
 rmarkdown::render('./Rmd/Text_format.Rmd', output_flie='Text_format.html')
 ```
-**渲染结果** \| [新标签页查看](/img/in-post/R/Text_format.html)
+**渲染结果**
 
 <div align="center">
 <iframe
     style="margin-left:2px; margin-bottom:20px;"
     frameborder="1" scrolling="0"
-    width="600" height="360"
-    src="/img/in-post/R/Text_format.html">
+    width="100%" height="360"
+    src="/post-assets/20181125/Text_format.html">
 </iframe>
 </div>
 
@@ -577,13 +576,13 @@ format(b,digits = 2)
 ​```
 ```
 
-**渲染结果** \| [新标签页查看](/img/in-post/R/Code_chunk.html)
+**渲染结果**
 
 <div align="center">
 <iframe
     style="margin-left:2px; margin-bottom:20px;"
     frameborder="1" scrolling="0"
-    width="600" height="360"
-    src="/img/in-post/R/Code_chunk.html">
+    width="100%" height="360"
+    src="/post-assets/20181125/Code_chunk.html">
 </iframe>
 </div>
