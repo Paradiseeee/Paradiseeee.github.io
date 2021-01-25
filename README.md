@@ -1,8 +1,11 @@
 # Paradiseeee.github.io
 
+> GitHub 位置：<https://github.com/paradiseeee/paradiseeee.github.io>
+>
 > Gitee 位置：<https://gitee.com/paradiseeee/blog>
 
 > Github Page: <https://paradiseeee.github.io>
+>
 > Gitee Page: <https://paradiseeee.gitee.io/blog>
 
 
@@ -22,11 +25,12 @@
 
 > [blog-commit-387e734c7ae7f6365997e461e5e0665b61178a1d](https://gitee.com/paradiseeee/blog/commit/387e734c7ae7f6365997e461e5e0665b61178a1d)
 
-然后就是将改好的站点合并到之前的 v1.0 上面，也就是本仓库的 commit `merge v1.0`：
+然后就是将改好的站点合并到之前的 v1.0 上面，也就是本仓库 Github 上的 commit `merge v1.0`：
 
 > [Paradiseeee.github.io-commit-2fe4aee54c8db909485000742deca3534e842ddc](https://github.com/Paradiseeee/Paradiseeee.github.io/commit/2fe4aee54c8db909485000742deca3534e842ddc)
 
-最后就是整理好一些文档资源的存放和引用路径等问题，然后就可以开心地写文章啦！`[鼓掌][鼓掌][鼓掌]`
+
+最后就是将 Gitee 上的内容与 Github 上的 内容同步，并且整理好一些文档资源的存放和引用路径等问题，然后就可以开心地写文章啦！`[鼓掌][鼓掌][鼓掌]`
 
 ### 以下是在博客模版的基础上做出的主要更改
 
@@ -37,8 +41,8 @@
 - 弃用 img 目录，改为 page-assets 和 post-assets 两个资源目录；
 - 改为黑暗模式（/css/hux-blog.dark.css），这里是直接对着网页一点点美化的，没有将整个 css 覆盖更改，所以以后可能出现问题，到时再改，反正好玩；
 - 本来想加个切换 dark \| light 的按钮，用 js 更改样式，但是除了 css 还有不少东西要跟着改的，没头绪；
-- 由于部署在 Gitee Page 的时候域名后面加了个 /blog （仓库名），所以 jekyll 引擎渲染 markdown 的时候会出现问题，具体解决参考 [/post-assets/info](https://github.com/paradiseeee/paradiseeee.github.io/blob/master/post-assets/info)。这样会存在问题，暂时用着。
+- 由于部署在 Gitee Page 的时候域名后面加了个 /blog （仓库名），所以 jekyll 引擎渲染 markdown 的时候会出现问题，具体解决参考 [/post-assets/info](/post-assets/info)。这样会存在问题，暂时用着。
 
 ### Version 1.0 的日志看这里
 
-> [README.1.0.md](https://github.com/Paradiseeee/Paradiseeee.github.io/blob/master/README1.0.md)
+> [README.1.0.md](README.1.0.md)
