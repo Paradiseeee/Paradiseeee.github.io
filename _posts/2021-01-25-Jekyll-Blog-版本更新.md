@@ -45,6 +45,6 @@ tags:
 
 ### Version 1.0 的日志看这里
 
-> [README.1.0.md](https://github.com/Paradiseeee/Paradiseeee.github.io/blob/master/README1.0.md)
+> [README.1.0.md](https://github.com/Paradiseeee/Paradiseeee.github.io/blob/master/README.1.0.md)
 
 <br>
