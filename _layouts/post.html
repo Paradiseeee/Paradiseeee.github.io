@@ -117,6 +117,22 @@ layout: default
 </script>
 {% endif %}
 
+<!-- 类似 img 标签，增加对 iframe 的支持 -->
+{% if site.baseurl %}
+<script>
+    var iframes = document.getElementsByTagName('iframe');
+    var n=0;
+    for (var i=0; i<iframes.length; i++){
+        var src=iframes[i].getAttributeNode('src').value;
+        if (src.includes('/post-assets')){
+            iframes[i].getAttributeNode('src').value = src.replace('/post-assets', '{{ site.baseurl }}' + '/post-assets');
+            n = n+1;
+        }
+    }
+    console.log('[{{ site.baseurl }}] ' + '已修复 ' + n + ' 个 iframe 加载错误！');
+</script>
+{% endif %}
+
 {% if site.netease_comment %}
 <!-- 网易云跟帖JS代码 start -->
 <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
