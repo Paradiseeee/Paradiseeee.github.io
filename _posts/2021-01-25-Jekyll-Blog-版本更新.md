@@ -1,10 +1,14 @@
-# Paradiseeee.github.io
-
-> Gitee 位置：<https://gitee.com/paradiseeee/blog>
-
-> Github Page: <https://paradiseeee.github.io>
-> Gitee Page: <https://paradiseeee.gitee.io/blog>
-
+---
+layout:         post
+title:          "Paradise's Blog 版本更新"
+subtitle:       "新版本说明"
+date:           "2021-01-25 12:00:00"
+author:         "Paradise"
+header-style:   text
+tags:
+    - 日志
+    - 前端
+---
 
 `热烈庆祝 Paradise's Blog 上线 V2.0 版本！[鼓掌][鼓掌][鼓掌]`
 
@@ -42,3 +46,5 @@
 ### Version 1.0 的日志看这里
 
 > [README.1.0.md](https://github.com/Paradiseeee/Paradiseeee.github.io/blob/master/README1.0.md)
+
+<br>
