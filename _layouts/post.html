@@ -2,14 +2,6 @@
 layout: default
 ---
 
-<!-- 
-更改：
-    1. 添加背景颜色设置，未启用
- -->
-
-<!-- set background color -->
-{% include bg-color.html %}
-
 <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
@@ -40,7 +32,7 @@ layout: default
                     {% if page.previous.url %}
                     <li class="previous">
                         <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">
-                        上一篇<br>
+                        Previous<br>
                         <span>{{page.previous.title}}</span>
                         </a>
                     </li>
@@ -48,7 +40,7 @@ layout: default
                     {% if page.next.url %}
                     <li class="next">
                         <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
-                        下一篇<br>
+                        Next<br>
                         <span>{{page.next.title}}</span>
                         </a>
                     </li>
@@ -72,21 +64,21 @@ layout: default
             </div>  
 
     <!-- Side Catalog Container -->
-        {% if page.catalog %}
+        {% unless page.no-catalog %}
             <div class="
                 col-lg-2 col-lg-offset-0
                 visible-lg-block
                 sidebar-container
                 catalog-container">
-                <div class="side-catalog">
+                <div class="side-catalog mini-scroll">
                     <hr class="hidden-sm hidden-xs">
                     <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
+                        <a class="catalog-toggle" href="#">目录</a>
                     </h5>
                     <ul class="catalog-body"></ul>
                 </div>
             </div>
-        {% endif %}
+        {% endunless %}
 
     <!-- Sidebar Container -->
             <div class="
@@ -107,6 +99,22 @@ layout: default
 <!-- add support for mathjax by voleking-->
 {% if page.mathjax %}
   {% include mathjax_support.html %}
+{% endif %}
+
+<!-- 增加 js 代码更改图片链接（在 post-assets 前面加上 site.basurl） -->
+{% if site.baseurl %}
+<script>
+    var imgs = document.getElementsByTagName('img');
+    var n=0;
+    for (var i=0; i<imgs.length; i++){
+        var src=imgs[i].getAttributeNode('src').value;
+        if (src.includes('/post-assets')){
+            imgs[i].getAttributeNode('src').value = src.replace('/post-assets', '{{ site.baseurl }}' + '/post-assets');
+            n = n+1;
+        }
+    }
+    console.log('[{{ site.baseurl }}] ' + '已修复 ' + n + ' 个图片加载错误！');
+</script>
 {% endif %}
 
 {% if site.netease_comment %}
@@ -158,7 +166,7 @@ layout: default
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+    async("{{ '/js/cloudflare/anchor.min.js' | prepend: site.baseurl }}",function(){
         anchors.options = {
           visible: 'hover',
           placement: 'right',

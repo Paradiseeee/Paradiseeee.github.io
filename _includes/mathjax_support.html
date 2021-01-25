@@ -1,9 +1,3 @@
-<!-- 
-更改：
-    1.改了个src，据说这样响应会更快
-    2.撤销更改
- -->
-
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     TeX: {
@@ -21,9 +15,8 @@
     }
   });
 </script>
+<!-- optional: config=TeX-AMS-MML_HTMLorMML (bigger chars) -->
 <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+  src="{{ '/js/cloudflare/MathJax.js?config=TeX-AMS-MML_SVG' | prepend: site.baseurl }}">
+  // src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"
 </script>
-<!-- <script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script> -->

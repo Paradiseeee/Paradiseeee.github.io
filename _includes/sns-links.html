@@ -1,8 +1,3 @@
-<!-- 
-更改：
-    1. 添加了账号
- -->
-
 {% comment %}
     @param {Boolean} center 
 {% endcomment %}
@@ -13,27 +8,17 @@
 <ul class="list-inline">
 {% endif %}
 
-  <!-- Link to Wechat -->
+  {% if site.RSS %}
   <li>
-    <a target="_balnk" href="https://img-blog.csdnimg.cn/20200316021117792.jpg">
+    <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="weixins fa fa-weixin fa-stack-1x fa-inverse"></i>
+        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
       </span>
     </a>
   </li>
+  {% endif %}
 
-  <!-- Link to Email -->
-  <li>
-    <a target="_balnk" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=paradise26472@qq.com&subject=Email%20from%20Paradise%27s%20Blog%20visitor">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="email fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-
-  <!-- Link to GitHub -->
   {% if site.github_username %}
   <li>
     <a target="_blank" href="https://github.com/{{ site.github_username }}">
@@ -45,8 +30,8 @@
   </li>
   {% endif %}
 
-  <!-- Link to CSDN -->
   {% if site.csdn_username %}
+  <!-- Link to CSDN -->
   <li>
     <a target="_blank" href="https://blog.csdn.net/{{ site.csdn_username }}">
       <span class="fa-stack fa-lg">
@@ -57,47 +42,56 @@
   </li>
   {% endif %}
 
-  <!-- Link to Zhihu -->
-  {% if site.zhihu_username %}
+  {% if site.wechat_qrcode %}
+  <!-- Link to Wechat -->
   <li>
-    <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+    <a target="_balnk" href="{{ site.wechat_qrcode | prepend: site.baseurl }}">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-stack-1x fa-inverse">知</i>
+        <i class="weixins fa fa-weixin fa-stack-1x fa-inverse"></i>
       </span>
     </a>
   </li>
   {% endif %}
 
-  <!-- Link to Douban -->
-  {% if site.douban_username %}
+  {% if site.qq_mail %}
+  <!-- Link to Email -->
   <li>
-    <a target="_blank" href="http://douban.com/people/{{ site.douban_username }}">
+    <a target="_balnk" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email={{ site.qq_mail }}&subject=Email%20from%20Paradise%27s%20Blog%20visitor">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-douban fa-stack-1x fa-inverse">豆</i>
+        <i class="email fa fa-envelope-o fa-stack-1x fa-inverse"></i>
       </span>
     </a>
   </li>
   {% endif %}
 
-  <!-- Unused Link -->
-  {% if site.RSS %}
-  <li>
-    <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-circle fa-stack-2x"></i>
-        <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-      </span>
-    </a>
-  </li>
-  {% endif %}
   {% if site.twitter_username %}
   <li>
     <a href="https://twitter.com/{{ site.twitter_username }}">
       <span class="fa-stack fa-lg">
         <i class="fa fa-circle fa-stack-2x"></i>
         <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  {% if site.zhihu_username %}
+  <li>
+    <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa  fa-stack-1x fa-inverse">知</i>
+      </span>
+    </a>
+  </li>
+  {% endif %}
+  {% if site.weibo_username %}
+  <li>
+    <a target="_blank" href="http://weibo.com/{{ site.weibo_username }}">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
       </span>
     </a>
   </li>

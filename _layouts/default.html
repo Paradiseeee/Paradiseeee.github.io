@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html>
-
-<!-- 
-更改：
-    1.增加背景颜色设置
- -->
-
-<!-- set background color -->
-{% include bg-color.html %}
+<html lang="en">
 
 {% include head.html %}
 
 <!-- hack iOS CSS :active style -->
-<body ontouchstart="">
+<body ontouchstart="" class="nui-scroll">
 
     {% include nav.html %}
+    {% include search.html %}
 
     {{ content }}
 

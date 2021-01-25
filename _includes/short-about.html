@@ -1,16 +1,8 @@
-<!-- 
-更改：
-    1. 本section的标题改为Paradise
-    2. 增加了分割线
- -->
-
-{% if page.title != "Archive" %}
 <section class="visible-md visible-lg">
-  <hr>
-  <h4><a href="{{'/about/' | prepend: site.baseurl }}"><font color="lightblue">Paradise</font></a></h4>
+  <h5><a href="{{'/about/' | prepend: site.baseurl }}">作者公告</a></h5>
   <div class="short-about">
     {% if site.sidebar-avatar %}
-    <img src="{{site.sidebar-avatar}}" />
+    <img src="{{site.sidebar-avatar | prepend: site.baseurl}}" />
     {% endif %}
     {% if site.sidebar-about-description %}
     <p>{{site.sidebar-about-description}}</p>
@@ -18,6 +10,5 @@
     <!-- SNS Link -->
     {% include sns-links.html center=true %}
   </div>
-  <br>
+  <hr>
 </section>
-{% endif %}
