@@ -4,11 +4,11 @@ title:      "Python DataScience CookBook -- Learning Notes (III)"
 subtitle:   "Bagging | Boosting | Random Forest | Perceptron | Gradient Descent"
 date:       2019-03-02 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
+mathjax: true
 tags:
     - Python
-    - ML
+    - 机器学习
     - 数据分析
     - 笔记
 ---
@@ -85,43 +85,26 @@ print(classification_report(y_dev, bagging.predict(x_dev)))
 
 **a) Boosting 原理步骤：**
 
-二分类问题，分类器的输入可以表达为：
+对于二分类问题，分类器的输入可以表达为：$X = \[x_1, x_2, ..., x_N\]\ and\ Y = \[0, 1\]$。
+分类器的任务就是找到一个可以近似的函数：$Y = F(X)$。
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`X = {x1, x2, ..., xN} and Y = {0, 1}`
+分类器的错误率定义为：$error\ rate = \frac{1}{N} \* \sum_i{[instance\ \|\ y_i \neq{F(x_i)}]}$
 
-分类器的任务就是找到一个可以近似的函数：
+假设构建一个弱分类器（错误率仅好于随机猜测），然后通过提升法构建一系列弱分类器用在经过微调的数据集上，每个分类器使用的数据只做了很小的调整。最后结束于第 $M$ 个分类器：$F_1(X), F_2(X), ..., F_M(X)$
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Y = F(X)`
-
-分类器的错误率定义为：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`error rate = 1/N * sum([instance where yi != F(xi)])`
-
-假设构建一个弱分类器（错误率仅好于随机猜测），然后通过提升法构建一系列弱分类器用在经过微调的数据集上，每个分类器使用的数据只做了很小的调整。最后结束于第 M 个分类器：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`F1(X), F2(X), ..., FM(X)`
-
-最后把各个分类器生成的预测集成起来，进行加权投票：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`F_final(X) = sign( sum(alpha_i * F_i(X)) )`
+最后把各个分类器生成的预测集成起来，进行加权投票：$F_{final}(X) = sign( \sum_i(\alpha_i * F_i(X)) )$，其中 $\alpha_i$ 为模型 $F_i(\cdot)$ 的权重。
 
 **b) 模型权重计算原理步骤：**
 
-首先修改错误率公式：
+首先修改错误率公式：$error\ rate = \sum_i( w_i * \|y_i - \hat{y_i}\| ) / \sum_i( w_i )$
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`error_rate = sum( wi * abs(yi - yi_pred) ) / sum( wi )`
+对于 $N$ 个实例，每个实例的权重为 $1/N$ ，$w_i$ 表示模型的初始权重 $w_i = n / N$ ，$n$ 为采样数目。
 
-对于 N 个实例，每个实例的权重为 1/N ，wi 表示模型的初始权重 `wi = n / N` ，n 为采样数目。
+根据调整的 $error_rate$ 计算每个模型的 $\alpha$：
+$\alpha_i = \frac{1}{2} * log( (1 - error\ rate + \epsilon) / (error\ rate + \epsilon) )$
+，其中 $\epsilon$ 是一个微小的值。
 
-根据调整的 error_rate 计算每个模型的 alpha：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`alpha_i = 1/2 * log( (1 - error_rate + epsilon) / (error_rate + epsilon) )`
-
-其中epsilon是一个微小的值。
-
-最终计算每个模型的输出权重：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`wi = wi * exp( alpha_i * abs(yi - yi_pred) )`
+最终计算每个模型的输出权重：$w_i = w_i \* exp( \alpha_i \* \|y_i - \hat{y_i}\| )$
 
 ```python
 from sklearn.datasets import make_classification
@@ -213,22 +196,18 @@ plt.show()
 '''
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423040103954.png">
+<img src="/post-assets/2019022102280302/bootstrap-result-compare.png">
 
 ### **（3）梯度提升**
 
 - 提升法：用一种渐进的，阶段改良的方式，从一系列若分类器适配出一个增强模型。具体就是通过错误率调整实例的权重，在下一模型改进不足之处。
 - 梯度提升法就是采用梯度而不是权重来鉴别缺陷。以下是一个简单回归问题的梯度提升步骤。
-    - 给定预测变量 X 和响应变量 Y：
-        - `X = {x1, x2, ..., xN} and Y = {y1, y2, ..., yN}`
-    - 先从简单模型开始，例如直接使用均值预测所有值：
-        - `y_hat = sum(yi) / N`
-    - 得到残差：
-        - `Ri = yi - y_hat`
-    - 下一个分类在以下数据上训练：
-        - `{(x1, R1), (x2, R2), ..., (xN, RN)}`
+    - 给定预测变量 $X$ 和响应变量 $Y$：$X = [x_1, x_2, ..., x_N]\ and\ Y = [y_1, y_2, ..., y_N]$
+    - 先从简单模型开始，例如直接使用均值预测所有值：$\hat{y_i} = \sum_i^N(y_i) / N$
+    - 得到残差：$R_i = y_i - \hat{y_i}$
+    - 下一个分类在以下数据上训练：$[(x_1, R_1), (x_2, R_2), ..., (x_N, R_N)]$
     - 进行迭代达到所需准确率
-- 为何叫做梯度提升：`F(xi) - yi` 就代表梯度，即改点的一阶导数，正好是负的残差
+- 为何叫做梯度提升：$F(x_i) - y_i$ 就代表梯度，即该点的一阶导数，正好是负的残差；亦即在简单回归问题中，梯度提升等同于残差缩减
 - 梯度提升是一种框架而不仅仅是一种具体的算法，任何可微函数都可以应用到框架中
 
 ```python
@@ -296,12 +275,12 @@ print("\nMSE:\t{:0.2f}".format(mean_squared_error(y_dev, y_dev_pred)))
 
 - 随机森林也是一种挂袋法，基本思路是利用大量的噪声评估器，用平均法处理噪声，以减小最终结果的方差。
 - 随机森林构建的是相互之间没有关联的树。具体方法是，在进行结点划分时，不选择所有的属性，而是随机选择一个属性子集。
-- 构建随机森林：LOOP for 1 to T
-    - 随机选择 m 个属性
-    - 采用预定义的 criterion，选择一个最佳属性作为划分变量
+- 构建随机森林：$LOOP\ for\ 1\ to\ T$
+    - 随机选择 $m$ 个属性
+    - 采用预定义的 $criterion$，选择一个最佳属性作为划分变量
     - 将数据集划分为两个部分
     - 返回划分的数据集，分别在两个部分迭代上述过程
-    - 最终获得 T 棵树
+    - 最终获得 $T$ 棵树
 - 提升法使用弱分类器进行强化，实现较低的方差（较高的验证集准确率）；而在随机森林中，构建最大深度的树，但是引入了高方差。随后通过大量树进行投票，解决高方差问题。
 
 ```python
@@ -357,10 +336,10 @@ print(best_model)
 
 - 超随机树（Extra Trees）或称为极限随机树（Extremely Randomized Trees）与随机森林主要有两点不同：
     - 不使用自举法，而是使用完整的数据集
-    - 给定结点随机选择属性数量 K，它随机选择割点，不考虑目标变量
+    - 给定结点随机选择属性数量 $K$，它随机选择割点，不考虑目标变量
 - 优势：更好地降低方差，可以在未知数据集上取得很好的效果；并且计算复杂度相对较低
-- 构建超随机树：LOOP for 1 to T
-    - 随机选择 m 个属性
+- 构建超随机树：$LOOP\ for\ 1\ to\ T$
+    - 随机选择 $m$ 个属性
     - 随机选取一个属性作为划分变量（忽略任何标准，完全随机）
     - ... 接下来与随机森林一致
 
@@ -368,7 +347,8 @@ print(best_model)
 import numpy as np
 from sklearn.datasets import make_classification
 from sklearn.metrics import classification_report, accuracy_score
-from sklearn.model_selection import train_test_split, cross_val_score, RandomizedSearchCV
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.model_selection import RandomizedSearchCV
 from sklearn.ensemble import ExtraTreesClassifier
 
 # generate dataset for classification
@@ -416,12 +396,12 @@ print(best_model)
 ### **（3）旋转森林**
 
 - 随机森林和挂袋法使用大量的树实现精确的预测，而旋转森林的思路是使用少得的集成数量。
-- 构建旋转森林步骤：LOOP for 1 to T
-    - 将训练集的属性划分为大小相等的 K 个不重叠子集
+- 构建旋转森林步骤：$LOOP\ for\ 1\ to\ T$
+    - 将训练集的属性划分为大小相等的 $K$ 个不重叠子集
     - 对每个子集，自举 75% 的样本，在样本上执行：
-        - 在 K 个数据集的第 i 个子集中进行 PCA，保留主成分。对每个特征 j， 主成分标为 a_ij
+        - 在 $K$ 个数据集的第 $i$ 个子集中进行 PCA，保留主成分。对每个特征 $j$， 主成分标为 $a_{ij}$
         - 保留以上所有子集的主成分
-    - 创建 `n*n` 的旋转矩阵，n 是属性总数
+    - 创建 $n*n$ 的旋转矩阵，$n$ 是特征总数
     - 将上述的主成分放进旋转矩阵，这些成分匹配特征在初始训练数据集中的位置
     - 通过矩阵乘法将训练集投影到旋转矩阵上
     - 用投影的数据构建一颗决策树，并保存树和旋转矩阵
@@ -539,25 +519,19 @@ print(classification_report(y_dev, y_dev_pred))
 - 感知器（Perceptron）：处理大规模学习问题，建模时一次只使用数据集的一部分
 - 具体算法：
     - 将模型权重用一个小的随机数初始化
-    - 用输入数据 X 的均值进行去中心化
-    - 在每个步骤 t 中（或称为纪元）：
+    - 用输入数据 $X$ 的均值进行去中心化
+    - 在每个步骤 $t$ 中（或称为纪元）：
         - 随机选择记录中的一个实例进行预测
         - 比较预测标签和真实标签的误差
         - 如果预测错误则更新权重
 - 如何更新权重？
-    - 假定在一个纪元中，输入 X 为：
-        - `Xi = {x1, x2, ..., xm},    i=1, 2, ..., n`
-    - Y 的集合为：
-        - `Y = {+1, -1}`
-    - 则权重定义为：
-        - `W = {w1, w2, ..., wm}`
-    - 每条记录得出的预测值为：
-        - `yi_hat = sign(wi * xi)`
-    - 权重的更新公式为：
-        - `w_t + 1 = w_t + yi * xi`
-    - 增加学习速率参数 alpha：
-        - `w_t + 1 = w_t + alpha * yi * xi`
-        - alpha 取值一般为 [0.1, 0.4]
+    - 假定在一个纪元中，输入 X 为：$X_i = [x_1, x_2, ..., x_m],\ i=1, 2, ..., n$
+    - Y 的集合为：$Y = [1, -1]$
+    - 则权重定义为：$W = [w_1, w_2, ..., w_m]$
+    - 每条记录得出的预测值为：$\hat{y_i} = sign(w_i \* x_i)$
+    - 权重的更新公式为：$w_t + 1 = w_t + y_i \* x_i$
+    - 增加学习速率参数 $\alpha$：$w_t + 1 = w_t + \alpha \* y_i \* x_i$
+        - $\alpha$ 取值一般为 $[0.1, 0.4]$
 
 ```python
 import numpy as np
@@ -623,41 +597,31 @@ for i in range(10):
 
 ### **（2）用梯度下降解决回归问题**
 
-**标准的回归结构**中，有一系列实例：
+**标准的回归结构**中，有一系列实例：$X = [x_1, x_2, ..., x_n]$，
+每个实例有 $m$ 个属性（特征）：$x_i = [x_{i1}, x_{i2}, ..., x_{im}]$。
+回归算法的任务是找到一个 $X$ 到 $Y$ 映射：$Y = F(X)$ ，由一个权重向量来进行参数化：
+$Y = F(X, W) = X\cdot{W} + b$ ，于是回归问题就变成寻找最优权重的问题。采用损失函数进行优化，对 $n$ 个实例的数据集，全局损失函数形式为：$\frac{1}{n} \sum_i^n{ L\lbrace{f(x_i, w), y_i}\rbrace }$。
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`X = {x1, x2, ..., xn}`
-
-每个实例有 m 个属性（特征）：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Xi = {xi1, xi2, ..., xim},    i = 1, 2, ..., m`
-
-回归算法的任务是找到一个 X 到 Y 映射：`Y = F(X)` 。由一个权重向量来进行参数化：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Y = F(X, W) = <X, W> + b`
-
-于是回归问题就变成寻找最优权重的问题。采用损失函数进行优化，对 n 个实例的数据集，全局损失函数形式为：
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`1/n * sum( L(f(xi, w), yi) )`
-
-**随机梯度下降（Stochastic Gradient Descent, SGD）**是一种优化技术，可用于最小化损失函数。首先要找出 L(.) 的梯度，也就是损失函数对权重 w 的偏导
+**随机梯度下降（Stochastic Gradient Descent, SGD）**是一种优化技术，可用于最小化损失函数。首先要找出 $L(\cdot)$ 的梯度，也就是损失函数对权重 $w$ 的偏导
 
 和批量梯度下降等其他技术不同，SGD 每次只操作一个实例：
-- 对每个纪元 t ，搅乱数据集
-- 选择一个实例 xi 及其对应的响应变量 y
-- 计算损失函数及其对于 w 的偏导 nabla_w（倒三角符号，表示矢量求偏导）
+- 对每个纪元 $t$ ，搅乱数据集
+- 选择一个实例 $x_i$ 及其对应的响应变量 $y$
+- 计算损失函数及其对于 $w$ 的偏导 $\nabla{w}$（倒三角符号，表示矢量求偏导）
 - 更新权重值
 
 更新权重值的公式为：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`w_t + 1 = w_t - nabla_w L(yi_hat, yi)`
+$w_t + 1 = w_t - \nabla{w} L(\hat{y_i}, y_i)$
 
 式中权重和梯度的方向相反，这样迫使权重向量降序排列，以减小目标函数。引入学习率后表示为：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`w_t + 1 = w_t - eta * (nabla_w L(yi_hat, yi))`
+$w_t + 1 = w_t - \eta \* (\nabla{w} L(\hat{y_i}, y_i))$
 
 在 SGD 的基础上加上正则化，类似岭回归增加 L2 范数正则项和学习率，权重更新公式表示为：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`w_t + 1 = w_t - eta * (nabla_w L(yi_hat, yi)) + alpha * (nabla_w R(W))`
+$w_t + 1 = w_t - \eta \* (\nabla{w} L(\hat{y_i}, y_i)) + \alpha \* (\nabla{w}R(W))$
+
 
 ```python
 from sklearn.datasets import make_regression
@@ -713,11 +677,11 @@ print(f"Model Intercept:\t{regularized_sgdr.intercept_}")
 
 分类问题除响应变量不同，其他结构与回归问题类似。由于响应变量的性质，需要不一样的损失函数。对于二分类问题，应用逻辑斯蒂回归函数获取预测值：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`F(w, xi) = 1 / (1 + e^(-xi * w^T))`
+$F(w, x_i) = 1 / (1 + e^{-x_i \* w^T})$
 
-上式被称为 sigmoid 函数。对于 xi 很大的正数，函数值趋向 1，反之趋向 0。于是可以定义如下的 log 损失函数：
+上式被称为 $sigmoid$ 函数。当 $x_i$ 为很大的正数，函数值趋向 1，反之趋向 0。于是可以定义如下的 $log$ 损失函数：
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`L(w, xi) = -yi * log(F(w, xi)) - (1-yi) * log(1 - F(w, xi))`
+$L(w, x_i) = -y_i \* log(F(w, x_i)) - (1-y_i) * log(1 - F(w, x_i))$
 
 将上式代入 SGD 的权重更新公式，即得到分类问题的 SGD。
 

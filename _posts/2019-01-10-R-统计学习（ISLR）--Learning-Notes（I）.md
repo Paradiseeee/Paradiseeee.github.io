@@ -4,13 +4,13 @@ title:      "R 统计学习（ISLR）-- Learning Notes (I)"
 subtitle:   "统计学习简介 | 线性回归 | 分类问题"
 date:       2019-01-10 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
-    - ML
-    - 数据分析
+    - 机器学习
     - 统计分析
+    - 编程语言
+    - 数据分析
     - 笔记
 ---
 
@@ -123,7 +123,7 @@ image(x, y, fa)
 persp(x, y, fa, theta = 30, phi = 30)
 ```
 
-<img src="https://img-blog.csdnimg.cn/2020041901293448.jpg">
+<img src="/post-assets/20190110/contour-image.jpg">
 
 ```R
 # 索引数据
@@ -172,7 +172,7 @@ identify(horsepower, mpg, name)
 summary(Auto)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419013209752.jpg">
+<img src="/post-assets/20190110/box-hist-pair-interface.jpg">
 
 
 # 第三章 线性回归
@@ -262,7 +262,7 @@ par(mfrow=c(2,2))
 plot(mod)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419013338356.jpg">
+<img src="/post-assets/20190110/linear-model-result.jpg">
 
 ```R
 # 在线性回归中引入交互项
@@ -294,7 +294,7 @@ par(mfrow=c(2, 2))
 plot(mod2)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419013451466.jpg">
+<img src="/post-assets/20190110/squared-linear-model-result.jpg">
 
 ### 加入非线性变量
 

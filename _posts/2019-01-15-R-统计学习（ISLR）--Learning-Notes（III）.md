@@ -8,9 +8,9 @@ header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
-    - ML
-    - 数据分析
+    - 机器学习
     - 统计分析
+    - 数据分析
     - 笔记
 ---
 
@@ -161,7 +161,7 @@ importance(rf.boston)
 varImpPlot(rf.boston)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014500874.jpg">
+<img src="/post-assets/20190115/bagging-randomForest.jpg">
 
 ### **（4）提升法**
 
@@ -200,7 +200,7 @@ boost.boston <- gbm(medv~., data=Boston[train, ],
 # 测试均方差略低于默认压缩率
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014610914.jpg?">
+<img src="/post-assets/20190115/bootstrap-model-result.jpg">
 
 
 
@@ -309,7 +309,7 @@ Levels:  -1 1
 ====================================================================
 ```
 
-<img src="https://img-blog.csdnimg.cn/2020041901470187.jpg">
+<img src="/post-assets/20190115/svm-classification-result.jpg">
 
 ### **（2）支持向量机**
 
@@ -372,7 +372,7 @@ table(tune = dat[-train, 'y'],
       pred = predict(tune.out$best.model, newx=data[-train, ]))
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014753425.jpg">
+<img src="/post-assets/20190115/svm-radial-kernel-result.jpg">
 
 ### **（3） ROC 曲线**（ Receiver Operating Characteristic）
 
@@ -440,7 +440,7 @@ table(pred.test, data.test$y)
     
 - 10.2.2 主成分的另一种解释
   
-    <img src="https://img-blog.csdnimg.cn/20200419014853459.jpg">
+    <img src="/post-assets/20190115/figure10-2.jpg">
     
     - 上图显示了一个三维数据集的前两个主成分载荷向量。这两个主成分张成一个平面，这个平面在空间中的方向是观测数据方差达到最大的方向。三维数据从主成分载荷方向投影到一个二维平面，得到一张二维图，即主成分得分向量。
     - 对此得到主成分分析的另一种解释：主成分提供了一个与观测数据最接近的低维线性空间（我理解为面积最小的投影）。
@@ -519,7 +519,7 @@ points(pve, ylim=c(0,1), type='h', col='green')
 title(main='PVE & Cumulative PVE of Principal Component')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014957507.jpg">
+<img src="/post-assets/20190115/principal-component-and-pve.jpg">
 
 ### **（2）聚类分析**
 
@@ -548,7 +548,7 @@ plot(x, col=(km.out$cluster+1),
      xlab='', ylab='', pch=20, cex=2)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015055933.jpg">
+<img src="/post-assets/20190115/kmeans-clustering-result.jpg">
 
 ```R
 "------------------------------ 系统聚类法 ------------------------------"
@@ -572,7 +572,7 @@ plot(hc.average, main='Average Linkage', xlab='', sub='', cex=0.9)
 ========================================================================
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015146135.jpg">
+<img src="/post-assets/20190115/tree-linkage.jpg">
 
 ```R
 # 对标准化的数据进行系统聚类
@@ -589,7 +589,7 @@ plot(hclust(dd, method='complete'),
      xlab='', sub='')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015342966.jpg">
+<img src="/post-assets/20190115/scaled-tree-linkage.jpg">
 
 ### **（3）以 NCI60 数据集为例**
 
@@ -626,7 +626,7 @@ points(pve, xlab='', ylab='', ylim=c(0,1), type='h', col='green')
 title(main='PVE & Cumsum-PVE')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015427290.jpg">
+<img src="/post-assets/20190115/PCA-with-NCI60.jpg">
 
 ```R
 "---------------------- 对癌症的基因表现进行聚类分析 ----------------------"
@@ -644,7 +644,7 @@ plot(hclust(data.dist, method='single'), labels=nci.labs,
      main='Single Linkage', xlab='', sub='', ylab='')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015519904.jpg">
+<img src="/post-assets/20190115/system-clustering-result-with-NCI60.jpg">
 
 ```R
 # 在谱系图上某个高度切割可以产生指定类数的聚类，例如 4 类
@@ -658,7 +658,7 @@ plot(hc.out, labels=nci.labs, xlab='', sub='', ylab='')
 abline(h=139, col='red')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015622187.jpg">
+<img src="/post-assets/20190115/cuttree-of-clustering-with-NCI60.jpg">
 
 ```R
 # 只对前几个主成分得分向量进行系统聚类，而不是全部变量
@@ -670,7 +670,7 @@ table(cutree(hc.out, 4), nci.labs)
 # 可将主成分获取的操作，看成是一种去噪处理。
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419015659474.jpg">
+<img src="/post-assets/20190115/clustering-with-PCA-with-NCI60.jpg">
 
 --------------------------------------------
 

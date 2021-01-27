@@ -4,13 +4,12 @@ title:      "R 统计学习（ISLR）-- Learning Notes (II)"
 subtitle:   "重抽样方法 | 子集选择 | 压缩估计 | 降维 | 非线性模型"
 date:       2019-01-12 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - R
-    - ML
-    - 数据分析
+    - 机器学习
     - 统计分析
+    - 数据分析
     - 笔记
 ---
 
@@ -238,7 +237,7 @@ plot(coef(regfit.fwd, 7))
 plot(coef(regfit.bwd, 7))
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419013639244.jpg">
+<img src="/post-assets/20190112/subset-choosing.jpg">
 
 ```R
 "使用验证集方法和交叉验证法选择模型"
@@ -310,7 +309,7 @@ ridge.pred <- predict(ridge.mod, s=best.lambda, newx=x[(-train), ])
 MSE <- mean((ridge.pred-y_test)^2)          # 96015.51
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419013752553.jpg">
+<img src="/post-assets/20190112/ridge-cv-result.jpg">
 
 
 
@@ -337,7 +336,7 @@ lasso.coef <- predict(out, type='coefficients', s=best.lambda)[1:20]
 sum(lasso.coef == 0)                      
 ```
 
-<img src="https://img-blog.csdnimg.cn/2020041901383926.jpg">
+<img src="/post-assets/20190112/lasso-cv-result.jpg">
 
 ## 6.7 实验3： PCR 与 PLS 回归
 
@@ -359,7 +358,7 @@ validationplot(pcr.fit, val.type = 'R2')
 # 结果当 M=16 时交叉验证误差最小
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419013950189.jpg">
+<img src="/post-assets/20190112/pcr-cv-result.jpg">
 
 
 
@@ -372,7 +371,9 @@ train <- sample(1:nrow(x), nrow(x)/2)
 test <- (-train)
 y.test <- y[test]
 
-pcr.fit <- pcr(Salary~., data=Hitters, subset=train, scale=TRUE, validation='CV')
+pcr.fit <- pcr(
+    Salary~., 
+    data=Hitters, subset=train, scale=TRUE, validation='CV')
 validationplot(pcr.fit, val.type='MSEP')
 validationplot(pcr.fit, val.type='R2')
 # 结果 M=7 时交叉验证误差较小
@@ -398,14 +399,16 @@ y    40.63    41.58    42.17    43.22    44.90    46.48    46.69
 
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014036613.jpg">
+<img src="/post-assets/20190112/pcr-subset-choosing-result.jpg">
 
 ```R
 "----------------------- Partial Least Squares -----------------------"
 
 set.seed(1)
 # 使用 plsr 函数，用法和 pcr 类似
-pls.fit <- plsr(Salary~., data=Hitters, subset=train, scale=TRUE, validation='CV')
+pls.fit <- plsr(
+    Salary~., 
+    data=Hitters, subset=train, scale=TRUE, validation='CV')
 summary(pls.fit)
 validationplot(pls.fit, val.type = 'MSEP')
 validationplot(pls.fit, val.type = 'R2')
@@ -429,7 +432,7 @@ Salary    43.05    46.40
 ==================================
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014129808.jpg">
+<img src="/post-assets/20190112/pls-cv-result.jpg">
 
 
 # 第七章 非线性模型
@@ -526,7 +529,7 @@ lines(age.grid, preds$fit, lwd=2, col='blue')
 matlines(age.grid, se.bands, lwd=1, col='blue', lty=3)
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014222607.jpg">
+<img src="/post-assets/20190112/poly-regression.jpg">
 
 ```R
 
@@ -557,4 +560,4 @@ plot(gam.m3, se=TRUE, col='blue')
 plot.Gam(gam1, se=TRUE, col='red')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200419014346799.jpg">
+<img src="/post-assets/20190112/gam-result.jpg">

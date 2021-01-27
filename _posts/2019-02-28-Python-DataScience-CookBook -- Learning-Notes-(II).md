@@ -4,11 +4,10 @@ title:      "Python DataScience CookBook -- Learning Notes (II)"
 subtitle:   "数据预处理 | KNN | NBM | 决策树 | Ridge | lasso | CV"
 date:       2019-02-28 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
 tags:
     - Python
-    - ML
+    - 机器学习
     - 数据分析
     - 笔记
 ---
@@ -68,12 +67,14 @@ confusion_matrix = pd.DataFrame(
         [('Ground Truth','T'),('Ground Truth','F')])
     )
 ```
-    上面的 columns 和index分别代表真实值和预测值的label，四种取值分别为以下的缩写：
-        · True Positive -- 真正类
-        · False Negative -- 漏报
-        · False Positive -- 误报
-        · True Negative -- 真负类
-- 准确度：`Accuracy = Correct_Prediction / Total_Prediction`；其中：`Correct_Prediction = TP + TN`
+
+|                       | ('Prediction', 'T')   | ('Prediction', 'F')   |
+|:----------------------|:----------------------|:----------------------|
+| ('Ground Truth', 'T') | TP                    | FN                    |
+| ('Ground Truth', 'F') | FP                    | TN                    |
+
+
+- 准确度：**Accuracy = Correct_Prediction / Total_Prediction**；其中：**Correct_Prediction = TP + TN**
 - 另外还有错误率等其他指标
 
 **K Nearest Neighborhood, KNN**
@@ -122,7 +123,7 @@ X, y = make_classification(n_features=4)
 show_data(X, y)    # 可见各个变量之间都存在多重线性关系
 ```
 
-<img src="https://img-blog.csdnimg.cn/2020042303593542.jpg?">
+<img src="/post-assets/2019022102280302/KNN-classification-dataset.jpg">
 
 ```python
 # 生成分层的训练集和测试集，使训练集和测试集的标签分布一致
@@ -146,11 +147,10 @@ print(classification_report(y_test, y_test_pred))
 
 ### **（3）朴素贝叶斯分类**
 
-- 贝叶斯公式：`P(X|Y) = P(Y|X) * P(X) / P(Y)`，即已知事件 Y 发生时，事件 X 发生的条件概率
-
+- 贝叶斯公式：P(X\|Y) = P(Y\|X) * P(X) / P(Y)，即已知事件 Y 发生时，事件 X 发生的条件概率
+- 常用于自然语言处理算法
 - nltk：python 自然语言处理库
 
-暂时不做这个...
 
 ### **（4）构建决策树解决多分类问题**
 
@@ -174,7 +174,8 @@ print(classification_report(y_test, y_test_pred))
 from pprint import pprint
 from sklearn.datasets import load_iris
 from sklearn.model_selection import StratifiedShuffleSplit
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import classification_report
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 
 def split_data(X, y):
@@ -203,7 +204,7 @@ if __name__ == "__main__":
     export_graphviz(dtree, out_file='tree.dot')
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423040010220.jpg">
+<img src="/post-assets/2019022102280302/decision-tree-dot-file.jpg">
 
 
 ## 第七章 机器学习（II）

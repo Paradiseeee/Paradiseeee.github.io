@@ -4,11 +4,11 @@ title:      "Python DataScience CookBook -- Learning Notes (I)"
 subtitle:   "PCA | SVD | 随机映射 | NMF | 距离度量 | 核函数 | LVQ | LOF"
 date:       2019-02-21 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
+mathjax: true
 tags:
     - Python
-    - ML
+    - 机器学习
     - 数据分析
     - 笔记
 ---
@@ -20,47 +20,15 @@ tags:
 
 这本书比较冷门，因为需要快速上手 python 机器学习，随便找本书来学习一下。虽然内容比较浅显，不够深入，但是作为快速上手的教材很好用。其实整本书就是相当于 scikit-learn 的一个帮助文档而已，没有扯什么原理性的东西。如果有一定基础，要熟悉 scikit-learn，其实就是拿速查表刷一遍就行了：
 
-<img src="https://img-blog.csdnimg.cn/20200423035050219.png">
+<a href="{{ site.baseurl }}/post-assets/2019022102280302/Python-Scikit_Learn.png" target="_blank">► 下载速查表</a>
 
-本书前三章介绍 Python 编程的基础和数据处理、数据分析的基础，比较熟悉的内容，直接跳过。记录一下后面几章的学习笔记。文中涉及的算法原理可以参考另一篇笔记：[R 统计学习（ISLR）-- Learning Notes](https://paradiseeee.github.io/2019/01/10/R-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-ISLR-Learning-Notes-I/)。
+本书前三章介绍 Python 编程的基础和数据处理、数据分析的基础，比较熟悉的内容，直接跳过。记录一下后面几章的学习笔记。文中涉及的算法原理可以参考另一个系列笔记：
 
-- 第四章：数据分析 -- 深入理解
-    - 抽取主成分
-    - 使用核PCA
-    - 使用奇异值分解抽取特征
-    - 用随机映射进行数据降维
-    - 用NMF分解特征矩阵
-- 第五章：数据挖掘
-    - 使用距离度量
-    - 使用核方法
-    - k-means聚类
-    - 向量量化
-    - 在单变量数据中找出异常点
-    - 使用局部异常因子方法发现异常点
-- 第六章：机器学习（1）
-    - 为建模准备数据
-    - 最邻近算法
-    - 朴素贝叶斯分类
-    - 构建决策树解决多分类问题
-- 第七章：机器学习（2）
-    - 回归方法预测实数值
-    - 岭回归
-    - lasso
-    - L1 缩减 和 L2 缩减交叉验证
-- 第八章：集成方法
-    - 装袋法
-    - 提升法
-    - 梯度提升
-- 第九章：生长树
-    - 随机森林
-    - 超随机树
-    - 旋转森林
-- 第十章：大规模机器学习 -- 在线学习
-    - 用感知器作为在线学习算法
-    - 用梯度下降解决回归问题
-    - 用梯度下降解决分类问题
-
-
+> [R 统计学习（ISLR）-- Learning Notes（I）]({{ site.baseurl }}/2019/01/10/R-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-ISLR-Learning-Notes-I/)
+>
+> [R 统计学习（ISLR）-- Learning Notes（II）]({{ site.baseurl }}/2019/01/12/R-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-ISLR-Learning-Notes-II/)
+>
+> [R 统计学习（ISLR）-- Learning Notes（III）]({{ site.baseurl }}/2019/01/15/R-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-ISLR-Learning-Notes-III/)
 
 ## 第四章 数据分析 -- 深入理解
 
@@ -88,7 +56,7 @@ from sklearn.preprocessing import scale
 iris = load_iris()
 X, Y = iris['data'], iris['target']
 # 标准化：由于 PCA 为无监督方法，只需标准化 features
-x_s = scale(X, with_mean=True, with_std=True ,axis=0)
+x_s = scale(X, with_mean=True, with_std=True, axis=0)
 
 # 计算相关矩阵：
 x_corr = np.corrcoef(x_s.T)
@@ -111,7 +79,7 @@ df = pd.DataFrame(
     np.random.randn(4,3), 
     columns=['Eigen Values', 'PVEs', 'Cummulative PVE'],
     index=pd.Index([1,2,3,4], name='Principal Component')
-    )
+)
 
 cum_pct, var_pct = 0, 0
 for i, eigval in enumerate(eigenvalue):
@@ -126,7 +94,7 @@ plt.show()
 # 可以看到前两个主成分解释了 95.9% 的变异
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423035145365.jpg">
+<img src="/post-assets/2019022102280302/iris-pca-result.jpg">
 
 ### **（2）使用核 PCA**
 
@@ -166,13 +134,13 @@ x_kpca = kpca.transform(X)
 visualization(x_kpca, Y, 'Kernel PCA')
 ```
 
-<img src="https://img-blog.csdnimg.cn/2020042303552029.jpg">
+<img src="/post-assets/2019022102280302/circle-data-kernel-pca-result.jpg">
 
 ### **（3）使用奇异值分解提取特征**
 
 **奇异值分解（Singular Value Decomposition, SVD）：**将一系列相关变量转换成不相关的变量，实现降维。SVD 常用于文本挖掘，用来挖掘语义关联。
 
-和 PCA 不同，SVD 直接作用于原始数据矩阵，用较低维度的数据得到原始数据的最佳近似。本质上 SVD 不是一种机器学习方法，而是一种矩阵分解技术。公式表示为：`A = U * S * V.T`，其中 U、V 分别成为“左、右奇异向量”，S 为奇异值。
+和 PCA 不同，SVD 直接作用于原始数据矩阵，用较低维度的数据得到原始数据的最佳近似。本质上 SVD 不是一种机器学习方法，而是一种矩阵分解技术。公式表示为：$A=U\*S\*V^T$，其中 $U$、$V$ 分别称为“左、右奇异向量”，$S$ 为奇异值。
 
 ```python
 import scipy
@@ -197,7 +165,7 @@ plt.xlabel('$Feature_1$'); plt.ylabel('$Feature_2$')
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423035609999.png">
+<img src="/post-assets/2019022102280302/iris-svd-result.png">
 
 ### **（4）用随机映射进行数据降维**
 
@@ -238,12 +206,12 @@ plt.colorbar()
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423035657949.jpg">
+<img src="/post-assets/2019022102280302/newsgroup-random-projection-result.jpg">
 
 ### **（5）使用 NMF 分解特征矩阵**
 
 前文使用主成分分析和矩阵分解技术进行降维，Non-negative Matrix Factorization（NMF）采用协同过滤算法进行降维。原理：
-输入 `m*n` 矩阵 A，分解为 `A_dash(m*d)` 和 `H(d*n)`，即：`A(m*n) = A_dash * H`。约束条件：最小化 `| A - A_dash * H|^2` 。
+输入 $m\*n$ 的矩阵 $A$，分解为 ${A_\bullet}(m\*d)$ 和 $H(d\*n)$，即：$A(m\*n)={A_\bullet}\*H$。约束条件：最小化 $|A-{A_\bullet}\*H|^2$ 。
 
 ```python
 # 数据集：电影影评数据
@@ -284,7 +252,10 @@ A_dash = nmf.fit_transform(A)
 
 # 检查降维后的矩阵
 for i in range(A_dash.shape[0]):
-    print("User id = %d, comp_1 score = %0.2f, comp_2 score = %0.2f" % (i+1, A_dash[i][0], A_dash[i][1]))
+    print(
+        "User id = {}, comp_1 score = {}, comp_2 score = {}".format(
+            i+1, A_dash[i][0], A_dash[i][1]
+    ))
 plt.figure(figsize=(5,5))
 plt.title("User Concept Mapping")
 plt.scatter(A_dash[:,0], A_dash[:,1])
@@ -302,7 +273,7 @@ for i in range(F[0,:].shape[0]):
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423035744408.jpg">
+<img src="/post-assets/2019022102280302/movies-nmf-result.jpg">
 
 
 ## 第五章 数据挖掘
@@ -311,24 +282,24 @@ plt.show()
 
 - 距离度量函数需要满足的条件：
     - 输出是非负的
-    - 当且仅当 X=Y 时输出为零
-    - 距离是对称的 d(X, Y) = d(Y, X)
-    - 遵循三角不等式：d(X, Y) >= d(X, Z) + d(Z, Y)
+    - 当且仅当 $X=Y$ 时输出为零
+    - 距离是对称的 $d(X, Y) = d(Y, X)$
+    - 遵循三角不等式：$d(X, Y) \geq{d(X, Z) + d(Z, Y)}$
 - 常用度量方法：
     - 欧氏距离：
         - 欧几里得空间：空间中的点是由实数值组成的向量
-        - 欧几里得空间的点之间的物理距离成为欧氏距离，也即 L2 范数：
-            - `d([x1, x2, ..., xn], [y1, y2, ..., yn]) = sqrt{sum[(xi-yi)^2]}`
+        - 欧几里得空间的点之间的物理距离成为欧氏距离，亦即 $l_2$ 范数：
+            - $d([x_1, x_2, ..., x_n], [y_1, y_2, ..., y_n]) = \sqrt{\sum_i{(x_i-y_i)^2}}$
     - 余弦距离：
         - 欧几里得空间，以及由整数或布尔值组成的向量空间，都可应用余弦距离
         - 用两个向量夹角的余弦值度量
-        - 表达式：`np.dot(X, Y) / np.sqrt(np.dot(X, X) * np.dot(Y, Y))`
+        - 表达式：$X\cdot{Y} / \sqrt{X\cdot{X} \* Y\cdot{Y}}$
     - Jaccard 距离：
-        - 给定输入向量的集合，他们交集和并集的大小之比称为Jaccard 系数，1 减去 Jaccard 系数即为 Jaccard 距离
+        - 给定输入向量的集合，他们交集和并集的大小之比称为 **Jaccard 系数**，1 减去 Jaccard 系数即为 **Jaccard 距离**
     - Hamming 距离：
-        - 对于两个位类型的数据，汉明距离就是这两个两个向量之间不同的位的数量
+        - 对于两个**位类型**的数据，汉明距离就是这两个两个向量之间不同的位的数量
     - Manhattan 距离：
-        - 又称 City Block Distance，也就是用 L1 Norm 度量的距离
+        - 又称 City Block Distance，也就是用 $l_1$ 范数度量的距离
 
 ```python
 euclidean_distance = lambda x, y: np.sqrt(np.sum(np.power((x-y), 2)))
@@ -340,9 +311,9 @@ hamming_distance = lambda x, y: sum([i != j for i, j in zip(x, y)])
 
 ### **（2）使用核函数**
 
-当数据非线性时，要使用线性模型，需要进行复杂的运算进行线性化。使用核函数可以更便捷地处理非线性数据。核函数的数学定义：`k(x_i, j_i) = <phi(x_i), phi(x_j)>`。这里的 `x_i` 和 `x_j` 为输入向量，`< >` 表示向量点积，映射函数 `phi( )` 将输入向量映射到一个新的空间。
+当数据非线性时，要使用线性模型，需要进行复杂的运算进行线性化。使用核函数可以更便捷地处理非线性数据。核函数的数学定义：$k(X_i, j_i) = \phi(X_i)\cdot\phi(X_j)$。这里的 $X_i$ 和 $X_j$ 为输入向量，映射函数 $\phi(\cdot)$ 将输入向量映射到一个新的空间。
 
-例如设定映射函数为 `phi(x1, x2, x3) = (x1^2, x2^2, x3^2, x1x2, x1x3, x2x1, x2x3, x3x1, x3,x2)`，就可以将输入变量映射到新的空间。
+例如设定映射函数为 $\phi(X_1, X_2, X_3) = (X_1^2, X_2^2, X_3^2, X_1{X_2}, X_1{X_3}, X_2{X_3}, X_3,X_2,X_1)$，就可以将输入变量映射到新的空间。
 
 ```python
 # 示例：在三维数据上简单应用核函数
@@ -367,7 +338,7 @@ print(np.dot(x_t, y_t))
 
 ### **（3）K Means  聚类**
 
-K Means 聚类原理参考“R 统计学习笔记”。
+K Means 聚类原理参考 [R 统计学习笔记]({{ site.baseurl }}/2019/01/15/R-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0-ISLR-Learning-Notes-III/#103-%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95)。
 
 ```python
 from sklearn.cluster import KMeans
@@ -439,7 +410,7 @@ def find_closest(in_vector, proto_vectors):
     return closest
 
 # 找出最近的原型向量的类别ID
-find_class_id = lambda test_vector, p_vectors: find_closest(test_vector, p_vectors).class_id
+find_class_id = lambda vec, vecs: find_closest(vec, vecs).class_id
 
 # if __name__ == "__main__":
 # Loading dataset
@@ -563,7 +534,7 @@ show_result(data, method='std')
 # 可见使用中位值作为评估值比使用均值更加健壮，不容易干扰。
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200423035828186.jpg">
+<img src="/post-assets/2019022102280302/find-outliers-result.jpg">
 
 ### **（6）使用局部异常因子方法发现异常点**
 
