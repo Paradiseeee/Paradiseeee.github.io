@@ -1,0 +1,51 @@
+<svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    width="78" height="20" role="img"  aria-label="推荐阅读: RCM">
+    <title>推荐阅读: RCM</title>
+    <linearGradient id="s" x2="0" y2="100%">
+        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+        <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+    <clipPath id="r">
+        <rect width="78" height="20" rx="3" fill="#fff"/>
+    </clipPath>
+    <g clip-path="url(#r)">
+        <rect width="49" height="20" fill="#555"/>
+        <rect x="49" width="29" height="20" fill="#007ec6"/>
+        <rect width="78" height="20" fill="url(#s)"/>
+    </g>
+    <g 
+        fill="#fff" 
+        text-anchor="middle" 
+        font-family="Verdana,Geneva,DejaVu Sans,sans-serif" 
+        text-rendering="geometricPrecision" 
+        font-size="110">
+        <text 
+            aria-hidden="true" 
+            x="240" y="140" 
+            fill="#010101" 
+            fill-opacity=".3" 
+            transform="scale(.1)" 
+            textLength="450"
+        >推荐阅读
+        </text>
+        <text 
+            x="240" y="130" transform="scale(.1)" fill="#fff" textLength="450"
+        >推荐阅读
+        </text>
+        <text 
+            aria-hidden="true" 
+            x="630" y="140" 
+            fill="#010101" 
+            fill-opacity=".3" 
+            transform="scale(.1)" 
+            textLength="240"
+        >RCM
+        </text>
+        <text 
+            x="630" y="130" transform="scale(.1)" fill="#fff" textLength="240"
+        >RCM
+        </text>
+    </g>
+</svg>

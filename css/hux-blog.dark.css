@@ -708,9 +708,7 @@ a:focus {
   color: #66E4FF;
 }
 a img:hover,
-a img:focus {
-  cursor: zoom-in;
-}
+a img:focus,
 article {
   overflow: hidden;
 }
