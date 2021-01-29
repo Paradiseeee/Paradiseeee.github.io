@@ -7,7 +7,6 @@ author:         "Paradise"
 header-style:   text
 tags:
     - 日志
-    - 前端
 ---
 
 `热烈庆祝 Paradise's Blog 上线 V2.0 版本！[鼓掌][鼓掌][鼓掌]`

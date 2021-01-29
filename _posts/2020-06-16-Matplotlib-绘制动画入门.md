@@ -4,13 +4,10 @@ title:      "Matplotlib 绘制动画入门"
 subtitle:   "使用 <strong>matplotlib.animation</strong> 可视化数据变化趋势"
 date:       2020-06-16 12:00:00
 author:     "Paradise"
-header-img: "img/post-bg.jpg"
 header-style: text
-mathjax: false
 tags:
     - Python
-    - 可视化
-    - 数据分析
+    - 数据可视化
     - 总结
 ---
 
@@ -25,7 +22,7 @@ tags:
 
 根据绘制动画的逻辑，大体分为两类，主要由 `matplolib.animation.FuncAnimation` 类的 blit 参数确定：
 
-<img src="https://img-blog.csdnimg.cn/20200622223805298.jpg">
+<img src="/post-assets/20200616/blitting.jpg" width="80%">
 
 简单来说就是，当使用默认参数时，每一帧都会保留在画布上，与后来绘制的帧混合显示。这时适用于展示长度在改变的数据的变化趋势，例如某一指标的时序数据。或者单纯是希望每张图重叠。主要在于展示纵向的变化趋势。
 
@@ -57,7 +54,7 @@ ani = FuncAnimation(fig, build_frame, interval=10)
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200622223700836.gif">
+<img src="/post-assets/20200616/fig1.gif" style="filter: brightness(80%);">
 
 ## **第二类：** `blit=True`
 
@@ -77,7 +74,7 @@ ani = FuncAnimation(fig, build_frame2, interval=10, blit=True)
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200622223853659.gif">
+<img src="/post-assets/20200616/fig2.gif" style="filter: brightness(80%);">
 
 
 # 二、更复杂的例子
@@ -111,7 +108,7 @@ ani = FuncAnimation(fig, derivate, interval=100, blit=True)
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200622223938624.gif">
+<img src="/post-assets/20200616/fig3.gif" style="filter: brightness(80%);">
 
 ### **动态心形线**
 
@@ -128,7 +125,7 @@ ani = FuncAnimation(fig, heart, interval=100, blit=True)
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200622223951608.gif">
+<img src="/post-assets/20200616/fig4.gif" style="filter: brightness(80%);">
 
 ## **（2）更多图表类型**
 
@@ -187,7 +184,7 @@ ani = FuncAnimation(fig, ani_line, interval=1)
 plt.show()
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200622224014639.gif">
+<img src="/post-assets/20200616/fig5.gif" style="filter: brightness(80%);">
 
 ### **条形图**
 
@@ -206,7 +203,7 @@ plt.show()
 # 可以看到条形图并不适于可视化这个数据，这里只作为绘图示例
 ```
 
-<img src="https://img-blog.csdnimg.cn/20200622224050554.gif">
+<img src="/post-assets/20200616/fig6.gif" style="filter: brightness(80%);">
 
 
 # 三、动态图保存：重写 save 方法
@@ -267,11 +264,11 @@ ani.save(0.02, 600)
 
 - matplotlib.animation 子模块中用于绘制动画的类或函数还有很多，暂时还没有全部研究。
 
-<img src="https://img-blog.csdnimg.cn/20200624185949145.jpg">
+<img src="/post-assets/20200616/Classes.jpg">
 
 - 发行版中的 save 函数存在 bug，这里 DIY 了一个可以保存 GIF 的函数。这个函数其实是完全脱离 FuncAnimation 类，与其并非完全兼容，也就是说，plt.show() show 出来的，跟 save 函数保存下来的，不是完全一致的图。根据实际情况进行调整。
 
 - 关闭动画窗口后，目测还有残留的进程。此时新建 figure 对象会报错（但是这里并没有返回一个 error，也不知这是什么来的，知道的朋友分享一下），需要使用 plt.close() 强制结束。
-<img src="https://img-blog.csdnimg.cn/20200622224059133.jpg">
+<img src="/post-assets/20200616/error.jpg">
 
 - build_frame 函数好像不能定义结束位置，也就是说 plt.show() 之后它就会不停地一帧一帧地绘图，并且内存会累积起来越来越大。但是官方文档给的例子并没有这种现象。我应该是做错了什么？按理说这种情况应该抛一个 warnings 给我才对，但是并没有。还是“能用就行”，这里暂时不管了，反正内存就是拿来占的。而且 matplotlib 本来就很多 bug...
