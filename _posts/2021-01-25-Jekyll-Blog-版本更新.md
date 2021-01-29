@@ -44,6 +44,6 @@ tags:
 
 ### Version 1.0 的日志看这里
 
-> [README.1.0.md]({{ site.fileurl }}README.1.0.md)
+> [README.1.0.md]({{ site.fileurl }}/README.1.0.md)
 
 <br>
