@@ -1,13 +1,24 @@
 # Paradiseeee.github.io
 
-> GitHub 位置：<https://github.com/paradiseeee/paradiseeee.github.io>
->
-> Gitee 位置：<https://gitee.com/paradiseeee/blog>
-
-> Github Page: <https://paradiseeee.github.io>
->
-> Gitee Page: <https://paradiseeee.gitee.io/blog>
-
+<p>
+    <a href="https://paradiseeee.github.io" target="_blank">
+        <img src="./page-assets/github.svg" style="max-width:100%;">
+        &nbsp;Fork on GitHub
+    </a>
+    &nbsp;&nbsp;
+    <a href="https://paradiseeee.github.io" target="_blank">
+        <img src="./page-assets/github-mirror.svg" style="max-width:100%;">
+    </a>
+    &nbsp;&nbsp;
+    <a href="https://paradiseeee.gitee.io/Blog" target="_blank">
+        <img src="./page-assets/gitee.svg" style="max-width:100%;">
+        &nbsp;Fork on Gitee
+    </a>
+    &nbsp;&nbsp;
+    <a href="https://paradiseeee.gitee.io/Blog" target="_blank">
+        <img src="./page-assets/gitee-mirror.svg" style="max-width:100%;">
+    </a>
+</p>
 
 `热烈庆祝 Paradise's Blog 上线 V2.0 版本！[鼓掌][鼓掌][鼓掌]`
 
