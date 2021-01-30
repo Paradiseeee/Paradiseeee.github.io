@@ -8,8 +8,9 @@
                       <img src="{{ site.baseurl }}/page-assets/gitee-mirror.svg" style="max-width:100%;">
                     </a>
                     {% if site.baseurl == "" %}
-                    <a href="https://github.com/paradiseeee/paradiseeee.github.io" target="_blank">               
-                    {% else site.baseurl == "/blog" %}
+                    <a href="https://github.com/paradiseeee/paradiseeee.github.io" target="_blank">
+                    {% endif %}
+                    {% if site.baseurl == "/blog" %}
                     <a href="https://gitee.com/paradiseeee/blog" target="_blank">
                     {% endif %}
                       <img src="{{ site.baseurl }}/page-assets/sources.svg" style="max-width:100%;">
