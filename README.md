@@ -1,7 +1,7 @@
 # Paradiseeee.github.io
 
 <p>
-    <a href="https://paradiseeee.github.io" target="_blank">
+    <a href="https://github.com/paradiseeee/paradiseeee.github.io" target="_blank">
         <img src="./page-assets/github.svg" style="max-width:100%;">
         &nbsp;Fork on GitHub
     </a>
@@ -10,12 +10,12 @@
         <img src="./page-assets/github-mirror.svg" style="max-width:100%;">
     </a>
     &nbsp;&nbsp;
-    <a href="https://paradiseeee.gitee.io/Blog" target="_blank">
+    <a href="https://gitee.com/paradiseeee/blog" target="_blank">
         <img src="./page-assets/gitee.svg" style="max-width:100%;">
         &nbsp;Fork on Gitee
     </a>
     &nbsp;&nbsp;
-    <a href="https://paradiseeee.gitee.io/Blog" target="_blank">
+    <a href="https://paradiseeee.gitee.io/blog" target="_blank">
         <img src="./page-assets/gitee-mirror.svg" style="max-width:100%;">
     </a>
 </p>
