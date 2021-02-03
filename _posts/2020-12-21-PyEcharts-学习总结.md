@@ -606,7 +606,7 @@ line.options['grid'] = {'left': '6%', 'right': '15%', 'bottom': '12%'}
 
 结果如下，基本与原图一样了。有细微区别是因为 Apache 网站上的图表容器跟这里的不一样，并且上面的网页截图时浏览器开了扩展 DarkReader，所以颜色也有点改变的地方。
 
-> <a href="{{ site.fileurl }}/post-assets/20201221/render.html" target="_blank">在新标签页打开交互式图表</a> \| <a href="{{ site.fileurl }}/post-assets/20201221/code.py" target="_blank">下载完整绘图代码</a> \| <a href="{{ site.fileurl }}/post-assets/20201221/data.csv" target="_blank">下载数据</a>
+> <a href="{{ site.baseurl }}/post-assets/20201221/render.html" target="_blank">在新标签页打开交互式图表</a> \| <a href="{{ site.baseurl }}/post-assets/20201221/code.py" target="_blank">下载完整绘图代码</a> \| <a href="{{ site.baseurl }}/post-assets/20201221/data.csv" target="_blank">下载数据</a>
 
 ![](/post-assets/20201221/3.png)
 
