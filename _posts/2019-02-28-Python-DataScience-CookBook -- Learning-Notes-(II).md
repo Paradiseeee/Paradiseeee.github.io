@@ -10,6 +10,7 @@ tags:
     - 机器学习
     - 数据分析
     - 笔记
+    - RCM
 ---
 
 > 教材介绍：<https://book.douban.com/subject/26630181/>

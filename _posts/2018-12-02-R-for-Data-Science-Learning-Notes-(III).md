@@ -11,6 +11,7 @@ tags:
     - 数据分析
     - 笔记
     - 数据可视化
+    - RCM
 ---
 
 > 教材介绍：<https://book.douban.com/subject/26757974/>

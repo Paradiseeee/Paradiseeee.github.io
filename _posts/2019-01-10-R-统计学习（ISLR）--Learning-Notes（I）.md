@@ -12,6 +12,7 @@ tags:
     - 编程语言
     - 数据分析
     - 笔记
+    - RCM
 ---
 
 > Python 解决方案：<https://github.com/hardikkamboj/An-Introduction-to-Statistical-Learning>
