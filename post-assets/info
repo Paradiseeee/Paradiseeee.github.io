@@ -1,0 +1,12 @@
+_posts 里面所有 markdown 文件的引用资源放在这里
+并且其他文档中引用的资源不应该放在这里（放在page-assets里）
+
+由于部署在 gitee 上时不是直接使用根目录，site.baseurl='/blog'
+jekyll 在编译 markdown 文件时不能自动加上 baseurl，所以要手动更改引用链接
+markdown 文件的 yml 参数中的引用不受影响（不是 img 标签）
+
+参考 ./_layouts/post.html
+line-104: <!-- 增加 js 代码更改图片链接（在 post-assets 前面加上 site.basurl） -->
+
+目前只考虑了引用的图片，即 img 标签，以后需要引用其他文件再更新代码
+简单来说，就是更改 layout 为 post 的页面的所有 <img> 标签

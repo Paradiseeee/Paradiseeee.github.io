@@ -1,0 +1,74 @@
+# Site settings
+title: Paradise's Blog
+SEOTitle: Paradise's Blog
+header-img: page-assets/home-bg.jpg
+email: paradise-yang@outlook.com
+description: "temp"
+keyword: "Paradise's Blog Paradise Paradiseeee 数据分析 编程 数据可视化 分析"
+# ---------- chang url wihle using different jekyll server ----------
+# localhost
+# url: "http://localhost:4000"
+# baseurl: ""
+# fileurl: "http://localhost:4000"
+# # Gitee
+# url: "https://paradiseeee.gitee.io"
+# baseurl: "/blog"
+# fileurl: "https://github.com/paradiseeee/blog/blob/master"
+# GitHub
+url: "https://paradiseeee.github.io"
+baseurl: ""
+fileurl: "https://github.com/paradiseeee/paradiseeee.github.io/blob/master"
+
+# Publish posts or collection documents with a future date.
+future: true
+
+# SNS settings
+RSS: false
+github_username: paradiseeee
+csdn_username: weixin_41311624
+wechat_qrcode: /page-assets/wechat-qrcode.jpg
+qq_mail: paradise26472@qq.com
+mail_address: paradise-yang@outlook.com
+
+# Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["README.md","Rakefile"]
+# if you want to customize anchor. check out line:181 of `post.html`
+#anchorjs: true
+# If you have timezone issue (e.g. #68) in China, uncomment to use this:
+#timezone: CN  
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+# make sure you have this gem installed
+# `$ gem install jekyll-paginate`
+plugins: [jekyll-paginate]
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: <svg t="1611499439142" class="icon" viewBox="0 0 1256 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1206" width="20" height="20"><path d="M1108.898517 197.939366m-56.553572 0a56.553572 56.553572 0 1 0 113.107144 0 56.553572 56.553572 0 1 0-113.107144 0Z" fill="#66E4FF" p-id="1207"></path><path d="M1199.426279 446.873194m-56.553572 0a56.553572 56.553572 0 1 0 113.107144 0 56.553572 56.553572 0 1 0-113.107144 0Z" fill="#66E4FF" p-id="1208"></path><path d="M1108.898517 673.213624m-56.553572 0a56.553572 56.553572 0 1 0 113.107144 0 56.553572 56.553572 0 1 0-113.107144 0Z" fill="#66E4FF" p-id="1209"></path><path d="M859.964689 246.644116V101.805302a101.964619 101.964619 0 0 0-47.723646-87.780675 92.41989 92.41989 0 0 0-90.401621-4.204726L351.388998 195.136215h-246.677291A104.76777 104.76777 0 0 0 0.056063 299.791859v243.50973a104.76777 104.76777 0 0 0 104.655644 104.655644h61.669323l46.700496 297.274167a85.664296 85.664296 0 0 0 85.159728 78.768544h22.64946a85.65028 85.65028 0 0 0 85.65028-81.697837v-2.915277l-22.579381-275.059195 337.331195 168.693629a92.349811 92.349811 0 0 0 90.401621-4.204726 101.964619 101.964619 0 0 0 47.723646-87.780675V579.280033a169.730795 169.730795 0 0 0 0-332.635917z m-769.464958 296.419205V299.539575a14.127881 14.127881 0 0 1 14.127881-14.127881h211.918218v271.583288H104.417376a14.127881 14.127881 0 0 1-13.875598-13.875598z m212.562943 390.40886l-44.626165-282.908018h34.198443l23.266154 282.908018z m466.388269-192.436318a12.179691 12.179691 0 0 1-4.751341 10.778116c-1.219371 0.728819-1.527717 0.602677-2.3126 0L407.395955 574.346487V268.368536L762.387002 90.91506a1.906143 1.906143 0 0 1 2.3126 0 12.179691 12.179691 0 0 1 4.751341 10.778116v639.342687z m90.527762-256.488319V341.432668a79.146969 79.146969 0 0 1 0 143.128891z" fill="#66E4FF" p-id="1210"></path></svg> Hi！我是 Paradise。我在这里记录自己的学习和思考，会不定期更新文章，欢迎志同道合的朋友关注。前往「 关于作者 」了解我的更多信息，前往「 项目展示 」了解我最近做的项目。欢迎通过社交账号以及在我常去的站点联系我 <font color=#66E4FF>▼ ▼ ▼</font>
+sidebar-avatar: /page-assets/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 2              # A tag will be featured if the size of it is more than this condition value
+
+# MathJax rendering for layout:page (e.g. post preview)
+page-mathjax: false

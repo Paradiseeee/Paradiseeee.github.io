@@ -1,0 +1,25 @@
+                <section>
+                  <hr>
+                  <h5>置顶链接</h5>
+                    <a href="https://paradiseeee.github.io" target="_blank">
+                      <img src="{{ site.baseurl }}/page-assets/github-mirror.svg" style="max-width:100%;">
+                    </a>
+                    <a href="https://paradiseeee.gitee.io/Blog" target="_blank">
+                      <img src="{{ site.baseurl }}/page-assets/gitee-mirror.svg" style="max-width:100%;">
+                    </a>
+                    {% if site.baseurl == "" %}
+                    <a href="https://github.com/paradiseeee/paradiseeee.github.io" target="_blank">
+                    {% endif %}
+                    {% if site.baseurl == "/blog" %}
+                    <a href="https://gitee.com/paradiseeee/blog" target="_blank">
+                    {% endif %}
+                      <img src="{{ site.baseurl }}/page-assets/sources.svg" style="max-width:100%;">
+                    </a>                    
+                    <a href="{{ site.url }}/AnalyticsDashboard" target="_blank">
+                      <img src="{{ site.baseurl }}/page-assets/project.svg" style="max-width:100%;">
+                    </a>
+                    <a href="{{ site.baseurl }}/archive?tag=RCM" target="_blank">
+                      <img src="{{ site.baseurl }}/page-assets/recommand.svg" style="max-width:100%;">
+                    </a>
+                  <hr>
+                </section>

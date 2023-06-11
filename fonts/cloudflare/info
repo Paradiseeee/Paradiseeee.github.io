@@ -1,0 +1,51 @@
+<!-- this is a markdown file -->
+# Instruction of this folder
+
+## STEP 1: lacate scripts using cloudflare cdn
+
+```
+$ grep cloudflare * -r
+_includes/footer.html:    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+_includes/head.html:    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+_includes/mathjax_support.html:        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+_layouts/keynote.html:    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+_layouts/page.html:        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+_layouts/post.html:    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+_site/2014/08/16/miui6/index.html:    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+_site/2014/08/16/miui6/index.html:    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+_site/2014/09/04/is-pure-android-better/index.html:    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+_site/2014/09/04/is-pure-android-better/index.html:    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+...
+```
+
+## STEP 2: fetch source
+
+https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js                         --> ./js/cloudflare/fastclick.min.js
+https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css              --> ./js/cloudflare/font-awesome.min.css
+https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG          --> ./js/cloudflare/MathJax.js
+https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js                            --> ./js/cloudflare/anchor.min.js
+https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML    --> ./js/cloudflare/MathJax.js
+https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js                            --> ./js/cloudflare/anchor.min.js
+
+## STEP 3: change src in the source codes in STEP 1
+
+## STEP 4: change src in font-awesome.min.js
+
+check details in commit 786ca89f894d6e51c57a0a655f9a64a3f026d9aa
+
+## STEP 5: fix mathjax
+
+又把 MathJax.js 的链接改回来了，因为里面的 js 有一些加载规则和加载路径是根据自身所在的路径确定，将文件切换到本地会加载不了
+
+但是这样还是挺快，之前慢主要是因为 github-btn 和 font-awesome 里面加载的字体较大
+
+## STEP 6: fuck cloudflare again
+
+cloudflare 实在是慢，而且又想在没网络的情况下在 localhost 下使用，所以还是不使用 cdn
+
+重新尝试解决 MathJax 的问题
+
+
+> *其实主要问题好像是加载 github-btn 的时候出现的，跟 cloudflare 关系不大*
+
+> *主要是我手动下载相关字体文件的时候发现响应是比较慢，不过改都改了，能用就行*
