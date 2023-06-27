@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
+
+</head>
+<body>
+    <div id="1fedadd80a34461c8a3912bc57f23153" class="chart-container" style="width:100%; height:360px;"></div>
+    <script>
+        var chart_1fedadd80a34461c8a3912bc57f23153 = echarts.init(
+            document.getElementById('1fedadd80a34461c8a3912bc57f23153'), 'dark', {renderer: 'canvas'});
+        var option_1fedadd80a34461c8a3912bc57f23153 = {
+    "backgroundColor": "#1a1c1d",
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "series": [
+        {
+            "type": "pie",
+            "name": "\u65f6\u95f4\u5206\u5e03",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": 0,
+                    "value": [
+                        1,
+                        0.0
+                    ]
+                },
+                {
+                    "name": 1,
+                    "value": [
+                        1,
+                        2.0
+                    ]
+                },
+                {
+                    "name": 2,
+                    "value": [
+                        1,
+                        0.0
+                    ]
+                },
+                {
+                    "name": 3,
+                    "value": [
+                        1,
+                        0.0
+                    ]
+                },
+                {
+                    "name": 4,
+                    "value": [
+                        1,
+                        0.0
+                    ]
+                },
+                {
+                    "name": 5,
+                    "value": [
+                        1,
+                        0.0
+                    ]
+                },
+                {
+                    "name": 6,
+                    "value": [
+                        1,
+                        0.0
+                    ]
+                },
+                {
+                    "name": 7,
+                    "value": [
+                        1,
+                        82.0
+                    ]
+                },
+                {
+                    "name": 8,
+                    "value": [
+                        1,
+                        626.0
+                    ]
+                },
+                {
+                    "name": 9,
+                    "value": [
+                        1,
+                        2052.0
+                    ]
+                },
+                {
+                    "name": 10,
+                    "value": [
+                        1,
+                        2266.0
+                    ]
+                },
+                {
+                    "name": 11,
+                    "value": [
+                        1,
+                        2230.0
+                    ]
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "inside",
+                "margin": 8
+            },
+            "tooltip": {
+                "show": true,
+                "trigger": "item",
+                "triggerOn": "mousemove|click",
+                "axisPointer": {
+                    "type": "line"
+                },
+                "showContent": true,
+                "alwaysShowContent": false,
+                "showDelay": 0,
+                "hideDelay": 100,
+                "formatter":                 function (data) {                    var start = data.name;                    var end = parseInt(data.name) + 1;                    var pop = parseInt(data.value[1]);                    var line1 = start + ':00 ~ ' + end + ':00 ';                    var line2 = '\u4e0b\u5355\u4eba\u6570\uff1a' + pop;                    return  line1 + '<br/>' + line2;                }                ,
+                "textStyle": {
+                    "fontSize": 14
+                },
+                "borderWidth": 0,
+                "padding": 5
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u4e0b\u5355\u65f6\u95f4\u5206\u5e03\uff08AM\uff09",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ],
+    "color": [
+        "#ffffcc",
+        "#ffffcc",
+        "#ffffcc",
+        "#ffffcc",
+        "#ffffcc",
+        "#ffffcc",
+        "#ffffcc",
+        "#fffabf",
+        "#fed16d",
+        "#ae0026",
+        "#800026",
+        "#880026"
+    ]
+};
+        chart_1fedadd80a34461c8a3912bc57f23153.setOption(option_1fedadd80a34461c8a3912bc57f23153);
+            window.addEventListener('resize', function(){
+                chart_1fedadd80a34461c8a3912bc57f23153.resize();
+            })
+    </script>
+</body>
+</html>
